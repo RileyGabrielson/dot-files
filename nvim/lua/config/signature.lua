@@ -3,5 +3,5 @@ require("lsp_signature").setup({
     fix_pos = true,
     hi_parameter = 'IncSearch',
     always_trigger = true,
-    hint_enable = false
+    hint_enable = true
 })

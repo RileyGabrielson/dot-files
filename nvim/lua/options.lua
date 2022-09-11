@@ -14,6 +14,8 @@ vim.opt.smartcase = true
 vim.opt.history = 500
 vim.opt.termguicolors = true
 vim.opt.showmatch = false
+vim.opt.wrap = false
+vim.opt.timeoutlen = 500
 
 vim.cmd "colorscheme onedarker"
 

@@ -44,5 +44,3 @@ map("n", "<Leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "<Leader>r", "<cmd>lua vim.lsp.buf.references()<CR>")
 map("n", "<Leader>s", "<cmd>lua vim.lsp.buf.rename()<CR>")
 map("n", "<Leader>.", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-
-map("t", "<C-\\>", "<C-\\><C-n>")

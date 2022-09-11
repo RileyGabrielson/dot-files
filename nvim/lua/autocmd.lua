@@ -20,28 +20,29 @@ function define_augroups(definitions) -- {{{1
     end
 end
 
-local auto_formatters = {}
-
 local javascript_autoformat = {'BufWritePre', '*.js', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 local javascriptreact_autoformat = {'BufWritePre', '*.jsx', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 local typescript_autoformat = {'BufWritePre', '*.ts', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
 local typescriptreact_autoformat = {'BufWritePre', '*.tsx', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
-table.insert(auto_formatters, javascript_autoformat)
-table.insert(auto_formatters, javascriptreact_autoformat)
-table.insert(auto_formatters, typescript_autoformat)
-table.insert(auto_formatters, typescriptreact_autoformat)
+
+local nerdtree_quit_vim = {'BufEnter', '*', "if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"}
+local nerdtree_dont_overwrite =  {
+  'BufEnter', 
+  '*', 
+  "if bufname('#') =~ 'NERD_tree_\\d\\+' && bufname('%') !~ 'NERD_tree_\\d\\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute 'normal! \\<C-W>w' | execute 'buffer'.buf | endif"
+}
+local show_yanks = {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'}
 
 define_augroups({
     _general_settings = {
-        {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'},
-        {'BufWinEnter', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-        {'BufRead', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-        {'BufNewFile', '*', 'setlocal formatoptions-=c formatoptions-=r formatoptions-=o'},
-        {'VimLeavePre', '*', 'set title set titleold='}, {'FileType', 'qf', 'set nobuflisted'},
-        {'BufEnter', '*', [[exe 'noremap <F5> :!open -a "Google Chrome" %:p:.<CR>']]}
-
-        -- {'User', 'GoyoLeave', 'lua require(\'galaxyline\').disable_galaxyline()'},
-        -- {'User', 'GoyoEnter', 'lua require(\'galaxyline\').galaxyline_augroup()'},
+        show_yanks,
+        nerdtree_quit_vim,
+        nerdtree_dont_overwrite,
     },
-    _auto_formatters = auto_formatters
+    _auto_formatters = {
+        javascript_autoformat,
+        javascriptreact_autoformat,
+        typescript_autoformat,
+        typescriptreact_autoformat 
+    }
 })
