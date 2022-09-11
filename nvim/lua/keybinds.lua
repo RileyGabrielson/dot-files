@@ -21,6 +21,34 @@ map("n", "<Leader>e", ":NERDTreeFocus<CR>")
 map("n", "<Leader>E", ":NERDTreeToggle<CR>")
 map("n", "<Leader>h", ":NERDTreeFind<CR>")
 
+
+local vimp = require('vimp')
+local toggle_term = require('toggleterm')
+function cover_file()
+  local file_path = vim.api.nvim_buf_get_name(0);
+  local trimmed_path = file_path:gsub("/Users/riley.gabrielson/r/neo/ui/operator/", "")
+  trimmed_path = trimmed_path:gsub("/Users/riley.gabrielson/r/neo/commons/ui/", "")
+  local test_path = trimmed_path:gsub("/__tests__", "")
+  test_path = test_path:gsub(".test", "")
+
+  local test_details = file_path .. ' --coverage --collectCoverageFrom=\'' .. test_path .. '\''
+  return test_details
+end
+
+vimp.nnoremap('<leader>co', function()
+  local test_details = cover_file()
+  toggle_term.exec("yarn operator test " .. test_details)
+end)
+
+vimp.nnoremap('<leader>cc', function()
+  local test_details = cover_file()
+  toggle_term.exec("yarn commons test " .. test_details)
+end)
+
+-- src/apps/business-intelligence/dashboards/edit_dashboard/domains/__tests__/edit_dashboard_domain.test.ts
+
+
+
 map("n", "<Leader>gb", "<cmd>GitBlameToggle<CR>")
 map("n", "<Leader>gs", ":Gitsigns toggle_signs<CR>:Gitsigns toggle_numhl<CR>")
 
@@ -32,6 +60,8 @@ map("n", "<C-p>", ":GFiles<CR>")
 map("n", "<Leader>p", ":GFiles<CR>")
 map("n", "<C-P>", ":Files<CR>")
 map("n", "<Leader>P", ":Files<CR>")
+
+map('t', '<Esc>', '<C-\\><C-n>')
 
 map("n", "<Leader>td", "<cmd>Trouble document_diagnostics<CR>")
 map("n", "<Leader>tw", "<cmd>Trouble workplace_diagnostics<CR>")

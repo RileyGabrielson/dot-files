@@ -14,6 +14,7 @@ require('packer').startup(function(use)
   use 'RRethy/vim-illuminate' -- highlight current word
   use 'f-person/git-blame.nvim' -- git blame toggling
   use 'kyazdani42/nvim-web-devicons' -- icon pack
+  use 'svermeulen/vimpeccable' -- mapping keybinds to lua functions
 
   use 'tpope/vim-fugitive' -- git solution
   use { 
