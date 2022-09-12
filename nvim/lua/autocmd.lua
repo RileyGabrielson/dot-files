@@ -1,4 +1,4 @@
-function define_augroups(definitions) -- {{{1
+local function define_augroups(definitions) -- {{{1
     -- Create autocommand groups based on the passed definitions
     --
     -- The key will be the name of the group, and each definition
@@ -27,8 +27,8 @@ local typescriptreact_autoformat = {'BufWritePre', '*.tsx', 'lua vim.lsp.buf.for
 
 local nerdtree_quit_vim = {'BufEnter', '*', "if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"}
 local nerdtree_dont_overwrite =  {
-  'BufEnter', 
-  '*', 
+  'BufEnter',
+  '*',
   "if bufname('#') =~ 'NERD_tree_\\d\\+' && bufname('%') !~ 'NERD_tree_\\d\\+' && winnr('$') > 1 | let buf=bufnr() | buffer# | execute 'normal! \\<C-W>w' | execute 'buffer'.buf | endif"
 }
 local show_yanks = {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'}
@@ -43,6 +43,6 @@ define_augroups({
         javascript_autoformat,
         javascriptreact_autoformat,
         typescript_autoformat,
-        typescriptreact_autoformat 
+        typescriptreact_autoformat
     }
 })

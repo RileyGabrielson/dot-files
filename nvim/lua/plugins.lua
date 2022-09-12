@@ -17,9 +17,9 @@ require('packer').startup(function(use)
   use 'svermeulen/vimpeccable' -- mapping keybinds to lua functions
 
   use 'tpope/vim-fugitive' -- git solution
-  use { 
+  use {
     'shumphrey/fugitive-gitlab.vim', -- gitlab wrapper for fugitive
-    config = function() require("config.fugitive") end
+    config = function() require('config.fugitive') end
   }
 
   use {
@@ -47,15 +47,15 @@ require('packer').startup(function(use)
   }
 
   use {
-    "nvim-lualine/lualine.nvim", -- fancy status bar
+    'nvim-lualine/lualine.nvim', -- fancy status bar
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function() require("config.lualine") end,
+    config = function() require('config.lualine') end,
   }
 
   use {
-    "folke/trouble.nvim", -- issues popup window
+    'folke/trouble.nvim', -- issues popup window
     requires = { 'kyazdani42/nvim-web-devicons'},
-    config = function() require("config.trouble") end,
+    config = function() require('config.trouble') end,
   }
 
   use {
@@ -63,7 +63,13 @@ require('packer').startup(function(use)
     config = function() require('config.cmp') end,
   }
   use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
-  use 'saadparwaiz1/cmp_luasnip' -- auto complete lua
+  use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
+  use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
+
+  use {
+    'rcarriga/nvim-notify',
+    config = function() require('config.notify') end,
+  }
 
 end)
 

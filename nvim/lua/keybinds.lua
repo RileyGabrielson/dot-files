@@ -1,4 +1,4 @@
-function map(mode, lhs, rhs, opts)
+local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
         options = vim.tbl_extend("force", options, opts)
@@ -24,7 +24,7 @@ map("n", "<Leader>h", ":NERDTreeFind<CR>")
 
 local vimp = require('vimp')
 local toggle_term = require('toggleterm')
-function cover_file()
+local function cover_file()
   local file_path = vim.api.nvim_buf_get_name(0);
   local trimmed_path = file_path:gsub("/Users/riley.gabrielson/r/neo/ui/operator/", "")
   trimmed_path = trimmed_path:gsub("/Users/riley.gabrielson/r/neo/commons/ui/", "")
@@ -45,9 +45,6 @@ vimp.nnoremap('<leader>cc', function()
   toggle_term.exec("yarn commons test " .. test_details)
 end)
 
--- src/apps/business-intelligence/dashboards/edit_dashboard/domains/__tests__/edit_dashboard_domain.test.ts
-
-
 
 map("n", "<Leader>gb", "<cmd>GitBlameToggle<CR>")
 map("n", "<Leader>gs", ":Gitsigns toggle_signs<CR>:Gitsigns toggle_numhl<CR>")
@@ -61,7 +58,7 @@ map("n", "<Leader>p", ":GFiles<CR>")
 map("n", "<C-P>", ":Files<CR>")
 map("n", "<Leader>P", ":Files<CR>")
 
-map('t', '<Esc>', '<C-\\><C-n>')
+map('t', '<S-Esc>', '<C-\\><C-n>')
 
 map("n", "<Leader>td", "<cmd>Trouble document_diagnostics<CR>")
 map("n", "<Leader>tw", "<cmd>Trouble workplace_diagnostics<CR>")
