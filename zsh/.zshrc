@@ -6,7 +6,7 @@ ZSH_THEME="agkozak"
 
 HYPHEN_INSENSITIVE="true"
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions web-search)
+plugins=(git zsh-autosuggestions web-search)
 source $ZSH/oh-my-zsh.sh
 
 cleanmerged() {

@@ -1,7 +1,12 @@
 require'lspconfig'.tsserver.setup {
     filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"},
     root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-    settings = {documentFormatting = true},
+    settings = {documentFormatting = false},
+    initOptions = {
+      preferences = {
+        importModuleSpecifierPreference = "project-relative",
+      },
+    },
     handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             virtual_text = {spacing = 0, prefix = "*"},

@@ -58,19 +58,36 @@ local visual_options = {
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
+-- no hl
+vim.api.nvim_set_keymap('n', '<Leader>H', ':set hlsearch!<CR>', {noremap = true, silent = true})
+
 vim.api.nvim_set_keymap("n", "<Tab>", "<C-w><C-w>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
-vim.api.nvim_set_keymap("n", "<Leader>e", ":NERDTreeFocus<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>p", ":GFiles<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>P", ":Files<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>f", ":Ag<CR>", {noremap=true, silent=false})
 
+vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
+
 local normal_mappings = {
-  ["e"] = "Explorer",
   ["p"] = "Find File",
   ["P"] = "Find Any File",
   ["f"] = "Find Text",
   ["<Tab>"] = "Next Window",
+
+  u = {
+    name = "Terminal",
+    u = {":ToggleTerm<CR>", "Default Terminal"},
+    ["1"] = {":1ToggleTerm<CR>", "Terminal 1"},
+    ["2"] = {":2ToggleTerm<CR>", "Terminal 2"},
+  },
+
+  e = {
+    name = "Explorer",
+    f = {"<cmd>NERDTreeFind<CR>", "Find"},
+    c = {"<cmd>NERDTreeClose<CR>", "Close"},
+    e = {"<cmd>NERDTreeFocus<CR>", "Focus"},
+  },
 
   l = {
     name = "LSP",
@@ -84,7 +101,7 @@ local normal_mappings = {
 
   g = {
     name = "Git",
-    g = {":Git", "Git Home"},
+    g = {":Git<CR>", "Git Home"},
     b = {":GitBlameToggle<CR>", "Git Blame"},
   },
 
@@ -97,19 +114,25 @@ local normal_mappings = {
   r = {
     name = "Repositories",
     d = {":e ~/dot-files/README.md<CR>", "Dot Files"},
-    n = {":e ~/r/neo/package.json", "Neo"},
+    n = {":e ~/r/neo/package.json<CR>", "Neo"},
+  },
+
+  n = {
+    name = "Neo",
+    o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
+    c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Operator"},
   },
 
   m = {
     name = "Manipulate",
-    c = {":CommentToggle<CR>", "Comment"}
+    c = {":CommentToggle<CR>", "Comment"},
   }
 }
 
 local visual_mappings = {
   m = {
     name = "Manipulate",
-    c = {"<ESC><CMD>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<CR>", "Comment"}
+    c = {"<cmd>'<,'>CommentToggle<CR>", "Comment"}
   }
 }
 

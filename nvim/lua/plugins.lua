@@ -16,6 +16,8 @@ require('packer').startup(function(use)
   use 'kyazdani42/nvim-web-devicons' -- icon pack
   use 'svermeulen/vimpeccable' -- mapping keybinds to lua functions
   use 'tpope/vim-fugitive' -- git solution
+  use 'prettier/vim-prettier' -- prettier formatting
+  use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
 
   use {
     "folke/which-key.nvim",
@@ -76,7 +78,7 @@ require('packer').startup(function(use)
   }
   use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
   use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
-  use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
+  use 'hrsh7th/cmp-path' -- auto complete system paths
 
 end)
 
