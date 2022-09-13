@@ -1,7 +1,7 @@
 require("lsp_signature").setup({
-    bind = true,
+    bind = false,
     fix_pos = true,
     hi_parameter = 'IncSearch',
-    always_trigger = true,
-    hint_enable = true
+    always_trigger = false,
+    hint_enable = false,
 })

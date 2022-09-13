@@ -15,11 +15,16 @@ require('packer').startup(function(use)
   use 'f-person/git-blame.nvim' -- git blame toggling
   use 'kyazdani42/nvim-web-devicons' -- icon pack
   use 'svermeulen/vimpeccable' -- mapping keybinds to lua functions
-
   use 'tpope/vim-fugitive' -- git solution
+
   use {
-    'shumphrey/fugitive-gitlab.vim', -- gitlab wrapper for fugitive
-    config = function() require('config.fugitive') end
+    "folke/which-key.nvim",
+    config = function() require("config.which-key") end,
+  }
+
+  use {
+    'j-hui/fidget.nvim', -- lsp progress
+    config = function() require'fidget'.setup() end,
   }
 
   use {
@@ -59,17 +64,19 @@ require('packer').startup(function(use)
   }
 
   use {
+    "stevearc/dressing.nvim", -- fancy up ui windows
+    event = "BufReadPre",
+    config = function() require('config.dressing') end,
+    disable = false,
+}
+
+  use {
     'hrsh7th/nvim-cmp', -- auto complete
     config = function() require('config.cmp') end,
   }
   use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
   use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
   use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
-
-  use {
-    'rcarriga/nvim-notify',
-    config = function() require('config.notify') end,
-  }
 
 end)
 
