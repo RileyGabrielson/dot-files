@@ -63,23 +63,28 @@ vim.api.nvim_set_keymap('n', '<Leader>H', ':set hlsearch!<CR>', {noremap = true,
 
 vim.api.nvim_set_keymap("n", "<Tab>", "<C-w><C-w>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
-vim.api.nvim_set_keymap("n", "<Leader>p", ":GFiles<CR>", {noremap=true, silent=false})
-vim.api.nvim_set_keymap("n", "<Leader>P", ":Files<CR>", {noremap=true, silent=false})
-vim.api.nvim_set_keymap("n", "<Leader>f", ":Ag<CR>", {noremap=true, silent=false})
+
+vim.api.nvim_set_keymap('n', '<Leader>p', '<cmd>lua require("config.telescope").project_files()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>P', '<cmd>lua require("telescope.builtin").find_files({ fuzzy = false })<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap = true, silent = false})
+vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
 local normal_mappings = {
-  ["p"] = "Find File",
-  ["P"] = "Find Any File",
+  ["p"] = "Find File Fuzzy",
+  ["P"] = "Find File Exact",
   ["f"] = "Find Text",
   ["<Tab>"] = "Next Window",
+  ["z"] = "Zen Mode",
 
   u = {
     name = "Terminal",
-    u = {":ToggleTerm<CR>", "Default Terminal"},
     ["1"] = {":1ToggleTerm<CR>", "Terminal 1"},
     ["2"] = {":2ToggleTerm<CR>", "Terminal 2"},
+    ["3"] = {":3ToggleTerm<CR>", "Terminal 3"},
+    ["4"] = {":4ToggleTerm<CR>", "Terminal 4"},
+    ["5"] = {":5ToggleTerm<CR>", "Terminal 5"},
   },
 
   e = {
@@ -92,6 +97,7 @@ local normal_mappings = {
   l = {
     name = "LSP",
     d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Definition"},
+    t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},
     h = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
     r = {"<cmd>lua vim.lsp.buf.references()<CR>", "References"},
     s = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol"},
@@ -107,20 +113,58 @@ local normal_mappings = {
 
   T = {
     name = "Trouble",
-    d = {":Trouble document_diagnostics", "Document Diagnostics"},
-    w = {":Trouble workplace_diagnostics", "Workplace Diagnostics"},
+    d = {":Trouble document_diagnostics<CR>", "Document Diagnostics"},
+    w = {":Trouble workspace_diagnostics<CR>", "Workplace Diagnostics"},
+  },
+
+  t = {
+    name = "Telescope",
+    r = {"<cmd>Telescope resume<cr>", "Resume"},
+    f = {
+        name = "Find",
+        g = {"<cmd>lua require'telescope.builtin'.git_files{}<CR>", "Find Git Files"},
+        s = {"<cmd>Telescope grep_string<cr>", "Find String Under Cursor"},
+        b = {"<cmd>Telescope buffers<cr>", "Find Buffers"},
+        h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
+        c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
+        q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quikcfix List"},
+        a = {'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', "All files"},
+    },
+    l = {
+        name = "Lsp",
+        r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
+        c = {"<cmd>Telescope lsp_code_actions<cr>", "Code Actions for word under cursor"},
+        i = {"<cmd>Telescope lsp_implementations<cr>", "GoTo Implementation"},
+        d = {"<cmd>Telescope lsp_definitions<cr>", "GoTo Definition"},
+    },
+  },
+
+  S = {
+    name = "Spectre",
+    S = {"<cmd>lua require('spectre').open()<CR>", "Open"},
   },
 
   r = {
     name = "Repositories",
-    d = {":e ~/dot-files/README.md<CR>", "Dot Files"},
-    n = {":e ~/r/neo/package.json<CR>", "Neo"},
+    d = {":e ~/dot-files/README.md<CR>:cd ~/dot-files/<CR>", "Dot Files"},
+    n = {":e ~/r/neo/package.json<CR>:cd ~/r/neo/<CR>", "Neo"},
+    t = {":Neorg workspace tcn<CR>", "TCN Notes"},
+    p = {":Neorg workspace personal<CR>", "Personal Notes"},
   },
 
   n = {
     name = "Neo",
-    o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
-    c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Operator"},
+    t = {
+      name = "Test Neo",
+      o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
+      c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Commons"},
+    },
+    s = {
+      name = "Start Neo",
+      o = {"<cmd>lua require'commands.start_neo'.start_operator()<CR>", "Start Operator"},
+      c = {"<cmd>lua require'commands.start_neo'.start_commons_cosmos()<CR>", "Start Commons Cosmos"},
+      O = {"<cmd>lua require'commands.start_neo'.start_operator_cosmos()<CR>", "Start Operator Cosmos"},
+    }
   },
 
   m = {

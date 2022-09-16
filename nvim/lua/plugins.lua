@@ -7,9 +7,6 @@ require('packer').startup(function(use)
   use 'lunarvim/colorschemes' -- additional color scheme options
   use 'preservim/nerdtree' -- file explorer
   use 'xuyuanp/nerdtree-git-plugin' -- git indicators for file explorer
-  use 'easymotion/vim-easymotion' -- easy motion movement
-  use 'junegunn/fzf' -- fuzzy finder
-  use 'junegunn/fzf.vim' -- fuzzy finder vim implementation
   use 'L3MON4D3/LuaSnip' -- fancy status bar
   use 'RRethy/vim-illuminate' -- highlight current word
   use 'f-person/git-blame.nvim' -- git blame toggling
@@ -18,6 +15,8 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive' -- git solution
   use 'prettier/vim-prettier' -- prettier formatting
   use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
+  use 'nvim-lua/plenary.nvim' -- lua function helpers, required for telescope
+  use 'sainnhe/everforest'  -- green color scheme yo
 
   use {
     "folke/which-key.nvim",
@@ -79,6 +78,44 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
   use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
   use 'hrsh7th/cmp-path' -- auto complete system paths
+
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {
+      'nvim-telescope/telescope.nvim', -- telescope fuzzy finder
+      requires = {
+          {'nvim-lua/plenary.nvim'},
+          {'nvim-telescope/telescope-fzf-native.nvim'},
+      },
+      config = function() require("config.telescope") end
+  }
+
+  use {
+    "nvim-pack/nvim-spectre",
+    config = function() require("config.spectre") end
+  }
+
+  use {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function() require("lsp_lines").setup() end,
+  }
+
+  use {
+    "folke/zen-mode.nvim",
+    config = function() require("zen-mode").setup { } end
+  }
+
+  use {
+    "mfussenegger/nvim-lint",
+    config = function() require("config.lint") end
+  }
+
+  use {
+      "nvim-neorg/neorg",
+      tag = '0.0.12',
+      after = "nvim-treesitter",
+      requires = "nvim-lua/plenary.nvim",
+      config = function() require("config.neorg") end,
+  }
 
 end)
 

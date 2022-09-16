@@ -19,6 +19,7 @@ cmp.setup({
 
     -- the order you put these in are the ranking you want it shown up
     sources = cmp.config.sources({
+        {name = "neorg"},
         {name = "nvim_lua"},
         {name = "path"},
         {name = "nvim_lsp"},

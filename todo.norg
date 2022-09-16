@@ -1,0 +1,29 @@
+@document.meta
+title: todo
+description: 
+authors: riley.gabrielson
+categories: 
+created: 2022-09-16
+version: 0.0.12
+@end
+
+* TODO:
+  - [ ] get linter set up
+  - [ ] investigate faster typescript lsp
+  - [ ] neoclide/coc.nvim looks promising
+  - [ ] make sure can disable relative imports
+  - [ ] TODO highlighting?
+  - [ ] think about changing the lsp stuff to be two strokes, 3 is kind of rough.
+  - [ ] Dom attribute auto complete?
+  - [ ] comment solution is not working...
+  - [ ] prettier is slow... need to figure out prettierd
+  - [ ] nvim tree lua instead of nerd tree
+
+  - [ ] Global config
+    - [ ] Maccy clipboard manager (clipboard manager)
+
+  - [ ] file syntax on spectre?
+  - [ ] learn how to find and replace better with the quick fix list and /%s/...
+  - [ ] fugitive diff highlighting: very garish :D
+  - [ ] set hide level to 1 when we enter a norg file autocommand
+

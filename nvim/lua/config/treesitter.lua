@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "typescript", "javascript" },
+  ensure_installed = { "typescript", "javascript", "norg" },
   sync_install = true,
   auto_install = true,
 
@@ -23,3 +23,4 @@ require'nvim-treesitter.configs'.setup {
     keymaps = {goto_partner = "<leader>%"}
   },
 }
+

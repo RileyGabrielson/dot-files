@@ -8,6 +8,7 @@ require("toggleterm").setup{
     direction = 'float',
     autochdir = true,
     hide_numbers = false,
+    shade_terminals = true,
 
     float_opts = {
         border = 'curved',
@@ -16,7 +17,7 @@ require("toggleterm").setup{
 
 function _G.set_terminal_keymaps()
   local opts = {silent = true}
-  vim.api.nvim_set_keymap('t', '<Esc>', "<Cmd>ToggleTerm<CR>", opts)
+  vim.api.nvim_set_keymap('t', '<Esc><Esc>', "<Cmd>ToggleTerm<CR>", opts)
   vim.api.nvim_set_keymap('t', '<S-Esc>', [[<C-\><C-n>]], opts)
   vim.api.nvim_set_keymap('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
   vim.api.nvim_set_keymap('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
@@ -25,4 +26,4 @@ function _G.set_terminal_keymaps()
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.cmd('autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()')
