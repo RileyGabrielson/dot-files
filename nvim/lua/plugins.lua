@@ -5,8 +5,6 @@ require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig' -- configurations for nvim LSP
   use 'joshdick/onedark.vim' -- onedark color scheme
   use 'lunarvim/colorschemes' -- additional color scheme options
-  use 'preservim/nerdtree' -- file explorer
-  use 'xuyuanp/nerdtree-git-plugin' -- git indicators for file explorer
   use 'L3MON4D3/LuaSnip' -- fancy status bar
   use 'RRethy/vim-illuminate' -- highlight current word
   use 'f-person/git-blame.nvim' -- git blame toggling
@@ -17,6 +15,7 @@ require('packer').startup(function(use)
   use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
   use 'nvim-lua/plenary.nvim' -- lua function helpers, required for telescope
   use 'sainnhe/everforest'  -- green color scheme yo
+  use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
 
   use {
     "folke/which-key.nvim",
@@ -115,6 +114,13 @@ require('packer').startup(function(use)
       after = "nvim-treesitter",
       requires = "nvim-lua/plenary.nvim",
       config = function() require("config.neorg") end,
+  }
+
+  use {
+    "kyazdani42/nvim-tree.lua",
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    tag = 'nightly',
+    config = function() require("config.nvim-tree") end,
   }
 
 end)

@@ -89,9 +89,9 @@ local normal_mappings = {
 
   e = {
     name = "Explorer",
-    f = {"<cmd>NERDTreeFind<CR>", "Find"},
-    c = {"<cmd>NERDTreeClose<CR>", "Close"},
-    e = {"<cmd>NERDTreeFocus<CR>", "Focus"},
+    f = {":NvimTreeFindFile<CR>", "Find"},
+    c = {":NvimTreeCollapse<CR>", "Close"},
+    e = {":NvimTreeFocus<CR>", "Focus"},
   },
 
   l = {
@@ -103,6 +103,7 @@ local normal_mappings = {
     s = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol"},
     ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
     i = {"<cmd>LspInfo<CR>", "Info"},
+    e = {"<cmd>lua require('lsp_lines').toggle()<CR>", "Toggle Errors"},
   },
 
   g = {
@@ -148,8 +149,8 @@ local normal_mappings = {
     name = "Repositories",
     d = {":e ~/dot-files/README.md<CR>:cd ~/dot-files/<CR>", "Dot Files"},
     n = {":e ~/r/neo/package.json<CR>:cd ~/r/neo/<CR>", "Neo"},
-    t = {":Neorg workspace tcn<CR>", "TCN Notes"},
-    p = {":Neorg workspace personal<CR>", "Personal Notes"},
+    t = {":Neorg workspace notes<CR>", "Notes"},
+    p = {":Neorg workspace notes<CR>", "Notes"},
   },
 
   n = {
