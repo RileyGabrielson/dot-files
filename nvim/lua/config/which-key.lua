@@ -70,6 +70,7 @@ vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap =
 vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 
 local normal_mappings = {
   ["p"] = "Find File Fuzzy",
@@ -77,6 +78,7 @@ local normal_mappings = {
   ["f"] = "Find Text",
   ["<Tab>"] = "Next Window",
   ["z"] = "Zen Mode",
+  ["x"] = "Trouble Diagnostics",
 
   u = {
     name = "Terminal",
@@ -110,12 +112,6 @@ local normal_mappings = {
     name = "Git",
     g = {":Git<CR>", "Git Home"},
     b = {":GitBlameToggle<CR>", "Git Blame"},
-  },
-
-  T = {
-    name = "Trouble",
-    d = {":Trouble document_diagnostics<CR>", "Document Diagnostics"},
-    w = {":Trouble workspace_diagnostics<CR>", "Workplace Diagnostics"},
   },
 
   t = {
@@ -177,7 +173,7 @@ local normal_mappings = {
 local visual_mappings = {
   m = {
     name = "Manipulate",
-    c = {"<cmd>'<,'>CommentToggle<CR>", "Comment"}
+    c = {":CommentToggle<CR>", "Comment"},
   }
 }
 

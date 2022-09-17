@@ -8,24 +8,16 @@ version: 0.0.12
 @end
 
 * TODO:
-  - [ ] get linter set up
+  - [x] get linter set up
   - [ ] investigate faster typescript lsp
-  - [ ] neoclide/coc.nvim looks promising
-    - [ ] make sure can disable relative imports
-  - [ ] TODO highlighting?
   - [ ] Dom attribute auto complete?
-  - [ ] comment solution is not working... colton had something though
+  - [x] comment solution is not working... colton had something though
   - [ ] prettier is slow... need to figure out prettierd
-  - [ ] nvim tree lua instead of nerd tree
-
-  - [ ] Global config
-    - [ ] Maccy clipboard manager (clipboard manager)
+  - [x] nvim tree lua instead of nerd tree
 
   - [ ] file syntax on spectre?
   - [ ] learn how to find and replace better with the quick fix list and /%s/...
   - [ ] fugitive diff highlighting: very garish :D
   - [ ] set hide level to 1 when we enter a norg file autocommand
-  - [ ] lsp lines isn't cutting it. Cut it and transition to Trouble
-    - [ ] see if we can get the error message on hover
 
 

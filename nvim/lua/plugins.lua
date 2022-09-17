@@ -8,7 +8,6 @@ require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- fancy status bar
   use 'RRethy/vim-illuminate' -- highlight current word
   use 'f-person/git-blame.nvim' -- git blame toggling
-  use 'kyazdani42/nvim-web-devicons' -- icon pack
   use 'svermeulen/vimpeccable' -- mapping keybinds to lua functions
   use 'tpope/vim-fugitive' -- git solution
   use 'prettier/vim-prettier' -- prettier formatting
@@ -44,11 +43,6 @@ require('packer').startup(function(use)
   use {
     'lewis6991/gitsigns.nvim', -- git changes in editor
     config = function() require('config.gitsigns') end,
-  }
-
-  use {
-    'terrortylor/nvim-comment', -- comment selections
-    config = function() require('config.comment') end,
   }
 
   use {
@@ -94,18 +88,8 @@ require('packer').startup(function(use)
   }
 
   use {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function() require("lsp_lines").setup() end,
-  }
-
-  use {
     "folke/zen-mode.nvim",
     config = function() require("zen-mode").setup { } end
-  }
-
-  use {
-    "mfussenegger/nvim-lint",
-    config = function() require("config.lint") end
   }
 
   use {
@@ -122,6 +106,12 @@ require('packer').startup(function(use)
     tag = 'nightly',
     config = function() require("config.nvim-tree") end,
   }
+
+  use {
+    "terrortylor/nvim-comment",
+    config = function() require("config.comment") end
+  }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 end)
 
