@@ -11,6 +11,9 @@ telescope.setup{
       },
       n = {
       }
+    },
+    layout_config = {
+      horizontal = { width = .9, preview_width = .2 },
     }
   },
   pickers = {},

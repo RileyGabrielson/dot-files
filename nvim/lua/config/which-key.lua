@@ -33,9 +33,6 @@ require"which-key".setup({
 -- Set leader
 vim.g.mapleader = ' '
 
--- no hl
-vim.api.nvim_set_keymap('n', '<Leader>H', ':set hlsearch!<CR>', {noremap = true, silent = true})
-
 local normal_options = {
     mode = "n", -- NORMAL mode
     prefix = "<leader>",
@@ -58,9 +55,6 @@ local visual_options = {
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
--- no hl
-vim.api.nvim_set_keymap('n', '<Leader>H', ':set hlsearch!<CR>', {noremap = true, silent = true})
-
 vim.api.nvim_set_keymap("n", "<Tab>", "<C-w><C-w>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
 
@@ -71,6 +65,9 @@ vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silen
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<Leader>S", "<cmd>lua require('spectre').open()<CR>", {noremap=true, silent=false})
+
+local use_styles_snippet = require("commands.make_styles_snippet")
 
 local normal_mappings = {
   ["p"] = "Find File Fuzzy",
@@ -79,6 +76,7 @@ local normal_mappings = {
   ["<Tab>"] = "Next Window",
   ["z"] = "Zen Mode",
   ["x"] = "Trouble Diagnostics",
+  ["S"] = "Spectre",
 
   u = {
     name = "Terminal",
@@ -92,7 +90,7 @@ local normal_mappings = {
   e = {
     name = "Explorer",
     f = {":NvimTreeFindFile<CR>", "Find"},
-    c = {":NvimTreeCollapse<CR>", "Close"},
+    c = {":NvimTreeClose<CR>", "Close"},
     e = {":NvimTreeFocus<CR>", "Focus"},
   },
 
@@ -136,11 +134,6 @@ local normal_mappings = {
     },
   },
 
-  S = {
-    name = "Spectre",
-    S = {"<cmd>lua require('spectre').open()<CR>", "Open"},
-  },
-
   r = {
     name = "Repositories",
     d = {":e ~/dot-files/README.md<CR>:cd ~/dot-files/<CR>", "Dot Files"},
@@ -161,12 +154,30 @@ local normal_mappings = {
       o = {"<cmd>lua require'commands.start_neo'.start_operator()<CR>", "Start Operator"},
       c = {"<cmd>lua require'commands.start_neo'.start_commons_cosmos()<CR>", "Start Commons Cosmos"},
       O = {"<cmd>lua require'commands.start_neo'.start_operator_cosmos()<CR>", "Start Operator Cosmos"},
-    }
+    },
+    u = {use_styles_snippet, "Use Styles Snippet"}
+  },
+
+  w = {
+    name = "Windows",
+    v = {"<C-w><C-v>", "Vertical Split"},
+    s = {"<C-w><C-s>", "Horizontal Split"},
+    o = {"<C-w><C-o>", "Close All Windows Except Current"},
+    c = {"<C-w><C-c>", "Close Current Window"},
   },
 
   m = {
     name = "Manipulate",
     c = {":CommentToggle<CR>", "Comment"},
+  },
+
+  h = {
+    name = "Harpoon",
+    a = {"<cmd>lua require'harpoon.mark'.add_file()<CR>", "Add File"},
+    v = {"<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", "View Quick Menu"},
+    f = {"<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", "File 1"},
+    d = {"<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", "File 2"},
+    s = {"<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", "File 3"},
   }
 }
 

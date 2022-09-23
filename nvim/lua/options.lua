@@ -1,4 +1,4 @@
-vim.opt.magic = trueopto
+vim.opt.magic = true
 vim.opt.showmatch = true
 vim.opt.belloff = "all"
 vim.opt.foldcolumn = "1"
@@ -21,12 +21,11 @@ vim.opt.conceallevel = 0
 vim.opt.title = true
 vim.diagnostic.config({ virtual_lines = true })
 
-vim.cmd "colorscheme onedarker"
+vim.cmd "colorscheme tokyonight-night"
 vim.cmd "set nofoldenable"
 
 vim.g.gitblame_date_format = '%r'
 vim.g.gitblame_enabled = 0
-
 
 vim.g["prettier#autoformat"] = 0
 

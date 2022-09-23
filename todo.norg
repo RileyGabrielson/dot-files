@@ -9,15 +9,22 @@ version: 0.0.12
 
 * TODO:
   - [x] get linter set up
-  - [ ] investigate faster typescript lsp
-  - [ ] Dom attribute auto complete?
+  - [ ] Dom attribute auto complete? (lsp solution i'm sure)
   - [x] comment solution is not working... colton had something though
   - [ ] prettier is slow... need to figure out prettierd
   - [x] nvim tree lua instead of nerd tree
 
-  - [ ] file syntax on spectre?
   - [ ] learn how to find and replace better with the quick fix list and /%s/...
-  - [ ] fugitive diff highlighting: very garish :D
-  - [ ] set hide level to 1 when we enter a norg file autocommand
-
+  - [x] fugitive diff highlighting: very garish
+  - [x] set hide level to 1 when we enter a norg file autocommand
+  - [x] tabs... maybe. Probably worth doing, and making it look nice.
+  - [x] Clean up the use styles snippet. At least get that string into it's own file.
+  - [x] Get the use styles snippet to add `const classes = useStyles()` to the component you are in
+  - [x] add changing tab to the neorg mode bindings
+  - [x] remove the neorg keybinds with g, the delay is bothering me for gt
+  - [ ] Make better tab names, maybe a plugin for something like that
+  - [ ] Put suggestions regarding MUI autocompletes at the bottom or filter them out :vomit:
+  - [ ] change trouble's keybinds to match what I would expect, using leader and stuff
+  - [ ] Make the rename windows take double escape to quit, single escape to enter normal mode
+  - [ ] Rename harpoon stuff to 1,2,3,4... instead of s,d,f
 

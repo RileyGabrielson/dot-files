@@ -3,8 +3,6 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- package manager
   use 'neovim/nvim-lspconfig' -- configurations for nvim LSP
-  use 'joshdick/onedark.vim' -- onedark color scheme
-  use 'lunarvim/colorschemes' -- additional color scheme options
   use 'L3MON4D3/LuaSnip' -- fancy status bar
   use 'RRethy/vim-illuminate' -- highlight current word
   use 'f-person/git-blame.nvim' -- git blame toggling
@@ -13,8 +11,14 @@ require('packer').startup(function(use)
   use 'prettier/vim-prettier' -- prettier formatting
   use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
   use 'nvim-lua/plenary.nvim' -- lua function helpers, required for telescope
-  use 'sainnhe/everforest'  -- green color scheme yo
   use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
+  use 'nvim-treesitter/playground' -- view treesitter tree
+  use 'ThePrimeagen/harpoon' -- Persistent, smart marks per feature
+  -- color schems
+  use 'joshdick/onedark.vim' -- onedark color scheme
+  use 'lunarvim/colorschemes' -- bunch of lunar color scheme options
+  use 'sainnhe/everforest'  -- green color scheme
+  use 'folke/tokyonight.nvim' -- dark purple color scheme
 
   use {
     "folke/which-key.nvim",
@@ -112,6 +116,34 @@ require('packer').startup(function(use)
     config = function() require("config.comment") end
   }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
+
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup {
+          space_char_blankline = " ",
+          show_current_context = true,
+          show_current_context_start = true,
+      }
+    end
+  }
+
+  use {
+    'norcalli/nvim-colorizer.lua', -- shows colors as background to color strings
+    config = function() require('colorizer').setup() end,
+  }
+
+  use {
+    'akinsho/bufferline.nvim', -- Fancier buffer line
+    tag = "v2.*",
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+
+  use {
+    'windwp/nvim-ts-autotag',
+    config = function() require'nvim-treesitter.configs'.setup{ autotag = { enable = true } } end,
+  }
+
 
 end)
 

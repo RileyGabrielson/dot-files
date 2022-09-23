@@ -20,14 +20,16 @@ local function define_augroups(definitions) -- {{{1
     end
 end
 
-local nerdtree_quit_vim = {'BufEnter', '*', "if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif"}
 local show_yanks = {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'}
 local formatPrettier = {'BufWritePre', '*.js,*.jsx,*.ts,*.tsx', 'silent! PrettierAsync'}
+local neorgConcealOnEnter = {'BufEnter', '*.norg', "set conceallevel=1"}
+local neorgRevealOnLeave = {'BufLeave', '*.norg', "set conceallevel=0"}
 
 define_augroups({
     _general_settings = {
         show_yanks,
-        nerdtree_quit_vim,
+        neorgConcealOnEnter,
+        neorgRevealOnLeave,
     },
     _auto_formatters = {
         formatPrettier,

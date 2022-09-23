@@ -22,13 +22,18 @@ require('neorg').setup {
     },
     ["core.keybinds"] = {
       config = {
-        neorg_leader = "<S-Space>"
+        default_keybinds = false,
+        hook = function(keybinds)
+           keybinds.map("norg", "n", "gt", ":tabnext<CR>")
+           keybinds.remap_event("norg", "n", "<C-Space>", "core.norg.qol.todo_items.todo.task_cycle")
+        end
       }
     },
     ["core.norg.esupports.metagen"] = {
       config = {
         type = 'auto',
       }
-    }
+    },
+    ["core.export"] = {}
   },
 }
