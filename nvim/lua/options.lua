@@ -17,6 +17,7 @@ vim.opt.showmatch = false
 vim.opt.wrap = false
 vim.opt.timeoutlen = 500
 vim.opt.conceallevel = 0
+vim.opt.laststatus = 0
 
 vim.opt.title = true
 vim.diagnostic.config({ virtual_lines = true })

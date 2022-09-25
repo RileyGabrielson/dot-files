@@ -19,6 +19,4 @@ require("nvim-tree").setup({
       error = "",
     },
   },
-
-
 })

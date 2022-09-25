@@ -51,21 +51,26 @@ local visual_options = {
     nowait = true -- use `nowait` when creating keymaps
 }
 
--- Set leader
-vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
+vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Tab>", "<C-w><C-w>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
-
 vim.api.nvim_set_keymap('n', '<Leader>p', '<cmd>lua require("config.telescope").project_files()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>P', '<cmd>lua require("telescope.builtin").find_files({ fuzzy = false })<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
-
-vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>S", "<cmd>lua require('spectre').open()<CR>", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
+
+vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
+
+vim.api.nvim_set_keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
 
 local use_styles_snippet = require("commands.make_styles_snippet")
 
@@ -77,6 +82,7 @@ local normal_mappings = {
   ["z"] = "Zen Mode",
   ["x"] = "Trouble Diagnostics",
   ["S"] = "Spectre",
+  ["y"] = "Yank to Clipboard",
 
   u = {
     name = "Terminal",
@@ -138,8 +144,7 @@ local normal_mappings = {
     name = "Repositories",
     d = {":e ~/dot-files/README.md<CR>:cd ~/dot-files/<CR>", "Dot Files"},
     n = {":e ~/r/neo/package.json<CR>:cd ~/r/neo/<CR>", "Neo"},
-    t = {":Neorg workspace notes<CR>", "Notes"},
-    p = {":Neorg workspace notes<CR>", "Notes"},
+    p = {":e ~/notes/index.norg<CR>:cd ~/notes/<CR>", "Notes"},
   },
 
   n = {
@@ -169,15 +174,22 @@ local normal_mappings = {
   m = {
     name = "Manipulate",
     c = {":CommentToggle<CR>", "Comment"},
+    r = {":%s/\\<<C-r><C-w>\\>/", "Replace"}
   },
 
   h = {
     name = "Harpoon",
     a = {"<cmd>lua require'harpoon.mark'.add_file()<CR>", "Add File"},
     v = {"<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", "View Quick Menu"},
-    f = {"<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", "File 1"},
-    d = {"<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", "File 2"},
-    s = {"<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", "File 3"},
+    ["1"] = {"<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", "File 1"},
+    ["2"] = {"<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", "File 2"},
+    ["3"] = {"<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", "File 3"},
+    ["4"] = {"<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", "File 4"},
+    ["5"] = {"<cmd>lua require'harpoon.ui'.nav_file(5)<CR>", "File 5"},
+    ["6"] = {"<cmd>lua require'harpoon.ui'.nav_file(6)<CR>", "File 6"},
+    ["7"] = {"<cmd>lua require'harpoon.ui'.nav_file(7)<CR>", "File 7"},
+    ["8"] = {"<cmd>lua require'harpoon.ui'.nav_file(8)<CR>", "File 8"},
+    ["9"] = {"<cmd>lua require'harpoon.ui'.nav_file(9)<CR>", "File 9"},
   }
 }
 
@@ -185,6 +197,7 @@ local visual_mappings = {
   m = {
     name = "Manipulate",
     c = {":CommentToggle<CR>", "Comment"},
+    k = {":s/\\(.*\\)/", "Fighting One Eyed Kirby"},
   }
 }
 

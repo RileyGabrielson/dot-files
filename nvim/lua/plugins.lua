@@ -19,6 +19,8 @@ require('packer').startup(function(use)
   use 'lunarvim/colorschemes' -- bunch of lunar color scheme options
   use 'sainnhe/everforest'  -- green color scheme
   use 'folke/tokyonight.nvim' -- dark purple color scheme
+  use 'ellisonleao/gruvbox.nvim' -- popular gruvbox color scheme
+  use 'mbbill/undotree' -- visualize vim's undo tree
 
   use {
     "folke/which-key.nvim",
@@ -63,9 +65,7 @@ require('packer').startup(function(use)
 
   use {
     "stevearc/dressing.nvim", -- fancy up ui windows
-    event = "BufReadPre",
     config = function() require('config.dressing') end,
-    disable = false,
 }
 
   use {

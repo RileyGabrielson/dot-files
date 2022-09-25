@@ -9,7 +9,6 @@ version: 0.0.12
 
 * TODO:
   - [x] get linter set up
-  - [ ] Dom attribute auto complete? (lsp solution i'm sure)
   - [x] comment solution is not working... colton had something though
   - [ ] prettier is slow... need to figure out prettierd
   - [x] nvim tree lua instead of nerd tree
@@ -22,9 +21,14 @@ version: 0.0.12
   - [x] Get the use styles snippet to add `const classes = useStyles()` to the component you are in
   - [x] add changing tab to the neorg mode bindings
   - [x] remove the neorg keybinds with g, the delay is bothering me for gt
-  - [ ] Make better tab names, maybe a plugin for something like that
   - [ ] Put suggestions regarding MUI autocompletes at the bottom or filter them out :vomit:
-  - [ ] change trouble's keybinds to match what I would expect, using leader and stuff
-  - [ ] Make the rename windows take double escape to quit, single escape to enter normal mode
-  - [ ] Rename harpoon stuff to 1,2,3,4... instead of s,d,f
+  - [x] Make the rename windows take double escape to quit, single escape to enter normal mode
+  - [x] Rename harpoon stuff to 1,2,3,4... instead of s,d,f
+  - [ ] Syntax highlighting inside `${theme.palette....}` is not right.
+  - [x] Status Bar: color of the arrows is wrong.
+  - [x] Notes should do the same repo stuff that our other stuff do, don't use the Neorg stuff or add
+  - [x] Replace word keymap
+  - [x] Fighting one eyed kirby remap (visual probably)
+  - [x] Undo Tree plugin? Probably worth having.
+  - [ ] Tmux to replace toggle term. It's worth doing probably for running the builds for commons and neo
 

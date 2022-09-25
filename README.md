@@ -5,4 +5,9 @@ a humble dev configuration
 - Using GNU Stow to add references to these dotfiles in system directories.
 
 ## Dependencies
-- npm i -g vscode-langservers-extracted
+- Nvim Packer
+  - git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+- VSCode Smart Language Servers
+  - npm i -g vscode-langservers-extracted
+- Some sort of C Compiler
+  - cc, gcc, something

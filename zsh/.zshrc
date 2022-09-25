@@ -24,6 +24,9 @@ alias status='git status'
 alias branch='git branch'
 alias push='git push'
 alias http='npx http-server --cors'
+alias vim='nvim'
+
+
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
 # NVM initialisation
