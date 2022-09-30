@@ -11,16 +11,16 @@ require('packer').startup(function(use)
   use 'prettier/vim-prettier' -- prettier formatting
   use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
   use 'nvim-lua/plenary.nvim' -- lua function helpers, required for telescope
-  use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
+  -- use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
   use 'nvim-treesitter/playground' -- view treesitter tree
-  use 'ThePrimeagen/harpoon' -- Persistent, smart marks per feature
-  -- color schems
+  use 'mbbill/undotree' -- visualize vim's undo tree
+
+  -- color schemes
   use 'joshdick/onedark.vim' -- onedark color scheme
-  use 'lunarvim/colorschemes' -- bunch of lunar color scheme options
   use 'sainnhe/everforest'  -- green color scheme
   use 'folke/tokyonight.nvim' -- dark purple color scheme
-  use 'ellisonleao/gruvbox.nvim' -- popular gruvbox color scheme
-  use 'mbbill/undotree' -- visualize vim's undo tree
+  use 'ellisonleao/gruvbox.nvim' -- popular gruvbox color schemelugins
+  use { "catppuccin/nvim", as = "catppuccin" } -- catppuccin theme
 
   use {
     "folke/which-key.nvim",
@@ -106,7 +106,7 @@ require('packer').startup(function(use)
 
   use {
     "kyazdani42/nvim-tree.lua",
-    requires = { 'kyazdani42/nvim-web-devicons' },
+    -- requires = { 'kyazdani42/nvim-web-devicons' },
     tag = 'nightly',
     config = function() require("config.nvim-tree") end,
   }
@@ -140,10 +140,14 @@ require('packer').startup(function(use)
   }
 
   use {
-    'windwp/nvim-ts-autotag',
+    'windwp/nvim-ts-autotag', -- auto generate typescript tags (<div>, <p>, etc)
     config = function() require'nvim-treesitter.configs'.setup{ autotag = { enable = true } } end,
   }
 
+  use {
+    'ThePrimeagen/harpoon', -- Persistent, smart marks per feature
+    config = function() require("config.harpoon") end,
+  }
 
 end)
 

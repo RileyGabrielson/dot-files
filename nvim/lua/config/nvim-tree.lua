@@ -9,6 +9,21 @@ require("nvim-tree").setup({
     relativenumber = true,
     adaptive_size = true,
   },
+  renderer = {
+    icons = {
+      show = {
+        file = false,
+        folder = false,
+        folder_arrow = true,
+        git = false,
+      },
+      glyphs = {
+        git = {
+          untracked = "●",
+        },
+      }
+    }
+  },
   diagnostics = {
     enable = true,
     show_on_dirs = true,

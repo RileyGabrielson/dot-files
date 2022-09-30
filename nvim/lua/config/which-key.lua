@@ -59,7 +59,6 @@ vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true}
 vim.api.nvim_set_keymap("n", "<Tab>", "<C-w><C-w>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>p', '<cmd>lua require("config.telescope").project_files()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>P', '<cmd>lua require("telescope.builtin").find_files({ fuzzy = false })<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
@@ -76,7 +75,6 @@ local use_styles_snippet = require("commands.make_styles_snippet")
 
 local normal_mappings = {
   ["p"] = "Find File Fuzzy",
-  ["P"] = "Find File Exact",
   ["f"] = "Find Text",
   ["<Tab>"] = "Next Window",
   ["z"] = "Zen Mode",
@@ -197,7 +195,7 @@ local visual_mappings = {
   m = {
     name = "Manipulate",
     c = {":CommentToggle<CR>", "Comment"},
-    k = {":s/\\(.*\\)/", "Fighting One Eyed Kirby"},
+    k = {":s/\\(\\w.*\\)/", "Fighting One Eyed Kirby"},
   }
 }
 

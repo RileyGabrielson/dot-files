@@ -22,7 +22,6 @@ vim.opt.laststatus = 0
 vim.opt.title = true
 vim.diagnostic.config({ virtual_lines = true })
 
-vim.cmd "colorscheme tokyonight-night"
 vim.cmd "set nofoldenable"
 
 vim.g.gitblame_date_format = '%r'

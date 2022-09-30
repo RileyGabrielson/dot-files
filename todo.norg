@@ -30,5 +30,21 @@ version: 0.0.12
   - [x] Replace word keymap
   - [x] Fighting one eyed kirby remap (visual probably)
   - [x] Undo Tree plugin? Probably worth having.
-  - [ ] Tmux to replace toggle term. It's worth doing probably for running the builds for commons and neo
+  - [x] Tmux to replace toggle term. It's worth doing probably for running the builds for commons and neo
+  - [x] Neorg Presenter Keybinds got messed up. 
+  - [x] Harpoon UI Width: way too small wassup with that.
+  - [x] Experiment with different tmux maneuvers. Defaults are kind of slow
+  - [ ] The relative imports from tsserver are really bugging me. Custom config? Dual Config files?
+  - [x] Show diagnostic numbers in the top bar next to the name of the file
+  - [ ] First Plugin! Leave unsaved file with changes, popup to ask whether should save, discard, or cancel.
+  - [ ] Auto closing file explorer?
+  - [ ] different shortcut for notes.
+  - [x] Better looking status bars in general, TMUX included
+  - [ ] Bash Script for setting up my work tmux server
+  - [ ] TMUX Clock styling
+  - [ ] Fix trouble, it's complaining about icons
+  - [ ] Wrap telescope results so they don't hide
+  - [ ] learn how to do stuff with the ctrl-v visual mode, that's awesome
+  - [ ] Investigate yarn: workspaces, what is happening when I run yarn
+  - [ ] git highlighting is too drastic
 

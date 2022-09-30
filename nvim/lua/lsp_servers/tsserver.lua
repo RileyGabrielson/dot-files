@@ -5,6 +5,7 @@ require'lspconfig'.tsserver.setup {
     initOptions = {
       preferences = {
         importModuleSpecifierPreference = "project-relative",
+        importModuleSpecifier = "project-relative",
       },
     },
     handlers = {

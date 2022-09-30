@@ -22,10 +22,12 @@ require('neorg').setup {
     },
     ["core.keybinds"] = {
       config = {
-        default_keybinds = false,
+        default_keybinds = true,
         hook = function(keybinds)
            keybinds.map("norg", "n", "gt", ":tabnext<CR>")
            keybinds.remap_event("norg", "n", "<C-Space>", "core.norg.qol.todo_items.todo.task_cycle")
+           keybinds.map("norg", "n", "<CR>", "core.presenter.next_page")
+           keybinds.map("presenter", "n", "<S-CR>", "core.presenter.previous_page")
         end
       }
     },
