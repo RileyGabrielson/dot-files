@@ -1,6 +1,7 @@
 local custom_theme = require'lualine.themes.gruvbox-material'
 
 custom_theme.normal.c.bg = "#1D2021"
+custom_theme.normal.c.fg = "#A89984"
 
 require('lualine').setup({
   options = {

@@ -3,6 +3,8 @@ local actions = require("telescope.actions")
 
 telescope.setup{
   defaults = {
+    entry_prefix = "・",
+    wrap_results = true,
     mappings = {
       i = {
         ["<C-h>"] = "which_key",
@@ -12,16 +14,19 @@ telescope.setup{
       n = {
       }
     },
+    layout_strategy = 'vertical',
     layout_config = {
-      horizontal = { width = .9, preview_width = .2 },
+      -- horizontal = { width = .9, preview_width = .2 },
+      height = 0.95,
+      width = 0.95
     }
   },
   pickers = {},
   extensions = {
     fzf = {
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
     },
   }
 }
@@ -30,10 +35,22 @@ telescope.load_extension('fzf')
 
 local custom_functions = {}
 
+-- custom_functions.project_files = function()
+--   local opts = {}
+--   local ok = pcall(require"telescope.builtin".git_files, opts)
+--   if not ok then require"telescope.builtin".find_files(opts) end
+-- end
+--
+local utils = require('telescope.utils')
+local builtin = require('telescope.builtin')
+
 custom_functions.project_files = function()
-  local opts = {}
-  local ok = pcall(require"telescope.builtin".git_files, opts)
-  if not ok then require"telescope.builtin".find_files(opts) end
+    local _, ret, _ = utils.get_os_command_output({ 'git', 'rev-parse', '--is-inside-work-tree' })
+    if ret == 0 then
+        builtin.git_files()
+    else
+        builtin.find_files()
+    end
 end
 
 return custom_functions

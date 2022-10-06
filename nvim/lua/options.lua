@@ -18,6 +18,7 @@ vim.opt.wrap = false
 vim.opt.timeoutlen = 500
 vim.opt.conceallevel = 0
 vim.opt.laststatus = 0
+vim.opt.ch = 0
 
 vim.opt.title = true
 vim.diagnostic.config({ virtual_lines = true })
@@ -28,4 +29,6 @@ vim.g.gitblame_date_format = '%r'
 vim.g.gitblame_enabled = 0
 
 vim.g["prettier#autoformat"] = 0
+
+vim.cmd "let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']"
 

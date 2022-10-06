@@ -14,6 +14,7 @@ require('packer').startup(function(use)
   -- use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
   use 'nvim-treesitter/playground' -- view treesitter tree
   use 'mbbill/undotree' -- visualize vim's undo tree
+  use 'unblevable/quick-scope' -- highlighting f and t jumping
 
   -- color schemes
   use 'joshdick/onedark.vim' -- onedark color scheme
@@ -98,9 +99,9 @@ require('packer').startup(function(use)
 
   use {
       "nvim-neorg/neorg",
-      tag = '0.0.12',
       after = "nvim-treesitter",
       requires = "nvim-lua/plenary.nvim",
+      run = ":Neorg sync-parsers",
       config = function() require("config.neorg") end,
   }
 

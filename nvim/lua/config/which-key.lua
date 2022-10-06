@@ -56,10 +56,11 @@ vim.g.mapleader = ' '
 vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<Tab>", "<C-w><C-w>", {noremap=true, silent=true})
+vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-w><C-w>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>p', '<cmd>lua require("config.telescope").project_files()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap = true, silent = false})
+vim.api.nvim_set_keymap('n', '<Leader>b', "<cmd>lua require'telescope.builtin'.git_branches{}<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>S", "<cmd>lua require('spectre').open()<CR>", {noremap=true, silent=false})
@@ -103,7 +104,7 @@ local normal_mappings = {
     d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Definition"},
     t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},
     h = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
-    r = {"<cmd>lua vim.lsp.buf.references()<CR>", "References"},
+    r = {"<cmd>lua require'telescope.builtin'.lsp_references{}<CR>", "Find Git Files"},
     s = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol"},
     ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
     i = {"<cmd>LspInfo<CR>", "Info"},
@@ -114,21 +115,19 @@ local normal_mappings = {
     name = "Git",
     g = {":Git<CR>", "Git Home"},
     b = {":GitBlameToggle<CR>", "Git Blame"},
+    s = {"<cmd>Telescope git_status<cr>", "Git Status"},
   },
 
   t = {
     name = "Telescope",
     r = {"<cmd>Telescope resume<cr>", "Resume"},
-    f = {
-        name = "Find",
-        g = {"<cmd>lua require'telescope.builtin'.git_files{}<CR>", "Find Git Files"},
-        s = {"<cmd>Telescope grep_string<cr>", "Find String Under Cursor"},
-        b = {"<cmd>Telescope buffers<cr>", "Find Buffers"},
-        h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
-        c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
-        q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quikcfix List"},
-        a = {'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', "All files"},
-    },
+    g = {"<cmd>lua require'telescope.builtin'.git_files{}<CR>", "Find Git Files"},
+    s = {"<cmd>Telescope git_status<cr>", "Git Status"},
+    b = {"<cmd>Telescope buffers<cr>", "Find Buffers"},
+    h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
+    c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
+    q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quikcfix List"},
+    a = {'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', "All files"},
     l = {
         name = "Lsp",
         r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
@@ -142,7 +141,7 @@ local normal_mappings = {
     name = "Repositories",
     d = {":e ~/dot-files/README.md<CR>:cd ~/dot-files/<CR>", "Dot Files"},
     n = {":e ~/r/neo/package.json<CR>:cd ~/r/neo/<CR>", "Neo"},
-    p = {":e ~/notes/index.norg<CR>:cd ~/notes/<CR>", "Notes"},
+    o = {":e ~/notes/index.norg<CR>:cd ~/notes/<CR>", "Notes"},
   },
 
   n = {
@@ -170,9 +169,11 @@ local normal_mappings = {
   },
 
   m = {
-    name = "Manipulate",
+    name = "Misc",
     c = {":CommentToggle<CR>", "Comment"},
-    r = {":%s/\\<<C-r><C-w>\\>/", "Replace"}
+    r = {":%s/\\<<C-r><C-w>\\>/", "Replace"},
+    h = {":noh<CR>", "Hide Search"},
+    d = {"<cmd>lua require'commands.misc_commands'.toggle_diagnostics()<CR>", "Diagnostics"},
   },
 
   h = {

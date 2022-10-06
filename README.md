@@ -11,7 +11,5 @@ a humble dev configuration
   - npm i -g vscode-langservers-extracted
 - Some sort of C Compiler
   - cc, gcc, something
-- Zsh Vi Mode
-  - https://github.com/jeffreytse/zsh-vi-mode
 - Rust Language Server
   - https://rust-analyzer.github.io/manual.html#installation

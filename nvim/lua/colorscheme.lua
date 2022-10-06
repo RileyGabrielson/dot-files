@@ -5,5 +5,6 @@ require("gruvbox").setup({
   contrast = "hard", -- can be "hard", "soft" or empty string
   inverse = true,
   invert_selection = false,
+  italic = false,
 })
 vim.cmd("colorscheme gruvbox")

@@ -24,7 +24,6 @@ version: 0.0.12
   - [ ] Put suggestions regarding MUI autocompletes at the bottom or filter them out :vomit:
   - [x] Make the rename windows take double escape to quit, single escape to enter normal mode
   - [x] Rename harpoon stuff to 1,2,3,4... instead of s,d,f
-  - [ ] Syntax highlighting inside `${theme.palette....}` is not right.
   - [x] Status Bar: color of the arrows is wrong.
   - [x] Notes should do the same repo stuff that our other stuff do, don't use the Neorg stuff or add
   - [x] Replace word keymap
@@ -35,16 +34,26 @@ version: 0.0.12
   - [x] Harpoon UI Width: way too small wassup with that.
   - [x] Experiment with different tmux maneuvers. Defaults are kind of slow
   - [ ] The relative imports from tsserver are really bugging me. Custom config? Dual Config files?
+  -- Maybe write some custom stuff here. Find a hook to subscribe into...
   - [x] Show diagnostic numbers in the top bar next to the name of the file
-  - [ ] First Plugin! Leave unsaved file with changes, popup to ask whether should save, discard, or cancel.
-  - [ ] Auto closing file explorer?
-  - [ ] different shortcut for notes.
+  - [x] First Plugin! Leave unsaved file with changes, popup to ask whether should save, discard, or cancel.
+  -- Or list all the unsaved files, using the swap files
+  - [x] Auto closing file explorer?
+  - [x] different shortcut for notes.
   - [x] Better looking status bars in general, TMUX included
-  - [ ] Bash Script for setting up my work tmux server
-  - [ ] TMUX Clock styling
-  - [ ] Fix trouble, it's complaining about icons
-  - [ ] Wrap telescope results so they don't hide
-  - [ ] learn how to do stuff with the ctrl-v visual mode, that's awesome
-  - [ ] Investigate yarn: workspaces, what is happening when I run yarn
-  - [ ] git highlighting is too drastic
-
+  - [x] Wrap telescope results so they don't hide
+  - [x] learn how to do stuff with the ctrl-v visual mode, that's awesome
+  - [x] Norg what is up with the italics
+  - [ ] Make a scripture/conference repository, then we can use nvim to navigate and search.
+  -- Better version of our command line repo that uses the power of nvim.
+  - [x] Telescope search in git if repo isn't working
+  - [x] upgade to 0.8 and hide the command line when not using it
+  - [x] Send the lsp references to telescope!
+  - [x] Neorg highlighting?
+  - [x] vim docs highlighting... whats up with treesitter
+  - [x] status bar on top is easily confused with a text file. different color to differentiate
+  - [x] Checkout branches with telescope seems awesome
+  - [x] keybind to disable error messages
+  - [x] find new key for moving between windows. Tab is taken by jump list
+  - [ ] key for toggling the size of telescope preview maybe? Idk
+  - [x] Entering first file from telescope, syntax highlighting isn't working. Treesitter isn't started?
