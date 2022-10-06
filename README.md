@@ -13,3 +13,5 @@ a humble dev configuration
   - cc, gcc, something
 - Rust Language Server
   - https://rust-analyzer.github.io/manual.html#installation
+- Lua Language Server
+  - https://github.com/sumneko/lua-language-server/wiki/Getting-Started#command-line
