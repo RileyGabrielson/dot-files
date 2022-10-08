@@ -57,3 +57,7 @@ version: 0.0.12
   - [x] find new key for moving between windows. Tab is taken by jump list
   - [ ] key for toggling the size of telescope preview maybe? Idk
   - [x] Entering first file from telescope, syntax highlighting isn't working. Treesitter isn't started?
+  - [ ] Change the telescope grep to show more of the filename in the search. Use the preview for the content
+  - [ ] If we are keeping the terminal solution, need to be able to jump to normal mode with escape, then close with escape
+  - [ ] tsserver update imports when renaming a .ts, .js, .tsx, or .jsx file
+  - [ ] auto save all files on code action? tsserver
