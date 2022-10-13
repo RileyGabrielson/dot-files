@@ -61,3 +61,5 @@ version: 0.0.12
   - [ ] If we are keeping the terminal solution, need to be able to jump to normal mode with escape, then close with escape
   - [ ] tsserver update imports when renaming a .ts, .js, .tsx, or .jsx file
   - [ ] auto save all files on code action? tsserver
+  - [ ] Open the tmux window when testing a neo file
+  - [ ] setup jest debuggin

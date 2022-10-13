@@ -71,6 +71,8 @@ vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=fa
 vim.api.nvim_set_keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("v", "<", "<gv", {noremap=true, silent=true})
+vim.api.nvim_set_keymap("v", ">", ">gv", {noremap=true, silent=true})
 
 local use_styles_snippet = require("commands.make_styles_snippet")
 
@@ -189,7 +191,11 @@ local normal_mappings = {
     ["7"] = {"<cmd>lua require'harpoon.ui'.nav_file(7)<CR>", "File 7"},
     ["8"] = {"<cmd>lua require'harpoon.ui'.nav_file(8)<CR>", "File 8"},
     ["9"] = {"<cmd>lua require'harpoon.ui'.nav_file(9)<CR>", "File 9"},
-  }
+  },
+
+  d = {
+    b = {"<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Breakpoint"},
+  },
 }
 
 local visual_mappings = {

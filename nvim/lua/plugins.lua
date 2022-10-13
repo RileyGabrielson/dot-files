@@ -150,5 +150,13 @@ require('packer').startup(function(use)
     config = function() require("config.harpoon") end,
   }
 
-end)
+  use 'mfussenegger/nvim-dap';
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    }
+  }
 
+end)
