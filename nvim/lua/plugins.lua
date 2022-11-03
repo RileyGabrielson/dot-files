@@ -11,10 +11,10 @@ require('packer').startup(function(use)
   use 'prettier/vim-prettier' -- prettier formatting
   use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
   use 'nvim-lua/plenary.nvim' -- lua function helpers, required for telescope
-  -- use 'kyazdani42/nvim-web-devicons' -- optional, for file icons
   use 'nvim-treesitter/playground' -- view treesitter tree
   use 'mbbill/undotree' -- visualize vim's undo tree
   use 'unblevable/quick-scope' -- highlighting f and t jumping
+  use 'wellle/targets.vim'
 
   -- color schemes
   use 'joshdick/onedark.vim' -- onedark color scheme
@@ -22,6 +22,7 @@ require('packer').startup(function(use)
   use 'folke/tokyonight.nvim' -- dark purple color scheme
   use 'ellisonleao/gruvbox.nvim' -- popular gruvbox color schemelugins
   use { "catppuccin/nvim", as = "catppuccin" } -- catppuccin theme
+  use "pest-parser/pest.vim" -- pest syntax highlighting
 
   use {
     "folke/which-key.nvim",
@@ -33,10 +34,6 @@ require('packer').startup(function(use)
     config = function() require'fidget'.setup() end,
   }
 
-  use {
-    'akinsho/toggleterm.nvim', -- popup terminal
-    config = function() require('config.toggleterm') end,
-  }
   use {
     'nvim-treesitter/nvim-treesitter', -- better syntax recognition
     config = function() require('config.treesitter') end,
@@ -76,6 +73,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
   use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
   use 'hrsh7th/cmp-path' -- auto complete system paths
+  use 'jose-elias-alvarez/typescript.nvim' -- typescript lsp server config and function exposure
 
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
@@ -98,16 +96,7 @@ require('packer').startup(function(use)
   }
 
   use {
-      "nvim-neorg/neorg",
-      after = "nvim-treesitter",
-      requires = "nvim-lua/plenary.nvim",
-      run = ":Neorg sync-parsers",
-      config = function() require("config.neorg") end,
-  }
-
-  use {
     "kyazdani42/nvim-tree.lua",
-    -- requires = { 'kyazdani42/nvim-web-devicons' },
     tag = 'nightly',
     config = function() require("config.nvim-tree") end,
   }
@@ -135,28 +124,39 @@ require('packer').startup(function(use)
   }
 
   use {
-    'akinsho/bufferline.nvim', -- Fancier buffer line
-    tag = "v2.*",
-    requires = 'kyazdani42/nvim-web-devicons'
-  }
-
-  use {
     'windwp/nvim-ts-autotag', -- auto generate typescript tags (<div>, <p>, etc)
     config = function() require'nvim-treesitter.configs'.setup{ autotag = { enable = true } } end,
   }
 
   use {
-    'ThePrimeagen/harpoon', -- Persistent, smart marks per feature
+    'ThePrimeagen/harpoon', -- Persistent, smart marks per feature. the best thing ever.
     config = function() require("config.harpoon") end,
   }
 
-  use 'mfussenegger/nvim-dap';
   use {
-    "nvim-neotest/neotest",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    }
+    "windwp/nvim-autopairs", -- auto pairs
+    config = function() require("nvim-autopairs").setup {} end
+  }
+
+  use 'williamboman/mason.nvim'
+  use {
+    'mfussenegger/nvim-dap',
+    config = function() require("mason").setup() end,
+  };
+  use { -- Required for nvim-dap-vscode-js
+    "microsoft/vscode-js-debug",
+    opt = true,
+    run = "npm install --legacy-peer-deps && npm run compile"
+  };
+  use {
+    "mxsdev/nvim-dap-vscode-js",
+    requires = {"mfussenegger/nvim-dap"},
+    config = function() require("dap_debug.dap_js") end,
+  }
+  use {
+    "rcarriga/nvim-dap-ui",
+    requires = {"mfussenegger/nvim-dap"},
+    config = function() require("dap_debug.dap_ui") end,
   }
 
 end)

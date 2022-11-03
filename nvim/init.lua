@@ -1,6 +1,4 @@
 require "plugins"
-require "debug"
-require "keybinds"
 require "options"
 require "autocmd"
 require "lsp"

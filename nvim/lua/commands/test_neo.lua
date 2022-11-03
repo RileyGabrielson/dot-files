@@ -14,11 +14,13 @@ local test_neo = {
   cover_operator = function()
     local test_details = cover_file()
     harpoon_tmux.sendCommand(2, "yarn operator test " .. test_details)
+    harpoon_tmux.gotoTerminal(2)
   end,
 
   cover_commons = function()
     local test_details = cover_file()
     harpoon_tmux.sendCommand(2, "yarn commons test " .. test_details)
+    harpoon_tmux.gotoTerminal(2)
   end,
 }
 

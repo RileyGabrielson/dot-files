@@ -68,8 +68,6 @@ vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
-vim.api.nvim_set_keymap("v", "<C-j>", ":m '>+1<CR>gv=gv", {noremap=true, silent=false})
-vim.api.nvim_set_keymap("v", "<C-k>", ":m '<-2<CR>gv=gv", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("v", "<", "<gv", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("v", ">", ">gv", {noremap=true, silent=true})
@@ -84,15 +82,6 @@ local normal_mappings = {
   ["x"] = "Trouble Diagnostics",
   ["S"] = "Spectre",
   ["y"] = "Yank to Clipboard",
-
-  u = {
-    name = "Terminal",
-    ["1"] = {":1ToggleTerm<CR>", "Terminal 1"},
-    ["2"] = {":2ToggleTerm<CR>", "Terminal 2"},
-    ["3"] = {":3ToggleTerm<CR>", "Terminal 3"},
-    ["4"] = {":4ToggleTerm<CR>", "Terminal 4"},
-    ["5"] = {":5ToggleTerm<CR>", "Terminal 5"},
-  },
 
   e = {
     name = "Explorer",
@@ -111,6 +100,7 @@ local normal_mappings = {
     ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
     i = {"<cmd>LspInfo<CR>", "Info"},
     e = {"<cmd>lua require('lsp_lines').toggle()<CR>", "Toggle Errors"},
+    f = {"<cmd>TypescriptRenameFile<CR>", "Typescript Rename File"},
   },
 
   g = {
@@ -122,13 +112,13 @@ local normal_mappings = {
 
   t = {
     name = "Telescope",
+    p = {"<cmd>FileInDirectory<cr>", "File In Directory"},
+    f = {"<cmd>GrepInDirectory<cr>", "Grep In Directory"},
     r = {"<cmd>Telescope resume<cr>", "Resume"},
     g = {"<cmd>lua require'telescope.builtin'.git_files{}<CR>", "Find Git Files"},
-    s = {"<cmd>Telescope git_status<cr>", "Git Status"},
-    b = {"<cmd>Telescope buffers<cr>", "Find Buffers"},
     h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
     c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
-    q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quikcfix List"},
+    q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quickfix List"},
     a = {'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', "All files"},
     l = {
         name = "Lsp",
@@ -143,7 +133,7 @@ local normal_mappings = {
     name = "Repositories",
     d = {":e ~/dot-files/README.md<CR>:cd ~/dot-files/<CR>", "Dot Files"},
     n = {":e ~/r/neo/package.json<CR>:cd ~/r/neo/<CR>", "Neo"},
-    o = {":e ~/notes/index.norg<CR>:cd ~/notes/<CR>", "Notes"},
+    o = {":e ~/notes/tcn/study_items.md<CR>:cd ~/notes/<CR>", "Notes"},
   },
 
   n = {
@@ -152,12 +142,6 @@ local normal_mappings = {
       name = "Test Neo",
       o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
       c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Commons"},
-    },
-    s = {
-      name = "Start Neo",
-      o = {"<cmd>lua require'commands.start_neo'.start_operator()<CR>", "Start Operator"},
-      c = {"<cmd>lua require'commands.start_neo'.start_commons_cosmos()<CR>", "Start Commons Cosmos"},
-      O = {"<cmd>lua require'commands.start_neo'.start_operator_cosmos()<CR>", "Start Operator Cosmos"},
     },
     u = {use_styles_snippet, "Use Styles Snippet"}
   },
@@ -194,8 +178,17 @@ local normal_mappings = {
   },
 
   d = {
-    b = {"<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Breakpoint"},
-  },
+    name = "Debugging",
+    b = {"<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Breakpoint Toggle"},
+    c = {"<cmd>lua require'dap'.continue()<CR>", "Continue"},
+    t = {"<cmd>lua require'dap'.terminate()<CR>", "Terminate"},
+    s = {"<cmd>lua require'dap'.step_over()<CR>", "Step Over"},
+    o = {"<cmd>lua require'dap'.step_out()<CR>", "Step Out"},
+    i = {"<cmd>lua require'dap'.step_into()<CR>", "Step Into"},
+
+    h = {":lua require'dapui'.eval()<CR>:lua require'dapui'.eval()<CR>", "Hover Info"},
+    q = {"<cmd>lua require'dapui'.close()<CR>", "Quit UI"},
+  }
 }
 
 local visual_mappings = {

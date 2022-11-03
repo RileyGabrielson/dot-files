@@ -3,4 +3,5 @@ require"lsp_servers.sumneko_lua"
 require"lsp_servers.eslint"
 require"lsp_servers.html"
 require"lsp_servers.rust_analyzer"
+require"lsp_servers.omnisharp"
 
