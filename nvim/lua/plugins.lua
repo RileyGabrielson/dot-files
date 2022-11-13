@@ -151,12 +151,18 @@ require('packer').startup(function(use)
   use {
     "mxsdev/nvim-dap-vscode-js",
     requires = {"mfussenegger/nvim-dap"},
-    config = function() require("dap_debug.dap_js") end,
+    config = function() require("dap_debug.dap_vscode_js") end,
   }
   use {
     "rcarriga/nvim-dap-ui",
     requires = {"mfussenegger/nvim-dap"},
     config = function() require("dap_debug.dap_ui") end,
+  }
+
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require("config.diffview") end,
   }
 
 end)

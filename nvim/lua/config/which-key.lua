@@ -60,7 +60,7 @@ vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-w><C-w>", {noremap=true, silent=true
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>p', '<cmd>lua require("config.telescope").project_files()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap = true, silent = false})
-vim.api.nvim_set_keymap('n', '<Leader>b', "<cmd>lua require'telescope.builtin'.git_branches{}<CR>", {noremap = true, silent = false})
+vim.api.nvim_set_keymap('n', '<Leader>b', '<cmd>lua require("config.telescope").local_branches()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>S", "<cmd>lua require('spectre').open()<CR>", {noremap=true, silent=false})
@@ -82,6 +82,7 @@ local normal_mappings = {
   ["x"] = "Trouble Diagnostics",
   ["S"] = "Spectre",
   ["y"] = "Yank to Clipboard",
+  ["b"] = "Git Branches",
 
   e = {
     name = "Explorer",
@@ -116,6 +117,7 @@ local normal_mappings = {
     f = {"<cmd>GrepInDirectory<cr>", "Grep In Directory"},
     r = {"<cmd>Telescope resume<cr>", "Resume"},
     g = {"<cmd>lua require'telescope.builtin'.git_files{}<CR>", "Find Git Files"},
+    b = {"<cmd>lua require'telescope.builtin'.git_branches()<CR>", "Git Branches"},
     h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
     c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
     q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quickfix List"},
@@ -180,6 +182,7 @@ local normal_mappings = {
   d = {
     name = "Debugging",
     b = {"<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Breakpoint Toggle"},
+    B = {"<cmd>lua require'dap'.clear_breakpoints()<CR>", "Remove All Breakpoints"},
     c = {"<cmd>lua require'dap'.continue()<CR>", "Continue"},
     t = {"<cmd>lua require'dap'.terminate()<CR>", "Terminate"},
     s = {"<cmd>lua require'dap'.step_over()<CR>", "Step Over"},
@@ -188,6 +191,13 @@ local normal_mappings = {
 
     h = {":lua require'dapui'.eval()<CR>:lua require'dapui'.eval()<CR>", "Hover Info"},
     q = {"<cmd>lua require'dapui'.close()<CR>", "Quit UI"},
+  },
+
+  v = {
+    name = "DiffView",
+    o = {"<cmd>DiffviewOpen<CR>", "Open DiffView"},
+    m = {"<cmd>DiffviewOpen origin/master...HEAD<CR>", "Master DiffView"},
+    c = {"<cmd>DiffviewClose<CR>", "Close DiffView"},
   }
 }
 
