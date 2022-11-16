@@ -56,7 +56,6 @@ vim.g.mapleader = ' '
 vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<S-Tab>", "<C-w><C-w>", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("n", "<Leader><Tab>", "<C-^>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>p', '<cmd>lua require("config.telescope").project_files()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap = true, silent = false})
@@ -77,12 +76,11 @@ local use_styles_snippet = require("commands.make_styles_snippet")
 local normal_mappings = {
   ["p"] = "Find File Fuzzy",
   ["f"] = "Find Text",
-  ["<Tab>"] = "Next Window",
+  ["b"] = "Change Branch",
   ["z"] = "Zen Mode",
   ["x"] = "Trouble Diagnostics",
   ["S"] = "Spectre",
   ["y"] = "Yank to Clipboard",
-  ["b"] = "Git Branches",
 
   e = {
     name = "Explorer",
@@ -140,16 +138,18 @@ local normal_mappings = {
 
   n = {
     name = "Neo",
-    t = {
-      name = "Test Neo",
-      o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
-      c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Commons"},
-    },
-    u = {use_styles_snippet, "Use Styles Snippet"}
+    u = {use_styles_snippet, "Use Styles Snippet"},
+    o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
+    c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Commons"},
+    t = {"<cmd>lua require'commands.templates'()<CR>", "Templates"},
   },
 
   w = {
     name = "Windows",
+    h = {"<C-w><C-h>", "Left Window"},
+    l = {"<C-w><C-l>", "Right Window"},
+    j = {"<C-w><C-j>", "Bottom Window"},
+    k = {"<C-w><C-k>", "Top Window"},
     v = {"<C-w><C-v>", "Vertical Split"},
     s = {"<C-w><C-s>", "Horizontal Split"},
     o = {"<C-w><C-o>", "Close All Windows Except Current"},
