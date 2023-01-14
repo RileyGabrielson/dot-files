@@ -154,6 +154,7 @@ local normal_mappings = {
     s = {"<C-w><C-s>", "Horizontal Split"},
     o = {"<C-w><C-o>", "Close All Windows Except Current"},
     c = {"<C-w><C-c>", "Close Current Window"},
+    q = {"<C-w><C-q>", "Close Current Window"},
   },
 
   m = {

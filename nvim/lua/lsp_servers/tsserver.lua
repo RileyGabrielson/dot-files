@@ -3,10 +3,9 @@ require'typescript'.setup {
     filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"},
     root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
     settings = { documentFormatting = false },
-    initOptions = {
+    init_options = {
       preferences = {
-        importModuleSpecifierPreference = "project-relative",
-        importModuleSpecifier = "project-relative",
+        importModuleSpecifierPreference = "non-relative",
       },
     },
     handlers = {

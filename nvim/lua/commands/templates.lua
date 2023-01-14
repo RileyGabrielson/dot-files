@@ -1,6 +1,6 @@
 local templates = function()
   vim.ui.select(
-    {"React Component", "Test"},
+    {"React Component", "Jest Test"},
     { prompt = 'Template Name: ' },
     function(input)
 
@@ -16,7 +16,7 @@ local templates = function()
               "",
               "}",
               "",
-              "const " .. componentName .. " = ({}: " .. componentName .. "Props) => {",
+              "export const " .. componentName .. " = ({}: " .. componentName .. "Props) => {",
               "",
               "}"
             });
@@ -25,7 +25,7 @@ local templates = function()
         )
       end
 
-      if input == "Test" then
+      if input == "Jest Test" then
         vim.ui.input(
           { prompt = 'Domain Name: '},
           function(componentName)
