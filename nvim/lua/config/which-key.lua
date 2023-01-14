@@ -64,6 +64,7 @@ vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silen
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>S", "<cmd>lua require('spectre').open()<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
+vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").get_file_path()<CR>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
@@ -81,6 +82,7 @@ local normal_mappings = {
   ["x"] = "Trouble Diagnostics",
   ["S"] = "Spectre",
   ["y"] = "Yank to Clipboard",
+  ["%"] = "Get Filename to Clipboard",
 
   e = {
     name = "Explorer",
@@ -94,10 +96,10 @@ local normal_mappings = {
     d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Definition"},
     t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},
     h = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
-    r = {"<cmd>lua require'telescope.builtin'.lsp_references{}<CR>", "Find Git Files"},
+    r = {"<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", "Find Git Files"},
     s = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol"},
     ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
-    i = {"<cmd>LspInfo<CR>", "Info"},
+    i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Hover"},
     e = {"<cmd>lua require('lsp_lines').toggle()<CR>", "Toggle Errors"},
     f = {"<cmd>TypescriptRenameFile<CR>", "Typescript Rename File"},
   },
@@ -111,8 +113,8 @@ local normal_mappings = {
 
   t = {
     name = "Telescope",
-    p = {"<cmd>FileInDirectory<cr>", "File In Directory"},
-    f = {"<cmd>GrepInDirectory<cr>", "Grep In Directory"},
+    p = {'<cmd>lua require("commands.specific_telescope").find_files_within_directories()<CR>', "Find Files In Directories"},
+    f = {'<cmd>lua require("commands.specific_telescope").grep_files_within_directories()<CR>', "Grep Files in Directories"},
     r = {"<cmd>Telescope resume<cr>", "Resume"},
     g = {"<cmd>lua require'telescope.builtin'.git_files{}<CR>", "Find Git Files"},
     b = {"<cmd>lua require'telescope.builtin'.git_branches()<CR>", "Git Branches"},
@@ -130,10 +132,9 @@ local normal_mappings = {
   },
 
   r = {
-    name = "Repositories",
-    d = {":e ~/dot-files/README.md<CR>:cd ~/dot-files/<CR>", "Dot Files"},
-    n = {":e ~/r/neo/package.json<CR>:cd ~/r/neo/<CR>", "Neo"},
-    o = {":e ~/notes/tcn/study_items.md<CR>:cd ~/notes/<CR>", "Notes"},
+    name = "Refactoring",
+    f = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>", "Extract Function"},
+    v = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable"},
   },
 
   n = {
@@ -207,7 +208,12 @@ local visual_mappings = {
     name = "Manipulate",
     c = {":CommentToggle<CR>", "Comment"},
     k = {":s/\\(\\w.*\\)/", "Fighting One Eyed Kirby"},
-  }
+  },
+  r = {
+    name = "Refactoring",
+    f = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>", "Extract Function"},
+    v = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable"},
+  },
 }
 
 local wk = require("which-key")

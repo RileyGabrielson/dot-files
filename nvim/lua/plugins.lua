@@ -15,6 +15,7 @@ require('packer').startup(function(use)
   use 'mbbill/undotree' -- visualize vim's undo tree
   use 'unblevable/quick-scope' -- highlighting f and t jumping
   use 'wellle/targets.vim'
+  use 'tpope/vim-surround'
 
   -- color schemes
   use 'joshdick/onedark.vim' -- onedark color scheme
@@ -163,6 +164,14 @@ require('packer').startup(function(use)
     'sindrets/diffview.nvim',
     requires = 'nvim-lua/plenary.nvim',
     config = function() require("config.diffview") end,
+  }
+
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      {"nvim-lua/plenary.nvim"},
+      {"nvim-treesitter/nvim-treesitter"}
+    },
   }
 
 end)

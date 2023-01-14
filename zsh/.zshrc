@@ -28,7 +28,6 @@ alias vim='nvim'
 alias ':q'='exit'
 alias vopen='filename=$(fzf); nvim $filename'
 
-
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
 # NVM initialisation
