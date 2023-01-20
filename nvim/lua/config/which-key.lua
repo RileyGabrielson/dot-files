@@ -64,7 +64,7 @@ vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silen
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>S", "<cmd>lua require('spectre').open()<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
-vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").get_file_path()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").copy_file_path()<CR>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 

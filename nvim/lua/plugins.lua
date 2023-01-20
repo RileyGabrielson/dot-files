@@ -16,14 +16,12 @@ require('packer').startup(function(use)
   use 'unblevable/quick-scope' -- highlighting f and t jumping
   use 'wellle/targets.vim'
   use 'tpope/vim-surround'
+  use "pest-parser/pest.vim" -- pest syntax highlighting
 
   -- color schemes
-  use 'joshdick/onedark.vim' -- onedark color scheme
   use 'sainnhe/everforest'  -- green color scheme
-  use 'folke/tokyonight.nvim' -- dark purple color scheme
   use 'ellisonleao/gruvbox.nvim' -- popular gruvbox color schemelugins
-  use { "catppuccin/nvim", as = "catppuccin" } -- catppuccin theme
-  use "pest-parser/pest.vim" -- pest syntax highlighting
+  use "rebelot/kanagawa.nvim" -- tokyonight meets gruvbox
 
   use {
     "folke/which-key.nvim",
@@ -172,6 +170,16 @@ require('packer').startup(function(use)
       {"nvim-lua/plenary.nvim"},
       {"nvim-treesitter/nvim-treesitter"}
     },
+  }
+
+  use {
+    "petertriho/nvim-scrollbar",
+    config = function() require("config.scrollbar") end,
+  }
+
+  use {
+    "folke/twilight.nvim",
+    config = function() require("config.twilight") end
   }
 
 end)

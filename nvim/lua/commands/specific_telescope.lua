@@ -11,7 +11,7 @@ local dropdown_theme = require("telescope.themes").get_dropdown { previewer = fa
 } }
 
 local function find_directories()
-  return finders.new_oneshot_job{ "fd", "--type", "d" }
+  return finders.new_oneshot_job({ "fd", "--type", "d" }, {})
 end
 
 local function get_dir_results_from_picker(picker)
