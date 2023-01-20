@@ -27,6 +27,7 @@ alias http='npx http-server --cors'
 alias vim='nvim'
 alias ':q'='exit'
 alias vopen='filename=$(fzf); nvim $filename'
+alias lg='lazygit'
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
