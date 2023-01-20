@@ -7,7 +7,6 @@ require('packer').startup(function(use)
   use 'RRethy/vim-illuminate' -- highlight current word
   use 'f-person/git-blame.nvim' -- git blame toggling
   use 'svermeulen/vimpeccable' -- mapping keybinds to lua functions
-  use 'tpope/vim-fugitive' -- git solution
   use 'prettier/vim-prettier' -- prettier formatting
   use 'folke/lua-dev.nvim' -- get neovim lua dev setup right
   use 'nvim-lua/plenary.nvim' -- lua function helpers, required for telescope
