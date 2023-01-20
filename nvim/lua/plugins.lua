@@ -16,7 +16,8 @@ require('packer').startup(function(use)
   use 'unblevable/quick-scope' -- highlighting f and t jumping
   use 'wellle/targets.vim'
   use 'tpope/vim-surround'
-  use "pest-parser/pest.vim" -- pest syntax highlighting
+  use 'pest-parser/pest.vim' -- pest syntax highlighting
+  use 'kdheepak/lazygit.nvim'
 
   -- color schemes
   use 'sainnhe/everforest'  -- green color scheme

@@ -109,6 +109,7 @@ local normal_mappings = {
     g = {":Git<CR>", "Git Home"},
     b = {":GitBlameToggle<CR>", "Git Blame"},
     s = {"<cmd>Telescope git_status<cr>", "Git Status"},
+    l = {":LazyGit<CR>", "Lazy Git"},
   },
 
   t = {
