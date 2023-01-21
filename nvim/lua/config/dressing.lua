@@ -1,9 +1,7 @@
 require("dressing").setup {
   input = {
     relative = "editor",
-
     insert_only = false,
-
     mappings = {
       n = {
         ["<S-Esc>"] = "Close",

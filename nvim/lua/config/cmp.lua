@@ -41,8 +41,5 @@ cmp.setup({
         return vim_item
       end
     },
-
-
-    experimental = { native_menu = false, ghost_text = true }
 })
 

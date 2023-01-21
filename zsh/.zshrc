@@ -6,7 +6,7 @@ ZSH_THEME="eastwood"
 
 HYPHEN_INSENSITIVE="true"
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-plugins=(git zsh-autosuggestions web-search )
+plugins=(git zsh-autosuggestions web-search vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 cleanmerged() {
@@ -28,6 +28,7 @@ alias vim='nvim'
 alias ':q'='exit'
 alias vopen='filename=$(fzf); nvim $filename'
 alias lg='lazygit'
+alias gl='lazygit'
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
@@ -36,3 +37,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true

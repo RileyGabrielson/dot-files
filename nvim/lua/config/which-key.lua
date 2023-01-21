@@ -62,9 +62,10 @@ vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap =
 vim.api.nvim_set_keymap('n', '<Leader>b', '<cmd>lua require("config.telescope").local_branches()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
-vim.api.nvim_set_keymap("n", "<Leader>S", "<cmd>lua require('spectre').open()<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").copy_file_path()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
@@ -80,9 +81,10 @@ local normal_mappings = {
   ["b"] = "Change Branch",
   ["z"] = "Zen Mode",
   ["x"] = "Trouble Diagnostics",
-  ["S"] = "Spectre",
   ["y"] = "Yank to Clipboard",
   ["%"] = "Get Filename to Clipboard",
+  ["u"] = "Undo Tree",
+  ["s"] = "Snippets",
 
   e = {
     name = "Explorer",
@@ -142,7 +144,6 @@ local normal_mappings = {
     u = {use_styles_snippet, "Use Styles Snippet"},
     o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
     c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Commons"},
-    t = {"<cmd>lua require'commands.templates'()<CR>", "Templates"},
   },
 
   w = {
@@ -196,11 +197,11 @@ local normal_mappings = {
   },
 
   v = {
-    name = "DiffView",
+    name = "Diff View",
     o = {"<cmd>DiffviewOpen<CR>", "Open DiffView"},
     m = {"<cmd>DiffviewOpen origin/master...HEAD<CR>", "Master DiffView"},
     c = {"<cmd>DiffviewClose<CR>", "Close DiffView"},
-  }
+  },
 }
 
 local visual_mappings = {

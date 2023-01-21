@@ -17,6 +17,11 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'pest-parser/pest.vim' -- pest syntax highlighting
   use 'kdheepak/lazygit.nvim'
+  use 'williamboman/mason.nvim'
+  use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
+  use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
+  use 'hrsh7th/cmp-path' -- auto complete system paths
+  use 'jose-elias-alvarez/typescript.nvim' -- typescript lsp server config and function exposure
 
   -- color schemes
   use 'sainnhe/everforest'  -- green color scheme
@@ -69,12 +74,9 @@ require('packer').startup(function(use)
     'hrsh7th/nvim-cmp', -- auto complete
     config = function() require('config.cmp') end,
   }
-  use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
-  use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
-  use 'hrsh7th/cmp-path' -- auto complete system paths
-  use 'jose-elias-alvarez/typescript.nvim' -- typescript lsp server config and function exposure
 
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
   use {
       'nvim-telescope/telescope.nvim', -- telescope fuzzy finder
       requires = {
@@ -82,11 +84,6 @@ require('packer').startup(function(use)
           {'nvim-telescope/telescope-fzf-native.nvim'},
       },
       config = function() require("config.telescope") end
-  }
-
-  use {
-    "nvim-pack/nvim-spectre",
-    config = function() require("config.spectre") end
   }
 
   use {
@@ -137,21 +134,23 @@ require('packer').startup(function(use)
     config = function() require("nvim-autopairs").setup {} end
   }
 
-  use 'williamboman/mason.nvim'
   use {
     'mfussenegger/nvim-dap',
     config = function() require("mason").setup() end,
   };
+
   use { -- Required for nvim-dap-vscode-js
     "microsoft/vscode-js-debug",
     opt = true,
     run = "npm install --legacy-peer-deps && npm run compile"
   };
+
   use {
     "mxsdev/nvim-dap-vscode-js",
     requires = {"mfussenegger/nvim-dap"},
     config = function() require("dap_debug.dap_vscode_js") end,
   }
+
   use {
     "rcarriga/nvim-dap-ui",
     requires = {"mfussenegger/nvim-dap"},

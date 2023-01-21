@@ -63,7 +63,6 @@ local conf = require("telescope.config").values
 local strings = require "plenary.strings"
 local entry_display = require "telescope.pickers.entry_display"
 local make_entry = require "telescope.make_entry"
-local previewers = require "telescope.previewers"
 
 custom_functions.local_branches = function(opts)
   opts = opts or {}
@@ -86,7 +85,7 @@ custom_functions.local_branches = function(opts)
     return string.gsub(v, "\\([\\'])", "%1")
   end
   local parse_line = function(line)
-    local fields = vim.split(line, ">", true)
+    local fields = vim.split(line, ">", {})
     local entry = {
       head = fields[1],
       refname = unescape_single_quote(fields[2]),
