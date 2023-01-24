@@ -174,11 +174,6 @@ require('packer').startup(function(use)
   }
 
   use {
-    "petertriho/nvim-scrollbar",
-    config = function() require("config.scrollbar") end,
-  }
-
-  use {
     "folke/twilight.nvim",
     config = function() require("config.twilight") end
   }
