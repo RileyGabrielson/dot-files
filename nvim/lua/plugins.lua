@@ -26,7 +26,9 @@ require('packer').startup(function(use)
   -- color schemes
   use 'sainnhe/everforest'  -- green color scheme
   use 'ellisonleao/gruvbox.nvim' -- popular gruvbox color schemelugins
-  use "rebelot/kanagawa.nvim" -- tokyonight meets gruvbox
+  use 'rebelot/kanagawa.nvim' -- tokyonight meets gruvbox
+  use 'AlexvZyl/nordic.nvim' -- darker nord
+
 
   use {
     "folke/which-key.nvim",
@@ -141,8 +143,8 @@ require('packer').startup(function(use)
 
   use { -- Required for nvim-dap-vscode-js
     "microsoft/vscode-js-debug",
-    opt = true,
-    run = "npm install --legacy-peer-deps && npm run compile"
+    -- opt = true,
+    -- run = "npm install --legacy-peer-deps && npm run compile"
   };
 
   use {
@@ -179,6 +181,16 @@ require('packer').startup(function(use)
   use {
     "folke/twilight.nvim",
     config = function() require("config.twilight") end
+  }
+
+  use {
+    "chrisgrieser/nvim-recorder",
+    config = function() require("recorder").setup({}) end,
+  }
+
+  use {
+    "rcarriga/nvim-notify",
+    config = function() require("config.notify") end,
   }
 
 end)

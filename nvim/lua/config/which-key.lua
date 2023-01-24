@@ -124,6 +124,7 @@ local normal_mappings = {
     c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
     q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quickfix List"},
     a = {'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', "All files"},
+    n = {'<cmd>lua require("telescope").extensions.notify.notify()<CR>', "All files"},
     l = {
         name = "Lsp",
         r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
