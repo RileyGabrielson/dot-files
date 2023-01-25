@@ -1,35 +1,20 @@
-if _G.StatusColumn then
-  return
-end
-
 _G.StatusColumn = {
-  display = {
-    line = function()
-      local lnum = tostring(vim.v.lnum)
-      if #lnum == 1 then
-        return " " .. lnum
-      else
-        return lnum
-      end
-    end,
-  },
-
   sections = {
     sign_column = {
       [[%s]]
     },
     line_number = {
-      [[%=%{v:lua.StatusColumn.display.line()}]]
+      [[%=%{v:relnum?v:relnum:v:lnum}]]
     },
-    spacing     = {
+    spacing = {
       [[ ]]
     },
-    border      = {
+    border = {
       [[%#StatusColumnBorder#]], -- HL
       [[▐]],
     },
-    padding     = {
-      [[%#StatusColumnBuffer#]], -- HL
+    padding = {
+      [[%#WinSeparator#]], -- HL
       [[ ]],
     },
   },

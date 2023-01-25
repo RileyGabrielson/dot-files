@@ -28,5 +28,4 @@ vim.cmd "let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']"
 vim.g.gitblame_date_format = '%r'
 vim.g.gitblame_enabled = 0
 vim.g.dap_virtual_text = true
-
 vim.g["prettier#autoformat"] = 0
