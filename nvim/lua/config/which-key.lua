@@ -1,4 +1,6 @@
-require"which-key".setup({
+local which_key = require("which-key")
+
+which_key.setup({
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -85,6 +87,7 @@ local normal_mappings = {
   ["%"] = "Get Filename to Clipboard",
   ["u"] = "Undo Tree",
   ["s"] = "Snippets",
+  ["<Tab>"] = "Alternate File",
 
   e = {
     name = "Explorer",
@@ -220,6 +223,5 @@ local visual_mappings = {
   },
 }
 
-local wk = require("which-key")
-wk.register(normal_mappings, normal_options)
-wk.register(visual_mappings, visual_options)
+which_key.register(normal_mappings, normal_options)
+which_key.register(visual_mappings, visual_options)
