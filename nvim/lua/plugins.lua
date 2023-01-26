@@ -25,7 +25,7 @@ require('packer').startup(function(use)
 
   -- color schemes
   use 'sainnhe/everforest'  -- green color scheme
-  use 'ellisonleao/gruvbox.nvim' -- popular gruvbox color schemelugins
+  use 'sainnhe/gruvbox-material'
   use 'rebelot/kanagawa.nvim' -- tokyonight meets gruvbox
   use 'AlexvZyl/nordic.nvim' -- darker nord
 
