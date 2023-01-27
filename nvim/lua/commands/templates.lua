@@ -19,12 +19,14 @@ local function get_test_import_path()
 		return nil;
 	end
 
-	if string.find(file_path, "commons/ui") then
-    return file_path:gsub("^(commons/)ui/(.*).test.ts$", "@neo/%1%2");
-	elseif string.find(file_path, "ui/operator/src") then
-		return file_path:gsub("^ui(.*).test.ts$", "@neo%1")
+  local without_test_folder = file_path:gsub("__tests__/", "")
+
+	if string.find(without_test_folder, "commons/ui") then
+    return without_test_folder:gsub("^(commons/)ui/(.*).test.ts$", "@neo/%1%2");
+	elseif string.find(without_test_folder, "ui/operator/src") then
+		return without_test_folder:gsub("^ui(.*).test.ts$", "@neo%1")
 	else
-    return file_path;
+    return without_test_folder;
 	end
 end
 
@@ -71,7 +73,7 @@ local function add_domain_template()
     "",
     "export class " .. component_name .. " {",
     "",
-    "  constructor() {",
+    "  constructor({}: " .. component_name .. "Port) {",
     "",
     "  }",
     "}"

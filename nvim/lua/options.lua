@@ -21,6 +21,7 @@ vim.opt.laststatus = 0
 vim.opt.ch = 1
 vim.opt.title = true
 vim.diagnostic.config({ virtual_lines = true })
+vim.opt.signcolumn = "no"
 
 vim.cmd "set nofoldenable"
 vim.cmd "let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']"
