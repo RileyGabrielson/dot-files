@@ -29,15 +29,9 @@ require('packer').startup(function(use)
   use { "catppuccin/nvim", as = "catppuccin" }
   use "ellisonleao/gruvbox.nvim"
 
-
   use {
     "folke/which-key.nvim",
     config = function() require("config.which-key") end,
-  }
-
-  use {
-    'j-hui/fidget.nvim', -- lsp progress
-    config = function() require'fidget'.setup() end,
   }
 
   use {
@@ -70,7 +64,7 @@ require('packer').startup(function(use)
   use {
     "stevearc/dressing.nvim", -- fancy up ui windows
     config = function() require('config.dressing') end,
-}
+  }
 
   use {
     'hrsh7th/nvim-cmp', -- auto complete
@@ -103,6 +97,7 @@ require('packer').startup(function(use)
     "terrortylor/nvim-comment",
     config = function() require("config.comment") end
   }
+
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use {
@@ -174,10 +169,12 @@ require('packer').startup(function(use)
     "williamboman/mason-lspconfig.nvim",
     'jayp0521/mason-nvim-dap.nvim'
   }
+
   use {
     "mxsdev/nvim-dap-vscode-js",
     requires = {"mfussenegger/nvim-dap"},
   }
+
   use {
     "rcarriga/nvim-dap-ui",
     requires = {"mfussenegger/nvim-dap"},
