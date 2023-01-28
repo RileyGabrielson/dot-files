@@ -1,38 +1,26 @@
-require("dap").adapters.chrome = {
-    type = "executable",
-    command = "node",
-    args = {os.getenv("HOME") .. "/.local/share/nvim/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js"} -- TODO adjust
+local dap = require("dap")
+
+dap.adapters.node2 = {
+  type = 'executable',
+  command = 'node',
+  args = {vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/"},
 }
 
 for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
   require("dap").configurations[language] = {
     {
-      type = "pwa-node",
-      request = "launch",
-      name = "Launch File (Node)",
-      program = "${file}",
-      cwd = "${workspaceFolder}",
-      runtimeArgs = {
-        "node_modules/jest/bin/jest.js",
-      },
-    },
-    {
-      type = "pwa-node",
-      request = "attach",
-      name = "Attach (Node)",
-      processId = require'dap.utils'.pick_process,
-      cwd = "${workspaceFolder}",
-    },
-    {
-      type = "chrome",
-      request = "attach",
-      name = "Attach (Chrome)",
-      program = "${file}",
+      name = 'Launch Node',
+      type = 'node2',
+      request = 'launch',
+      program = '${file}',
       cwd = vim.fn.getcwd(),
       sourceMaps = true,
-      protocol = "inspector",
-      port = 9222,
-      webRoot = "${workspaceFolder}"
-    }
+      protocol = 'inspector',
+      console = 'integratedTerminal',
+    },
   }
 end
+
+require("mason-nvim-dap").setup({
+    ensure_installed = { "node2" }
+})

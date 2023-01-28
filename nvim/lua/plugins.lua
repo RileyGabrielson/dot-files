@@ -2,7 +2,6 @@ vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- package manager
-  use 'neovim/nvim-lspconfig' -- configurations for nvim LSP
   use 'L3MON4D3/LuaSnip' -- fancy status bar
   use 'RRethy/vim-illuminate' -- highlight current word
   use 'f-person/git-blame.nvim' -- git blame toggling
@@ -17,7 +16,6 @@ require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'pest-parser/pest.vim' -- pest syntax highlighting
   use 'kdheepak/lazygit.nvim'
-  use 'williamboman/mason.nvim'
   use 'hrsh7th/cmp-nvim-lsp' -- auto complete lsp
   use 'hrsh7th/cmp-nvim-lua' -- auto complete lua
   use 'hrsh7th/cmp-path' -- auto complete system paths
@@ -138,28 +136,6 @@ require('packer').startup(function(use)
     config = function() require("nvim-autopairs").setup {} end
   }
 
-  use {
-    'mfussenegger/nvim-dap',
-    config = function() require("mason").setup() end,
-  };
-
-  use { -- Required for nvim-dap-vscode-js
-    "microsoft/vscode-js-debug",
-    -- opt = true,
-    -- run = "npm install --legacy-peer-deps && npm run compile"
-  };
-
-  use {
-    "mxsdev/nvim-dap-vscode-js",
-    requires = {"mfussenegger/nvim-dap"},
-    config = function() require("dap_debug.dap_vscode_js") end,
-  }
-
-  use {
-    "rcarriga/nvim-dap-ui",
-    requires = {"mfussenegger/nvim-dap"},
-    config = function() require("dap_debug.dap_ui") end,
-  }
 
   use {
     'sindrets/diffview.nvim',
@@ -188,6 +164,23 @@ require('packer').startup(function(use)
   use {
     "rcarriga/nvim-notify",
     config = function() require("config.notify") end,
+  }
+
+  -- LSP and Debugging
+
+  use {
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    'jayp0521/mason-nvim-dap.nvim'
+  }
+  use {
+    "mxsdev/nvim-dap-vscode-js",
+    requires = {"mfussenegger/nvim-dap"},
+  }
+  use {
+    "rcarriga/nvim-dap-ui",
+    requires = {"mfussenegger/nvim-dap"},
   }
 
 end)
