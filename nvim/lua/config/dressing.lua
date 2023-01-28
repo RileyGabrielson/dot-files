@@ -4,7 +4,6 @@ require("dressing").setup {
       builtin = {
         min_width = {70, 0.5}
       }
-
     },
     relative = "editor",
     insert_only = false,

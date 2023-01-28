@@ -38,13 +38,6 @@ telescope.setup{
 telescope.load_extension('fzf')
 
 local custom_functions = {}
-
--- custom_functions.project_files = function()
---   local opts = {}
---   local ok = pcall(require"telescope.builtin".git_files, opts)
---   if not ok then require"telescope.builtin".find_files(opts) end
--- end
---
 local utils = require('telescope.utils')
 local builtin = require('telescope.builtin')
 
