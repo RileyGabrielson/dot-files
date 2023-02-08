@@ -1,20 +1,13 @@
-# Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# See https://github.com/agkozak/agkozak-zsh-prompt
 ZSH_THEME="eastwood"
 
 HYPHEN_INSENSITIVE="true"
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode reminder
 plugins=(git zsh-autosuggestions web-search vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 cleanmerged() {
     git branch --merged | egrep -v "(^\*|master|release)" | xargs git branch -D
-}
-
-nukenode() {
-    rm -rf node_modules ui/payment_portal/node_modules ui/operator/node_modules commons/ui/node_modules tools/ui/frontend-scripts/node_modules && yarn cache clean --all && yarn
 }
 
 alias home='cd ~'
@@ -39,3 +32,4 @@ export NVM_DIR="$HOME/.nvm"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+source ~/.tcnrc

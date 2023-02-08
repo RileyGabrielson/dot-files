@@ -1,6 +1,11 @@
 vim.cmd [[packadd packer.nvim]]
 
 require('packer').startup(function(use)
+  use {
+    "rileygabrielson/accidental-scheme.nvim",
+    config = function() require("config.accidental-scheme") end
+  }
+
   use 'wbthomason/packer.nvim' -- package manager
   use 'L3MON4D3/LuaSnip' -- fancy status bar
   use 'RRethy/vim-illuminate' -- highlight current word
@@ -179,5 +184,4 @@ require('packer').startup(function(use)
     "rcarriga/nvim-dap-ui",
     requires = {"mfussenegger/nvim-dap"},
   }
-
 end)
