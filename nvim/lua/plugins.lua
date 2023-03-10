@@ -3,6 +3,7 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
   use {
     "rileygabrielson/accidental-scheme.nvim",
+    branch = "accent-cohesion",
     config = function() require("config.accidental-scheme") end
   }
 

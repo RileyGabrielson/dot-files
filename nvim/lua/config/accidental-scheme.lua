@@ -1,3 +1,4 @@
 require("accidental-scheme").setup({
-  constant_accents = false
+  disable_accent_shuffling = false,
+  accent_cohesion_factor = 1.5,
 })

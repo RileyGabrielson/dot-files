@@ -33,3 +33,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 source ~/.tcnrc
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc'; fi

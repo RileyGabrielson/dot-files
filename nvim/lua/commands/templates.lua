@@ -72,9 +72,10 @@ local function add_domain_template()
     "}",
     "",
     "export class " .. component_name .. " {",
+    "  private adapter: " .. component_name .. "Port;",
     "",
-    "  constructor({}: " .. component_name .. "Port) {",
-    "",
+    "  constructor(adapter: " .. component_name .. "Port) {",
+    "    this.adapter = adapter;",
     "  }",
     "}"
   });
