@@ -11,18 +11,28 @@ local function cover_file()
   return test_details
 end
 
-local test_neo = {
-  cover_operator = function()
-    local test_details = cover_file()
-    harpoon_tmux.sendCommand(1, "yarn operator test " .. test_details)
-    harpoon_tmux.gotoTerminal(1)
-  end,
+local cover_operator = function()
+  local test_details = cover_file()
+  harpoon_tmux.sendCommand(1, "yarn operator test " .. test_details)
+  harpoon_tmux.gotoTerminal(1)
+end
 
-  cover_commons = function()
-    local test_details = cover_file()
-    harpoon_tmux.sendCommand(1, "yarn commons test " .. test_details)
-    harpoon_tmux.gotoTerminal(1)
-  end,
+local cover_commons = function()
+  local test_details = cover_file()
+  harpoon_tmux.sendCommand(1, "yarn commons test " .. test_details)
+  harpoon_tmux.gotoTerminal(1)
+end
+
+local test_neo = {
+  cover_neo = function()
+    local file_path = vim.api.nvim_buf_get_name(0);
+    if string.find(file_path, "commons/ui") then
+      cover_commons()
+    end
+    if string.find(file_path, "ui/operator") then
+      cover_operator()
+    end
+  end
 }
 
 return test_neo

@@ -146,8 +146,7 @@ local normal_mappings = {
   n = {
     name = "Neo",
     u = {use_styles_snippet, "Use Styles Snippet"},
-    o = {"<cmd>lua require'commands.test_neo'.cover_operator()<CR>", "Cover Operator"},
-    c = {"<cmd>lua require'commands.test_neo'.cover_commons()<CR>", "Cover Commons"},
+    t = {"<cmd>lua require'commands.test_neo'.cover_neo()<CR>", "Test Neo Coverage"},
   },
 
   w = {
