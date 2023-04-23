@@ -169,6 +169,7 @@ local normal_mappings = {
     r = {":%s/\\<<C-r><C-w>\\>/", "Replace"},
     h = {":noh<CR>", "Hide Search"},
     d = {"<cmd>lua require'commands.misc_commands'.toggle_diagnostics()<CR>", "Diagnostics"},
+    v = {"<cmd>lua require'commands.get_verse'()<CR>", "Get Scripture Verse"},
   },
 
   h = {

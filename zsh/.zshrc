@@ -22,6 +22,7 @@ alias ':q'='exit'
 alias vopen='filename=$(fzf); nvim $filename'
 alias lg='lazygit'
 alias gl='lazygit'
+alias verse='~/verse'
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 

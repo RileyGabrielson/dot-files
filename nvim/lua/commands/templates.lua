@@ -22,7 +22,7 @@ local function get_test_import_path()
   local without_test_folder = file_path:gsub("__tests__/", "")
 
 	if string.find(without_test_folder, "commons/ui") then
-    return without_test_folder:gsub("^(commons/)ui/(.*).test.ts$", "@neo/%1%2");
+    return without_test_folder:gsub("^(commons/)ui/shared/(.*).test.ts$", "@neo/%1%2");
 	elseif string.find(without_test_folder, "ui/operator/src") then
 		return without_test_folder:gsub("^ui(.*).test.ts$", "@neo%1")
 	else
