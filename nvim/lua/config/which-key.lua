@@ -79,7 +79,6 @@ local use_styles_snippet = require("commands.make_styles_snippet")
 local normal_mappings = {
   ["p"] = "Find File Fuzzy",
   ["f"] = "Find Text",
-  ["b"] = "Change Branch",
   ["z"] = "Zen Mode",
   ["x"] = "Trouble Diagnostics",
   ["y"] = "Yank to Clipboard",
@@ -207,6 +206,23 @@ local normal_mappings = {
     m = {"<cmd>DiffviewOpen origin/master...HEAD<CR>", "Master DiffView"},
     c = {"<cmd>DiffviewClose<CR>", "Close DiffView"},
   },
+
+  c = {
+    name = "Quick Fix",
+    o = {"<cmd>copen<CR>", "Open Quickfix"},
+    c = {"<cmd>cclose<CR>", "Close Quickfix"},
+    n = {"<cmd>cnext<CR>", "Next Item"},
+    p = {"<cmd>cprev<CR>", "Previous Item"},
+    x = {"<cmd>call setqflist([])<CR>", "Clear List"},
+    d = {":cdo ", "Do"},
+    r = {":cdo s/", "Replace"},
+  },
+
+  b = {
+    name = "Buffers",
+    x = {"<cmd>%bd|e#|bd#<CR>", "Close all other buffers"},
+    l = {"<cmd>ls<CR>", "List buffers"}
+  }
 }
 
 local visual_mappings = {

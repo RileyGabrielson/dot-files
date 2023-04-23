@@ -131,7 +131,6 @@ local plugins = {
     config = function() require("nvim-autopairs").setup {} end
   },
 
-
   {
     'sindrets/diffview.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
@@ -167,7 +166,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    'jayp0521/mason-nvim-dap.nvim'
+    "jayp0521/mason-nvim-dap.nvim"
   },
 
   {
@@ -179,6 +178,11 @@ local plugins = {
     "rcarriga/nvim-dap-ui",
     dependencies = {"mfussenegger/nvim-dap"},
   },
+
+  {
+    'kevinhwang91/nvim-bqf',
+    config = function() require("config.quickfix") end,
+  } -- quick fix improvements
 }
 
 return plugins

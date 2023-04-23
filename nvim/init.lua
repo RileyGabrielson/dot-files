@@ -25,4 +25,3 @@ require "lsp"
 require "dap_adapters"
 require "status_column"
 require "colorscheme"
-

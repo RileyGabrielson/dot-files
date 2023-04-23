@@ -23,11 +23,13 @@ end
 local show_yanks = {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'}
 local formatPrettier = {'BufWritePre', '*.js,*.jsx,*.ts,*.tsx', 'silent! PrettierAsync'}
 local closeNvimTree = {'BufLeave', '*NvimTree*', "NvimTreeClose"}
+local enterQuickfix = {'ModeChanged', '*Quickfix*', 'call feedkeys("<Esc>")'}
 
 define_augroups({
     _general_settings = {
         show_yanks,
         closeNvimTree,
+        enterQuickfix,
     },
     _auto_formatters = {
         formatPrettier,
