@@ -1,3 +1,6 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 vim.opt.magic = true
 vim.opt.showmatch = true
 vim.opt.belloff = "all"
