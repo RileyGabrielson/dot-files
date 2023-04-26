@@ -182,7 +182,12 @@ local plugins = {
   {
     'kevinhwang91/nvim-bqf',
     config = function() require("config.quickfix") end,
-  } -- quick fix improvements
+  }, -- quick fix improvements
+
+  {
+    'dmmulroy/tsc.nvim',
+    config = function() require('tsc').setup() end,
+  }
 }
 
 return plugins

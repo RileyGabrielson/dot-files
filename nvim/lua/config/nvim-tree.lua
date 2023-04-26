@@ -2,6 +2,11 @@ vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
 require("nvim-tree").setup({
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    }
+  },
   remove_keymaps = {"<Tab>"},
   sync_root_with_cwd = true,
   view = {
