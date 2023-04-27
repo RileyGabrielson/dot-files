@@ -34,7 +34,7 @@ end
 local execute_yarn_script = function()
   local package_json_path = vim.fn.getcwd() .. '/package.json';
   local command = 'cat ' .. package_json_path .. " | jq .scripts | jq 'keys'"
-  local scripts = { "Test (Coverage)" }
+  local scripts = { "Test Current File (Coverage)" }
 
   vim.fn.jobstart(command, {
     on_stdout = function(channel_name, script_options)
@@ -55,7 +55,7 @@ local execute_yarn_script = function()
           },
           function(input)
             if input ~= nil then
-              if input == "Test (Coverage)" then
+              if input == "Test Current File (Coverage)" then
                 jest_coverage()
               else
                 vim.ui.input({ prompt = 'Additional Arguments: '}, function(args)
