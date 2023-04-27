@@ -68,6 +68,7 @@ vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filena
 vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
+vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
@@ -96,10 +97,15 @@ local normal_mappings = {
   ["x"] = "Trouble Diagnostics",
   ["y"] = "Yank to Clipboard",
   ["%"] = "Get Filename to Clipboard",
-  ["u"] = "Undo Tree",
   ["s"] = "Snippets",
   ["T"] = "TSC",
   ["<Tab>"] = "Alternate File",
+  ["Y"] = "Yarn Command",
+
+  u = {
+    name = "Utility",
+    t = {"<cmd>lua require'commands.jest_coverage'()<CR>", "Test Coverage"}
+  },
 
   e = {
     name = "Explorer",
