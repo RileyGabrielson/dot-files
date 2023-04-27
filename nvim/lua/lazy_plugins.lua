@@ -187,7 +187,12 @@ local plugins = {
   {
     'folke/noice.nvim',
     config = function() require("config.noice") end,
-    dependencies = { 'MunifTanjim/nui.nvim' },
+    dependencies = { 'MunifTanjim/nui.nvim', },
+  },
+
+  {
+    "smjonas/inc-rename.nvim",
+    config = function() require("inc_rename").setup() end,
   }
 
 }

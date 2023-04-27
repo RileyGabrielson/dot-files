@@ -114,7 +114,7 @@ local normal_mappings = {
     t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},
     h = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
     r = {"<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", "Find Git Files"},
-    s = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol"},
+    s = {":IncRename ", "Rename Symbol"},
     ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
     i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Hover"},
     e = {"<cmd>lua require('lsp_lines').toggle()<CR>", "Toggle Errors"},
