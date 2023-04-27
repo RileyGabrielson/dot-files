@@ -67,12 +67,25 @@ vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").copy_file_path()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
 vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("v", "<", "<gv", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("v", ">", ">gv", {noremap=true, silent=true})
+
+vim.keymap.set({"n", "i", "s"}, "<c-f>", function()
+  if not require("noice.lsp").scroll(4) then
+    return "<c-f>"
+  end
+end, { silent = true, expr = true })
+
+vim.keymap.set({"n", "i", "s"}, "<c-b>", function()
+  if not require("noice.lsp").scroll(-4) then
+    return "<c-b>"
+  end
+end, { silent = true, expr = true })
 
 local use_styles_snippet = require("commands.make_styles_snippet")
 
@@ -85,6 +98,7 @@ local normal_mappings = {
   ["%"] = "Get Filename to Clipboard",
   ["u"] = "Undo Tree",
   ["s"] = "Snippets",
+  ["T"] = "TSC",
   ["<Tab>"] = "Alternate File",
 
   e = {
@@ -125,7 +139,7 @@ local normal_mappings = {
     c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
     q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quickfix List"},
     a = {'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', "All files"},
-    n = {'<cmd>lua require("telescope").extensions.notify.notify()<CR>', "All files"},
+    n = {'<cmd>lua require("telescope").extensions.notify.notify()<CR>', "Notifications"},
     l = {
         name = "Lsp",
         r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},

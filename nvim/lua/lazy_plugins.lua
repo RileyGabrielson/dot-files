@@ -41,11 +41,6 @@ local plugins = {
   },
 
   {
-    'ray-x/lsp_signature.nvim', -- auto completion signature window
-    config = function() require('config.signature') end,
-  },
-
-  {
     'lewis6991/gitsigns.nvim', -- git changes in editor
     config = function() require('config.gitsigns') end,
   },
@@ -187,7 +182,14 @@ local plugins = {
   {
     'dmmulroy/tsc.nvim',
     config = function() require('tsc').setup() end,
+  },
+
+  {
+    'folke/noice.nvim',
+    config = function() require("config.noice") end,
+    dependencies = { 'MunifTanjim/nui.nvim' },
   }
+
 }
 
 return plugins

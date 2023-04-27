@@ -1,4 +1,4 @@
-require("dressing").setup {
+require("dressing").setup({
   input = {
     select = {
       builtin = {
@@ -20,5 +20,4 @@ require("dressing").setup {
       },
     },
   }
-
-}
+})

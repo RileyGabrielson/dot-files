@@ -9,6 +9,7 @@ vim.cmd("hi DiffDelete guifg=None guibg=#462726 ctermbg=None ctermfg=None gui=No
 
 vim.cmd("hi IndentBlanklineChar guifg=#504945")
 vim.cmd("hi IndentBlanklineContextChar guifg=#7c6f64")
+vim.cmd("hi NoiceCmdlinePopupBorder guifg=#7c6f64")
 
 vim.cmd("hi CursorLineNr guifg=#D79921 guibg=None ctermbg=None ctermfg=None gui=None cterm=None")
 
