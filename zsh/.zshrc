@@ -23,6 +23,7 @@ alias vopen='filename=$(fzf); nvim $filename'
 alias lg='lazygit'
 alias gl='lazygit'
 alias verse='~/verse'
+alias nvid='neovide --multigrid'
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
