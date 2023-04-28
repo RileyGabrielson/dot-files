@@ -1,4 +1,4 @@
-if not vim.g.neovide then
+if not vim.g.neovide and not vim.g.started_by_firenvim then
   require("noice").setup({
 
     presets = {
