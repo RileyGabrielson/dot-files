@@ -141,11 +141,6 @@ local plugins = {
   },
 
   {
-    "folke/twilight.nvim",
-    config = function() require("config.twilight") end
-  },
-
-  {
     "chrisgrieser/nvim-recorder",
     config = function() require("recorder").setup({}) end,
   },

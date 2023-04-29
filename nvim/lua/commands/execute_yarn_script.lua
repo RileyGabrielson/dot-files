@@ -1,35 +1,5 @@
+local harpoon_tmux = require('harpoon.tmux')
 local jest_coverage = require("commands.jest_coverage")
-
-local function notify_output(command, opts)
-  local output = ""
-  local notification
-  local notify = function(msg, level, timeout)
-    local notify_opts = vim.tbl_extend(
-      "keep",
-      opts or {timeout = timeout},
-      { title = table.concat(command, " "), replace = notification }
-    )
-    notification = vim.notify(msg, level, notify_opts)
-  end
-
-  notify("", "info", false);
-  local on_data = function(_, data)
-    output = output .. table.concat(data, "\n")
-    notify(output, "info", false)
-  end
-
-  vim.fn.jobstart(command, {
-    on_stdout = on_data,
-    on_stderr = on_data,
-    on_exit = function(_, code)
-      if #output == 0 then
-        notify("No output of command, exit code: " .. code, "warn", 5000)
-      else
-        notify(output, "info", 3000)
-      end
-    end,
-  })
-end
 
 local execute_yarn_script = function()
   local package_json_path = vim.fn.getcwd() .. '/package.json';
@@ -37,7 +7,7 @@ local execute_yarn_script = function()
   local scripts = { "Test Current File (Coverage)" }
 
   vim.fn.jobstart(command, {
-    on_stdout = function(channel_name, script_options)
+    on_stdout = function(_, script_options)
       local output = vim.fn.join(script_options)
       for w in output:gmatch("%S+") do
         if w ~= '[' and w ~= ']' then
@@ -59,7 +29,8 @@ local execute_yarn_script = function()
                 jest_coverage()
               else
                 vim.ui.input({ prompt = 'Additional Arguments: '}, function(args)
-                  notify_output({'yarn', input, args});
+                  harpoon_tmux.sendCommand(1, "yarn " .. input .. " " .. args .. '\n')
+                  harpoon_tmux.gotoTerminal(1)
                 end)
               end
 

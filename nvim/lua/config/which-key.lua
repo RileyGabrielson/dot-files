@@ -69,6 +69,7 @@ vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', {noremap = 
 vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
+vim.api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require'commands.edit_repo'()<CR>", {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
@@ -101,6 +102,7 @@ local normal_mappings = {
   ["T"] = "TSC",
   ["<Tab>"] = "Alternate File",
   ["Y"] = "Yarn Command",
+  ["r"] = "Repositories",
 
   u = {
     name = "Utility",
@@ -155,12 +157,6 @@ local normal_mappings = {
     },
   },
 
-  r = {
-    name = "Refactoring",
-    f = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>", "Extract Function"},
-    v = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable"},
-  },
-
   n = {
     name = "Neo",
     u = {use_styles_snippet, "Use Styles Snippet"},
@@ -180,6 +176,9 @@ local normal_mappings = {
     q = {"<C-w><C-q>", "Close Current Window"},
     V = {"<C-w>t<C-w>H", "Horizontal Split to Vertical"},
     S = {"<C-w>t<C-w>K", "Vertical Split to Horizontal"},
+    ["="] = {"<C-w>=", "Equalize windows"},
+    ["+"] = {'<cmd>exe "resize " . (winheight(0) * 3/2)<CR>', "Equalize windows"},
+    ["-"] = {'<cmd>exe "resize " . (winheight(0) * 2/3)<CR>', "Equalize windows"},
   },
 
   m = {
