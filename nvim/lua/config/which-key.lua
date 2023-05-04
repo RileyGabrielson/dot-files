@@ -71,6 +71,9 @@ vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silen
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require'commands.edit_repo'()<CR>", {noremap = true, silent = false})
 
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-Space>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
 vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
@@ -171,7 +174,7 @@ local normal_mappings = {
     s = {"<C-w><C-s>", "Horizontal Split"},
     o = {"<C-w><C-o>", "Close All Windows Except Current"},
     c = {"<C-w><C-c>", "Close Current Window"},
-    q = {"<C-w><C-q>", "Close Current Window"},
+    q = {"<C-w><C-c>", "Close Current Window"},
     V = {"<C-w>t<C-w>H", "Horizontal Split to Vertical"},
     S = {"<C-w>t<C-w>K", "Vertical Split to Horizontal"},
     ["="] = {"<C-w>=", "Equalize windows"},
@@ -236,6 +239,14 @@ local normal_mappings = {
     x = {"<cmd>call setqflist([])<CR>", "Clear List"},
     d = {":cdo ", "Do"},
     r = {":cdo s/", "Replace"},
+  },
+
+  a = {
+    name = "AI",
+    d = {"<cmd>Copilot disable<CR>", "Disable"},
+    e = {"<cmd>Copilot enable<CR>", "Enable"},
+    p = {"<cmd>Copilot panel<CR>", "Panel"},
+    s = {"<cmd>Copilot status<CR>", "Status"},
   },
 
   b = {

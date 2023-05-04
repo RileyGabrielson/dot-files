@@ -198,6 +198,10 @@ local plugins = {
         require("lazy").load({ plugins = "firenvim", wait = true })
         vim.fn["firenvim#install"](0)
     end
+  },
+
+  {
+    'github/copilot.vim',
   }
 
 }

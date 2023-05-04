@@ -33,3 +33,5 @@ vim.g.gitblame_date_format = '%r'
 vim.g.gitblame_enabled = 0
 vim.g.dap_virtual_text = true
 vim.g["prettier#autoformat"] = 0
+
+vim.g.copilot_node_command = "~/.nvm/versions/node/v18.9.0/bin/node"
