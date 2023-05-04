@@ -10,12 +10,12 @@ if not vim.g.neovide and not vim.g.started_by_firenvim then
 
     cmdline = {
       format = {
-        cdo = { pattern = "^:cdo", icon = "cdo", title="QUICK FIX" },
+        -- cdo = { pattern = "^:cdo", icon = "cdo", title="QUICK FIX" },
         cmdline = { pattern = "^:", icon = ">_", lang = "vim", title="COMMAND" },
         filter = { pattern = "^:%s*!", icon = "$", lang = "bash", title="FILTER" },
         help = { pattern = "^:%s*he?l?p?%s+", icon = "", title="HELP" },
         lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua", title="LUA" },
-        substitute = { pattern = '^:%%s/', icon = "%s/", lang = "regex", title="SUBSTITUTE" },
+        -- substitute = { pattern = '^:%%s/', icon = "%s/", lang = "regex", title="SUBSTITUTE" },
         search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
         search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
       }

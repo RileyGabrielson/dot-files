@@ -99,7 +99,6 @@ local normal_mappings = {
   ["y"] = "Yank to Clipboard",
   ["%"] = "Get Filename to Clipboard",
   ["s"] = "Snippets",
-  ["T"] = "TSC",
   ["<Tab>"] = "Alternate File",
   ["Y"] = "Yarn Command",
   ["r"] = "Repositories",
@@ -125,7 +124,6 @@ local normal_mappings = {
     s = {":IncRename ", "Rename Symbol"},
     ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
     i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Hover"},
-    e = {"<cmd>lua require('lsp_lines').toggle()<CR>", "Toggle Errors"},
     f = {"<cmd>TypescriptRenameFile<CR>", "Typescript Rename File"},
   },
 
@@ -177,8 +175,11 @@ local normal_mappings = {
     V = {"<C-w>t<C-w>H", "Horizontal Split to Vertical"},
     S = {"<C-w>t<C-w>K", "Vertical Split to Horizontal"},
     ["="] = {"<C-w>=", "Equalize windows"},
-    ["+"] = {'<cmd>exe "resize " . (winheight(0) * 3/2)<CR>', "Equalize windows"},
-    ["-"] = {'<cmd>exe "resize " . (winheight(0) * 2/3)<CR>', "Equalize windows"},
+    ["+"] = {'<cmd>exe "resize " . (winheight(0) * 5/4)<CR>', "Increase height"},
+    ["-"] = {'<cmd>exe "resize " . (winheight(0) * 4/5)<CR>', "Decrease height"},
+    ["_"] = {'<cmd>exe "resize " . (winheight(0) * 4/5)<CR>', "Decrease height"},
+    [">"] = {'<cmd>exe "vertical resize " . (winwidth(0) * 5/4)<CR>', "Increase width"},
+    ["<"] = {'<cmd>exe "vertical resize " . (winwidth(0) * 4/5)<CR>', "Increase width"},
   },
 
   m = {

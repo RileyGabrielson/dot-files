@@ -1,10 +1,5 @@
 require("dressing").setup({
   input = {
-    select = {
-      builtin = {
-        min_width = {70, 0.5}
-      }
-    },
     relative = "editor",
     insert_only = false,
     mappings = {
@@ -19,5 +14,15 @@ require("dressing").setup({
         ["<Down>"] = "HistoryNext",
       },
     },
-  }
+  },
+  select = {
+    builtin = {
+      min_width = {70, 0.5}
+    },
+    fzf = {
+      window = {
+        width = 0.8,
+      }
+    }
+  },
 })

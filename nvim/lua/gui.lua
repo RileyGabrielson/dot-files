@@ -39,7 +39,7 @@ vim.g.firenvim_config = {
             content  = "text",
             priority = 0,
             selector = "textarea",
-            takeover = "always"
+            takeover = "never"
         }
     }
 }
