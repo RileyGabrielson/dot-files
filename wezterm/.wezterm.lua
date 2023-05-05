@@ -4,7 +4,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 17.2
 config.audible_bell = "Disabled"
 config.enable_tab_bar = false
@@ -16,16 +15,18 @@ config.window_padding = {
   bottom = 0,
 }
 config.color_scheme = 'GruvboxDarkHard'
+-- config.color_scheme = 'tokyonight_night'
 config.background = {
   {
     source = {
-      Color = "black",
+      File = "/Users/riley.gabrielson/lotr-background.jpeg",
     },
-    width = "100%",
     height = "100%",
     attachment = "Fixed",
-    opacity = 0.1,
+    repeat_x = "Mirror",
+    horizontal_align = "Right"
   }
 }
+config.font = wezterm.font 'JetBrains Mono'
 
 return config
