@@ -12,6 +12,7 @@ an increasingly more complex dev configuration
 ### Telescope Dependencies
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fd](https://github.com/sharkdp/fd)
+- c compiler (gcc)
 
 ### Mason Dependencies
 - Node
