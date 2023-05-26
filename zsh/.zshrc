@@ -3,7 +3,7 @@ ZSH_THEME="eastwood"
 
 HYPHEN_INSENSITIVE="true"
 zstyle ':omz:update' mode reminder
-plugins=(git zsh-autosuggestions web-search vi-mode)
+plugins=(git vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 cleanmerged() {
@@ -42,7 +42,9 @@ export NVM_DIR="$HOME/.nvm"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-source ~/.tcnrc
+if test -f "~/.tcnrc"; then
+  source ~/.tcnrc
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc'; fi
