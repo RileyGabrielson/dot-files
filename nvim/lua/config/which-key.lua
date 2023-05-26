@@ -65,7 +65,6 @@ vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silen
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").copy_file_path()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
@@ -109,7 +108,8 @@ local normal_mappings = {
 
   u = {
     name = "Utility",
-    t = {"<cmd>lua require'commands.jest_coverage'()<CR>", "Test Coverage"}
+    t = {"<cmd>lua require'commands.jest_coverage'()<CR>", "Test Coverage"},
+    u = {"<cmd>UndotreeToggle<CR>", "Undo Tree"}
   },
 
   e = {
@@ -193,6 +193,7 @@ local normal_mappings = {
     h = {":noh<CR>", "Hide Search"},
     d = {"<cmd>lua require'commands.misc_commands'.toggle_diagnostics()<CR>", "Diagnostics"},
     v = {"<cmd>lua require'commands.get_verse'()<CR>", "Get Scripture Verse"},
+    b = {"<cmd>lua require'commands.toggle_background'()<CR>", "Toggle Background"}
   },
 
   h = {

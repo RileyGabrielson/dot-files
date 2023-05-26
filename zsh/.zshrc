@@ -25,6 +25,14 @@ alias gl='lazygit'
 alias verse='~/verse'
 alias nvid='neovide --multigrid'
 
+alias personal='tmux attach -tpersonal'
+alias neo='tmux attach -tneo'
+alias legacy='tmux attach -tlegacy'
+alias commons='tmux attach -tcommons'
+alias plugins='tmux attach -tplugins'
+alias ergo='tmux attach -tergo'
+alias operator='tmux attach -toperator'
+
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
 # NVM initialisation
@@ -41,3 +49,5 @@ if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc'; fi
+
+bindkey '^ ' autosuggest-accept

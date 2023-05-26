@@ -65,7 +65,7 @@ end
 local function add_domain_template()
   local component_name = get_component_name(".ts");
   vim.api.nvim_buf_set_lines(0, 0, -1, false, {
-    "import { ObservableValue } from '@neo/hex';",
+    "import { ObservableValue } from '@m/hex';",
     "",
     "interface " .. component_name .. "Port {",
     "  ",
