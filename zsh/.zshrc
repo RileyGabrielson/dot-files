@@ -23,15 +23,8 @@ alias vopen='filename=$(fzf); nvim $filename'
 alias lg='lazygit'
 alias gl='lazygit'
 alias verse='~/verse'
+alias s='tmux_sessionizer'
 alias nvid='neovide --multigrid'
-
-alias personal='tmux attach -tpersonal'
-alias neo='tmux attach -tneo'
-alias legacy='tmux attach -tlegacy'
-alias commons='tmux attach -tcommons'
-alias plugins='tmux attach -tplugins'
-alias ergo='tmux attach -tergo'
-alias operator='tmux attach -toperator'
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 

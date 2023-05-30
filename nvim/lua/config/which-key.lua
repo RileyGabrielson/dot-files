@@ -65,7 +65,8 @@ vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silen
 vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").copy_file_path()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>silent !tmux neww tmux_sessionizer<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>S', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require'commands.edit_repo'()<CR>", {noremap = true, silent = false})
@@ -101,7 +102,8 @@ local normal_mappings = {
   ["x"] = "Trouble Diagnostics",
   ["y"] = "Yank to Clipboard",
   ["%"] = "Get Filename to Clipboard",
-  ["s"] = "Snippets",
+  ["s"] = "Tmux Session",
+  ["S"] = "Snippets",
   ["<Tab>"] = "Alternate File",
   ["Y"] = "Yarn Command",
   ["r"] = "Repositories",
