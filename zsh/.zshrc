@@ -24,6 +24,7 @@ alias lg='lazygit'
 alias gl='lazygit'
 alias verse='~/verse'
 alias s='tmux_sessionizer'
+alias i='cheat'
 alias nvid='neovide --multigrid'
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"

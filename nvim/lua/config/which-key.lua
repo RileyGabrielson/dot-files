@@ -66,6 +66,7 @@ vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {
 vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").copy_file_path()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>silent !tmux neww tmux_sessionizer<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>i', "<cmd>silent !tmux neww cheat<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>S', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
@@ -103,6 +104,7 @@ local normal_mappings = {
   ["y"] = "Yank to Clipboard",
   ["%"] = "Get Filename to Clipboard",
   ["s"] = "Tmux Session",
+  ["i"] = "Cheat Sheet",
   ["S"] = "Snippets",
   ["<Tab>"] = "Alternate File",
   ["Y"] = "Yarn Command",
