@@ -3,7 +3,7 @@ ZSH_THEME="eastwood"
 
 HYPHEN_INSENSITIVE="true"
 zstyle ':omz:update' mode reminder
-plugins=(git vi-mode)
+plugins=(git vi-mode yarn)
 source $ZSH/oh-my-zsh.sh
 
 cleanmerged() {

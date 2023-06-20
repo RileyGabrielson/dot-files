@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-languages=`echo "golang lua cpp c typescript nodejs csharp" | tr ' ' '\n'`
+languages=`echo "golang lua cpp c typescript javascript nodejs csharp" | tr ' ' '\n'`
 core_utils=`echo "xargs find mv sed awk" | tr ' ' '\n'`
 
 selected=`printf "$languages\n$core_utils" | fzf`

@@ -9,6 +9,7 @@ if not vim.g.neovide and not vim.g.started_by_firenvim then
     },
 
     cmdline = {
+      view = "cmdline",
       format = {
         -- cdo = { pattern = "^:cdo", icon = "cdo", title="QUICK FIX" },
         cmdline = { pattern = "^:", icon = ">_", lang = "vim", title="COMMAND" },
