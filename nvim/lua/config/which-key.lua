@@ -106,7 +106,7 @@ local normal_mappings = {
   ["s"] = "Tmux Session",
   ["i"] = "Cheat Sheet",
   ["S"] = "Snippets",
-  ["<Tab>"] = "Alternate File",
+  ["<Enter>"] = "Alternate File",
   ["Y"] = "Yarn Command",
   ["r"] = "Repositories",
 
@@ -131,7 +131,7 @@ local normal_mappings = {
     r = {"<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", "Find Git Files"},
     s = {":IncRename ", "Rename Symbol"},
     ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
-    i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Hover"},
+    i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementations"},
     f = {"<cmd>TypescriptRenameFile<CR>", "Typescript Rename File"},
   },
 
@@ -234,6 +234,7 @@ local normal_mappings = {
     o = {"<cmd>DiffviewOpen<CR>", "Open DiffView"},
     m = {"<cmd>DiffviewOpen origin/master...HEAD<CR>", "Master DiffView"},
     c = {"<cmd>DiffviewClose<CR>", "Close DiffView"},
+    f = {"<cmd>DiffviewFileHistory %<CR>", "File History"},
   },
 
   c = {

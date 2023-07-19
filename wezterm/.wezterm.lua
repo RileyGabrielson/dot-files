@@ -15,7 +15,6 @@ config.window_padding = {
   bottom = 0,
 }
 config.color_scheme = 'GruvboxDarkHard'
--- config.color_scheme = 'tokyonight_night'
 
 config.background = {
   {

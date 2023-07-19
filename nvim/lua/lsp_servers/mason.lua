@@ -19,12 +19,6 @@ local settings = {
 require("mason").setup(settings)
 require("mason-lspconfig").setup {
 }
-require("mason-nvim-dap").setup({
-  ensure_installed = {"node2"},
-  automatic_installation = true,
-  automatic_setup = true,
-})
-
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then

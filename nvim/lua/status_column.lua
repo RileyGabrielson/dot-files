@@ -10,11 +10,11 @@ _G.StatusColumn = {
       [[ ]]
     },
     border = {
-      [[%#StatusColumnBorder#]], -- HL
+      [[%#StatusColumnBorder#]], -- Highlight Group
       [[▐]],
     },
     padding = {
-      [[%#WinSeparator#]], -- HL
+      [[%#WinSeparator#]], -- Highlight Group
       [[ ]],
     },
   },
@@ -32,12 +32,6 @@ _G.StatusColumn = {
 
     return table.concat(statuscolumn)
   end,
-
-  set_window = function(value)
-    vim.defer_fn(function()
-      vim.api.nvim_win_set_option(vim.api.nvim_get_current_win(), "statuscolumn", value)
-    end, 1)
-  end
 }
 
 vim.opt.statuscolumn = StatusColumn.build({

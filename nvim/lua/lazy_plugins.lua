@@ -156,17 +156,23 @@ local plugins = {
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "jayp0521/mason-nvim-dap.nvim"
+  },
+  {
+    "microsoft/vscode-js-debug",
+    lazy = true,
+    build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
   },
 
   {
     "mxsdev/nvim-dap-vscode-js",
-    dependencies = {"mfussenegger/nvim-dap"},
+    dependencies = {"mfussenegger/nvim-dap", "microsoft/vscode-js-debug"},
+    config = function() require("dap_debug.dap_js") end,
   },
 
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {"mfussenegger/nvim-dap"},
+    config = function() require("dap_debug.dap_ui") end,
   },
 
   {
@@ -227,6 +233,12 @@ local plugins = {
     init = function()
       vim.g.rustfmt_autosave = 1
     end
+  },
+
+  { 
+    "folke/neodev.nvim",
+    opts = {},
+    config = function() require("neodev").setup({}) end,
   }
 
 }

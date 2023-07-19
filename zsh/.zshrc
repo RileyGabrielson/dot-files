@@ -36,9 +36,7 @@ export NVM_DIR="$HOME/.nvm"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-if test -f "~/.tcnrc"; then
-  source ~/.tcnrc
-fi
+source ~/.tcnrc
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc'; fi
