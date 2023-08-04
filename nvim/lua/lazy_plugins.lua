@@ -207,10 +207,6 @@ local plugins = {
   },
 
   {
-    'github/copilot.vim',
-  },
-
-  {
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end, 
@@ -235,7 +231,7 @@ local plugins = {
     end
   },
 
-  { 
+  {
     "folke/neodev.nvim",
     opts = {},
     config = function() require("neodev").setup({}) end,
