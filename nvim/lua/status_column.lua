@@ -1,7 +1,7 @@
 _G.StatusColumn = {
   sections = {
     sign_column = {
-      [[%s]]
+      [[ %s ]]
     },
     line_number = {
       [[%=%{v:relnum?v:relnum:v:lnum}]]

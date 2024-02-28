@@ -44,4 +44,11 @@ if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc'; fi
 
-bindkey '^ ' autosuggest-accept
+fzf-history-widget-accept() {
+  fzf-history-widget
+  zle accept-line
+}
+zle     -N     fzf-history-widget-accept
+bindkey '^X^R' fzf-history-widget-accept
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

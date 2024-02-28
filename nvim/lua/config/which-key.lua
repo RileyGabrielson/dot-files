@@ -72,10 +72,6 @@ vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silen
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require'commands.edit_repo'()<CR>", {noremap = true, silent = false})
 
-vim.api.nvim_set_keymap("i", "<M-Space>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-vim.api.nvim_set_keymap("i", "<M-n>", '<Plug>(copilot-next)', { silent = true, noremap = false })
-vim.api.nvim_set_keymap("i", "<M-p>", '<Plug>(copilot-previous)', { silent = true, noremap = false })
-
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
 vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
@@ -113,7 +109,8 @@ local normal_mappings = {
   u = {
     name = "Utility",
     t = {"<cmd>lua require'commands.jest_coverage'()<CR>", "Test Coverage"},
-    u = {"<cmd>UndotreeToggle<CR>", "Undo Tree"}
+    u = {"<cmd>UndotreeToggle<CR>", "Undo Tree"},
+    s = {use_styles_snippet, "Use Styles Snippet"},
   },
 
   e = {
@@ -161,12 +158,6 @@ local normal_mappings = {
         i = {"<cmd>Telescope lsp_implementations<cr>", "GoTo Implementation"},
         d = {"<cmd>Telescope lsp_definitions<cr>", "GoTo Definition"},
     },
-  },
-
-  n = {
-    name = "Neo",
-    u = {use_styles_snippet, "Use Styles Snippet"},
-    t = {"<cmd>lua require'commands.test_neo'.cover_neo()<CR>", "Test Neo Coverage"},
   },
 
   w = {
@@ -246,14 +237,6 @@ local normal_mappings = {
     x = {"<cmd>call setqflist([])<CR>", "Clear List"},
     d = {":cdo ", "Do"},
     r = {":cdo s/", "Replace"},
-  },
-
-  a = {
-    name = "AI",
-    d = {"<cmd>Copilot disable<CR>", "Disable"},
-    e = {"<cmd>Copilot enable<CR>", "Enable"},
-    p = {"<cmd>Copilot panel<CR>", "Panel"},
-    s = {"<cmd>Copilot status<CR>", "Status"},
   },
 
   b = {

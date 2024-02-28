@@ -3,7 +3,7 @@ local harpoon_tmux = require('harpoon.tmux')
 local function get_test_details()
   local root_path = vim.fn.getcwd() .. '/';
   local file_path = vim.api.nvim_buf_get_name(0);
-  local trimmed_path = file_path:gsub(root_path, "");
+  local trimmed_path = file_path:sub(string.len(root_path) + 1, string.len(file_path));
   local coverage_path = trimmed_path:gsub("/__tests__", "")
   coverage_path = coverage_path:gsub(".test", "")
 

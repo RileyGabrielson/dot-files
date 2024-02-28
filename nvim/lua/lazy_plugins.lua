@@ -1,5 +1,4 @@
 local plugins = {
-  'L3MON4D3/LuaSnip', -- fancy status bar
   'RRethy/vim-illuminate', -- highlight current word
   'f-person/git-blame.nvim', -- git blame toggling
   'svermeulen/vimpeccable', -- mapping keybinds to lua functions
@@ -57,10 +56,11 @@ local plugins = {
     config = function() require('config.trouble') end,
   },
 
-  {
-    "stevearc/dressing.nvim", -- fancy up ui windows
-    config = function() require('config.dressing') end,
-  },
+  -- {
+  --   "stevearc/dressing.nvim", -- fancy up ui windows
+  --   opts = {},
+  --   config = function() require('config.dressing') end,
+  -- },
 
   {
     'hrsh7th/nvim-cmp', -- auto complete
@@ -96,24 +96,8 @@ local plugins = {
   'JoosepAlviste/nvim-ts-context-commentstring',
 
   {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("indent_blankline").setup {
-          space_char_blankline = " ",
-          show_current_context = true,
-          show_current_context_start = true,
-      }
-    end
-  },
-
-  {
     'norcalli/nvim-colorizer.lua', -- shows colors as background to color strings
     config = function() require('colorizer').setup() end,
-  },
-
-  {
-    'windwp/nvim-ts-autotag', -- auto generate typescript tags (<div>, <p>, etc)
-    config = function() require'nvim-treesitter.configs'.setup{ autotag = { enable = true } } end,
   },
 
   {
