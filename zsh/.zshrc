@@ -26,6 +26,7 @@ alias verse='~/verse'
 alias s='tmux_sessionizer'
 alias i='cheat'
 alias nvid='neovide --multigrid'
+alias a='tmux attach'
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
