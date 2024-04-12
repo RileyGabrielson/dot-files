@@ -55,6 +55,8 @@ local visual_options = {
 
 vim.g.mapleader = ' '
 
+vim.api.nvim_set_keymap('n', 'H', '^', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'L', '$', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
@@ -75,6 +77,7 @@ vim.api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require'commands.edit_repo'(
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 
 vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("v", "<Leader>v", ":DiffviewFileHistory<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("v", "<", "<gv", {noremap=true, silent=true})
 vim.api.nvim_set_keymap("v", ">", ">gv", {noremap=true, silent=true})
 
