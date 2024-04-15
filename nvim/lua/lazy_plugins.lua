@@ -83,10 +83,22 @@ local plugins = {
   },
 
   {
-    "kyazdani42/nvim-tree.lua",
-    tag = 'nightly',
-    config = function() require("config.nvim-tree") end,
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function() require("oil").setup({
+      view_options = {
+        show_hidden = true,
+        skip_confirm_for_simple_edits = true
+      }
+    }) end,
   },
+
+  -- {
+  --   "kyazdani42/nvim-tree.lua",
+  --   tag = 'nightly',
+  --   config = function() require("config.nvim-tree") end,
+  -- },
 
   {
     "terrortylor/nvim-comment",
@@ -153,11 +165,11 @@ local plugins = {
     config = function() require("dap_debug.dap_js") end,
   },
 
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = {"mfussenegger/nvim-dap"},
-    config = function() require("dap_debug.dap_ui") end,
-  },
+  -- {
+  --   "rcarriga/nvim-dap-ui",
+  --   dependencies = {"mfussenegger/nvim-dap"},
+  --   config = function() require("dap_debug.dap_ui") end,
+  -- },
 
   {
     'kevinhwang91/nvim-bqf',
@@ -193,7 +205,7 @@ local plugins = {
   {
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, 
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = { "markdown" },
   },
 
@@ -219,8 +231,17 @@ local plugins = {
     "folke/neodev.nvim",
     opts = {},
     config = function() require("neodev").setup({}) end,
-  }
+  },
 
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    config = function()
+      require("codesnap").setup({
+        watermark = ""
+      })
+    end
+  },
 }
 
 return plugins

@@ -118,9 +118,10 @@ local normal_mappings = {
 
   e = {
     name = "Explorer",
-    f = {":NvimTreeFindFile<CR>", "Find"},
-    c = {":NvimTreeClose<CR>", "Close"},
-    e = {":NvimTreeFocus<CR>", "Focus"},
+    f = {"<cmd>lua require'oil'.open(require'oil'.get_current_dir())<CR>", "Find"},
+    -- f = {":NvimTreeFindFile<CR>", "Find"},
+    -- c = {":NvimTreeClose<CR>", "Close"},
+    -- e = {":NvimTreeFocus<CR>", "Focus"},
   },
 
   l = {
@@ -254,6 +255,7 @@ local visual_mappings = {
     name = "Manipulate",
     c = {":CommentToggle<CR>", "Comment"},
     k = {":s/\\(\\w.*\\)/", "Fighting One Eyed Kirby"},
+    s = {":CodeSnap<CR>", "Snapshot to Clipboard"}
   },
   r = {
     name = "Refactoring",

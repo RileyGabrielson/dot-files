@@ -8,7 +8,7 @@ an increasingly more complex dev configuration
 
 ### Custom Dependencies
 - [jq](https://stedolan.github.io/jq/)
-- fzf
+- [fzf](https://github.com/junegunn/fzf)
 
 ### Telescope Dependencies
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
