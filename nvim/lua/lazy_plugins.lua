@@ -23,6 +23,7 @@ local plugins = {
   'rebelot/kanagawa.nvim', -- tokyonight meets gruvbox
   'folke/tokyonight.nvim',
   "ellisonleao/gruvbox.nvim",
+  "cryptomilk/nightcity.nvim",
 
   {
     "rileygabrielson/accidental-scheme.nvim",
@@ -56,11 +57,11 @@ local plugins = {
     config = function() require('config.trouble') end,
   },
 
-  -- {
-  --   "stevearc/dressing.nvim", -- fancy up ui windows
-  --   opts = {},
-  --   config = function() require('config.dressing') end,
-  -- },
+  {
+    "stevearc/dressing.nvim", -- fancy up ui windows
+    opts = {},
+    -- config = function() require('config.dressing') end,
+  },
 
   {
     'hrsh7th/nvim-cmp', -- auto complete
@@ -172,11 +173,6 @@ local plugins = {
   -- },
 
   {
-    'kevinhwang91/nvim-bqf',
-    config = function() require("config.quickfix") end,
-  }, -- quick fix improvements
-
-  {
     'dmmulroy/tsc.nvim',
     config = function() require('tsc').setup() end,
   },
@@ -242,6 +238,22 @@ local plugins = {
       })
     end
   },
+
+  {
+    'nvimdev/lspsaga.nvim',
+    config = function() require('lspsaga').setup({
+      symbol_in_winbar = {
+        enable = false
+      },
+      lightbulb = {
+        enable = false,
+      }
+    }) end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons'
+    }
+  }
 }
 
 return plugins

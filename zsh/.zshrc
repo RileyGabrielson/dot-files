@@ -54,3 +54,5 @@ zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"

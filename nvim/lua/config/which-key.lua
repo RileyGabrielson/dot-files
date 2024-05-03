@@ -131,7 +131,7 @@ local normal_mappings = {
     h = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
     r = {"<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", "Find Git Files"},
     s = {":IncRename ", "Rename Symbol"},
-    ["."] = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action"},
+    ["."] = {"<cmd>Lspsaga code_action<CR>", "Code Action"},
     i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementations"},
     f = {"<cmd>TypescriptRenameFile<CR>", "Typescript Rename File"},
   },
