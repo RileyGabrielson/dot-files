@@ -257,11 +257,6 @@ local visual_mappings = {
     k = {":s/\\(\\w.*\\)/", "Fighting One Eyed Kirby"},
     s = {":CodeSnap<CR>", "Snapshot to Clipboard"}
   },
-  r = {
-    name = "Refactoring",
-    f = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>", "Extract Function"},
-    v = {"<Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>", "Extract Variable"},
-  },
 }
 
 which_key.register(normal_mappings, normal_options)

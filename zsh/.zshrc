@@ -10,6 +10,10 @@ cleanmerged() {
     git branch --merged | egrep -v "(^\*|master|release)" | xargs git branch -D
 }
 
+pf() {
+  pod=$(kubectl get pods | grep $1 | head -n 1 | cut -d " " -f 1) && kubectl port-forward $pod $2
+}
+
 alias home='cd ~'
 alias all='git add -A'
 alias com='git commit -m'

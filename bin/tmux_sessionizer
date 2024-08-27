@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$({ find ~/r ~/r/exploration ~/r/games -maxdepth 1 -type d & find ~/dot-files -maxdepth 0 -type d; } | fzf)
+    selected=$({ find ~/r ~/r/exploration ~/r/games ~/r/bb-analytics -maxdepth 1 -type d & find ~/dot-files -maxdepth 0 -type d; } | fzf)
 fi
 
 if [[ -z $selected ]]; then

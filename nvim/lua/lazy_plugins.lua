@@ -1,34 +1,23 @@
 local plugins = {
-  'RRethy/vim-illuminate', -- highlight current word
-  'f-person/git-blame.nvim', -- git blame toggling
+  'RRethy/vim-illuminate',
+  'f-person/git-blame.nvim',
   'svermeulen/vimpeccable', -- mapping keybinds to lua functions
-  'prettier/vim-prettier', -- prettier formatting
-  'folke/lua-dev.nvim', -- get neovim lua dev setup right
+  'prettier/vim-prettier',
+  'folke/lua-dev.nvim',
   'nvim-lua/plenary.nvim', -- lua function helpers, required for telescope
-  'nvim-treesitter/playground', -- view treesitter tree
-  'mbbill/undotree', -- visualize vim',s undo tree
+  'nvim-treesitter/playground',
+  'mbbill/undotree',
   'unblevable/quick-scope', -- highlighting f and t jumping
-  'wellle/targets.vim',
-  'tpope/vim-surround',
-  'pest-parser/pest.vim', -- pest syntax highlighting
-  'kdheepak/lazygit.nvim',
   'hrsh7th/cmp-nvim-lsp', -- auto complete lsp
   'hrsh7th/cmp-nvim-lua', -- auto complete lua
   'hrsh7th/cmp-path', -- auto complete system paths
-  'jose-elias-alvarez/typescript.nvim', -- typescript lsp server config and function exposure
+  'jose-elias-alvarez/typescript.nvim',
+  "neovim/nvim-lspconfig",
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  'JoosepAlviste/nvim-ts-context-commentstring',
 
-  -- color schemes
-  'sainnhe/everforest',  -- green color scheme
-  'sainnhe/gruvbox-material',
-  'rebelot/kanagawa.nvim', -- tokyonight meets gruvbox
-  'folke/tokyonight.nvim',
   "ellisonleao/gruvbox.nvim",
-  "cryptomilk/nightcity.nvim",
-
-  {
-    "rileygabrielson/accidental-scheme.nvim",
-    config = function() require("config.accidental-scheme") end
-  },
 
   {
     "folke/which-key.nvim",
@@ -36,31 +25,30 @@ local plugins = {
   },
 
   {
-    'nvim-treesitter/nvim-treesitter', -- better syntax recognition
+    'nvim-treesitter/nvim-treesitter',
     config = function() require('config.treesitter') end,
   },
 
   {
-    'lewis6991/gitsigns.nvim', -- git changes in editor
+    'lewis6991/gitsigns.nvim',
     config = function() require('config.gitsigns') end,
   },
 
   {
-    'nvim-lualine/lualine.nvim', -- fancy status bar
+    'nvim-lualine/lualine.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('config.lualine') end,
   },
 
   {
-    'folke/trouble.nvim', -- issues popup window
+    'folke/trouble.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons'},
     config = function() require('config.trouble') end,
   },
 
   {
-    "stevearc/dressing.nvim", -- fancy up ui windows
+    "stevearc/dressing.nvim",
     opts = {},
-    -- config = function() require('config.dressing') end,
   },
 
   {
@@ -79,11 +67,6 @@ local plugins = {
   },
 
   {
-    "folke/zen-mode.nvim",
-    config = function() require("zen-mode").setup { } end
-  },
-
-  {
     'stevearc/oil.nvim',
     opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -95,31 +78,24 @@ local plugins = {
     }) end,
   },
 
-  -- {
-  --   "kyazdani42/nvim-tree.lua",
-  --   tag = 'nightly',
-  --   config = function() require("config.nvim-tree") end,
-  -- },
-
   {
     "terrortylor/nvim-comment",
     config = function() require("config.comment") end
   },
 
-  'JoosepAlviste/nvim-ts-context-commentstring',
 
   {
-    'norcalli/nvim-colorizer.lua', -- shows colors as background to color strings
+    'norcalli/nvim-colorizer.lua',
     config = function() require('colorizer').setup() end,
   },
 
   {
-    'ThePrimeagen/harpoon', -- Persistent, smart marks per feature. the best thing ever.
+    'ThePrimeagen/harpoon',
     config = function() require("config.harpoon") end,
   },
 
   {
-    "windwp/nvim-autopairs", -- auto pairs
+    "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   },
 
@@ -130,14 +106,6 @@ local plugins = {
   },
 
   {
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = {
-      {"nvim-lua/plenary.nvim"},
-      {"nvim-treesitter/nvim-treesitter"}
-    },
-  },
-
-  {
     "chrisgrieser/nvim-recorder",
     config = function() require("recorder").setup({}) end,
   },
@@ -145,36 +113,6 @@ local plugins = {
   {
     "rcarriga/nvim-notify",
     config = function() require("config.notify") end,
-  },
-
-  -- LSP and Debugging
-
-  {
-    "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  },
-  {
-    "microsoft/vscode-js-debug",
-    lazy = true,
-    build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out" 
-  },
-
-  {
-    "mxsdev/nvim-dap-vscode-js",
-    dependencies = {"mfussenegger/nvim-dap", "microsoft/vscode-js-debug"},
-    config = function() require("dap_debug.dap_js") end,
-  },
-
-  -- {
-  --   "rcarriga/nvim-dap-ui",
-  --   dependencies = {"mfussenegger/nvim-dap"},
-  --   config = function() require("dap_debug.dap_ui") end,
-  -- },
-
-  {
-    'dmmulroy/tsc.nvim',
-    config = function() require('tsc').setup() end,
   },
 
   {
@@ -189,53 +127,10 @@ local plugins = {
   },
 
   {
-    'glacambre/firenvim',
-    -- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
-    cond = not not vim.g.started_by_firenvim,
-    build = function()
-        require("lazy").load({ plugins = "firenvim", wait = true })
-        vim.fn["firenvim#install"](0)
-    end
-  },
-
-  {
-    "iamcco/markdown-preview.nvim",
-    build = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
-    ft = { "markdown" },
-  },
-
-  {
-    "ellisonleao/glow.nvim",
-    cmd = "Glow",
-    config = function() require("config.glow") end,
-  },
-
-  {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
-  {
     "rust-lang/rust.vim",
     ft = "rust",
     init = function()
       vim.g.rustfmt_autosave = 1
-    end
-  },
-
-  {
-    "folke/neodev.nvim",
-    opts = {},
-    config = function() require("neodev").setup({}) end,
-  },
-
-  {
-    "mistricky/codesnap.nvim",
-    build = "make",
-    config = function()
-      require("codesnap").setup({
-        watermark = ""
-      })
     end
   },
 
