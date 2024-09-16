@@ -15,7 +15,6 @@ pf() {
 }
 
 alias k='kubectl'
-alias cat='bat'
 alias home='cd ~'
 alias all='git add -A'
 alias com='git commit -m'
@@ -30,7 +29,6 @@ alias lg='lazygit'
 alias gl='lazygit'
 alias verse='~/verse'
 alias s='tmux_sessionizer'
-alias i='cheat'
 alias nvid='neovide --multigrid'
 alias a='tmux attach'
 alias n='nvim'
