@@ -14,6 +14,8 @@ pf() {
   pod=$(kubectl get pods | grep $1 | head -n 1 | cut -d " " -f 1) && kubectl port-forward $pod $2
 }
 
+alias k='kubectl'
+alias cat='bat'
 alias home='cd ~'
 alias all='git add -A'
 alias com='git commit -m'
