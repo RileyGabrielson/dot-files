@@ -48,24 +48,21 @@ end
 
 local function add_jest_template()
   local component_name = get_component_name(".test.ts");
-  local import_file_path = get_test_import_path();
 
   vim.api.nvim_buf_set_lines(0, 0, -1, false, {
-    "import { " .. component_name .. " } from '" .. import_file_path .. "';",
-    "",
     "describe('" .. component_name .. " should...\', () => {",
     "  test('', () => {",
     "    ",
     "  });",
     "});"
   });
-  vim.cmd"cal cursor(4,8)"
+  vim.cmd"cal cursor(2,8)"
 end
 
 local function add_domain_template()
   local component_name = get_component_name(".ts");
   vim.api.nvim_buf_set_lines(0, 0, -1, false, {
-    "import { ObservableValue } from '@m/hex';",
+    "import { ObservableValue } from '@m/hex/observable_value';",
     "",
     "interface " .. component_name .. "Port {",
     "  ",

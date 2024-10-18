@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/riley.gabrielson/.zsh/completions:"* ]]; then export FPATH="/Users/riley.gabrielson/.zsh/completions:$FPATH"; fi
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="eastwood"
 
@@ -60,3 +62,4 @@ bindkey '^X^R' fzf-history-widget-accept
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
+. "/Users/riley.gabrielson/.deno/env"

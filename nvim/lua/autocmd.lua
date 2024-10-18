@@ -33,3 +33,5 @@ define_augroups({
         formatPrettier,
     }
 })
+
+require"commands.parse_typescript"
