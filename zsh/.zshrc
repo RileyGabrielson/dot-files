@@ -34,6 +34,7 @@ alias s='tmux_sessionizer'
 alias nvid='neovide --multigrid'
 alias a='tmux attach'
 alias n='nvim'
+alias issue="~/dot-files/bin/glab_issue"
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
