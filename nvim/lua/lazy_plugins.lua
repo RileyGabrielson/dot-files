@@ -110,10 +110,10 @@ local plugins = {
     config = function() require("recorder").setup({}) end,
   },
 
-  {
-    "rcarriga/nvim-notify",
-    config = function() require("config.notify") end,
-  },
+  -- {
+  --   "rcarriga/nvim-notify",
+  --   config = function() require("config.notify") end,
+  -- },
 
   {
     'folke/noice.nvim',
