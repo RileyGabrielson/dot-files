@@ -35,6 +35,7 @@ alias nvid='neovide --multigrid'
 alias a='tmux attach'
 alias n='nvim'
 alias issue="~/dot-files/bin/glab_issue"
+alias nvimg="nvim --listen ./godot.pipe"
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 

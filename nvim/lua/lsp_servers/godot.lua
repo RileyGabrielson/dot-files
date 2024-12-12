@@ -1,15 +1,22 @@
--- local port = 6005
--- local cmd = vim.lsp.rpc.connect('127.0.0.1', port)
--- local pipe = '/tmp/godot.pipe' -- I use /tmp/godot.pipe
-
--- vim.lsp.start({
---   name = 'Godot',
---   cmd = cmd,
---   root_dir = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
---   on_attach = function(client, bufnr)
---     vim.api.nvim_command('echo serverstart("' .. pipe .. '")')
---   end
--- })
-
 local lspconfig = require('lspconfig')
-lspconfig.gdscript.setup {}
+lspconfig.gdscript.setup {
+  cmd = vim.lsp.rpc.connect("127.0.0.1", "6008"),
+  capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+}
+
+local cmp = require'cmp'
+
+cmp.setup({
+  mapping = {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+  }
+})

@@ -11,11 +11,14 @@ local plugins = {
   'hrsh7th/cmp-nvim-lsp', -- auto complete lsp
   'hrsh7th/cmp-nvim-lua', -- auto complete lua
   'hrsh7th/cmp-path', -- auto complete system paths
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/nvim-cmp',
   'jose-elias-alvarez/typescript.nvim',
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   'JoosepAlviste/nvim-ts-context-commentstring',
+  'habamax/vim-godot',
 
   "ellisonleao/gruvbox.nvim",
 
@@ -110,10 +113,10 @@ local plugins = {
     config = function() require("recorder").setup({}) end,
   },
 
-  -- {
-  --   "rcarriga/nvim-notify",
-  --   config = function() require("config.notify") end,
-  -- },
+  {
+    "rcarriga/nvim-notify",
+    config = function() require("config.notify") end,
+  },
 
   {
     'folke/noice.nvim',
