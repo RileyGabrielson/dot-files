@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "typescript", "javascript", "c_sharp", "lua", "vim", "regex", "bash", "markdown", "markdown_inline" },
-  sync_install = false,
+  sync_install = true,
   auto_install = true,
 
   highlight = {

@@ -1,6 +1,7 @@
 local which_key = require("which-key")
 
 which_key.setup({
+  preset = "modern",
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -15,12 +16,6 @@ which_key.setup({
     },
   },
 
-  window = {
-      border = "single", -- none, single, double, shadow
-      position = "bottom", -- bottom, top
-      margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
-      padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
-  },
   layout = {
     height = { min = 4, max = 25 }, -- min and max height of the columns
     width = { min = 20, max = 50 }, -- min and max width of the columns
@@ -28,32 +23,139 @@ which_key.setup({
     align = "left", -- align columns left, center or right
   },
 
-  hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
   show_help = true -- show help message on the command line when the popup is visible
 })
 
 -- Set leader
 vim.g.mapleader = ' '
 
-local normal_options = {
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false -- use `nowait` when creating keymaps
-}
+local use_styles_snippet = require("commands.make_styles_snippet")
 
-local visual_options = {
-    mode = "v", -- VISUAL mode
-    prefix = "<leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = true -- use `nowait` when creating keymaps
-}
+which_key.add({
+  {
+    mode = { "n" },
+    { "<leader>%", desc = "Get Filename to Clipboard", nowait = false, remap = false },
+    { "<leader><Enter>", desc = "Alternate File", nowait = false, remap = false },
+    { "<leader>S", desc = "Snippets", nowait = false, remap = false },
+    { "<leader>Y", desc = "Yarn Command", nowait = false, remap = false },
+    { "<leader>b", group = "Buffers", nowait = false, remap = false },
+    { "<leader>bl", "<cmd>ls<CR>", desc = "List buffers", nowait = false, remap = false },
+    { "<leader>bx", "<cmd>%bd|e#|bd#<CR>", desc = "Close all other buffers", nowait = false, remap = false },
+    { "<leader>c", group = "Quick Fix", nowait = false, remap = false },
+    { "<leader>cc", "<cmd>cclose<CR>", desc = "Close Quickfix", nowait = false, remap = false },
+    { "<leader>cd", ":cdo ", desc = "Do", nowait = false, remap = false },
+    { "<leader>cn", "<cmd>cnext<CR>", desc = "Next Item", nowait = false, remap = false },
+    { "<leader>co", "<cmd>copen<CR>", desc = "Open Quickfix", nowait = false, remap = false },
+    { "<leader>cp", "<cmd>cprev<CR>", desc = "Previous Item", nowait = false, remap = false },
+    { "<leader>cr", ":cdo s/", desc = "Replace", nowait = false, remap = false },
+    { "<leader>cx", "<cmd>call setqflist([])<CR>", desc = "Clear List", nowait = false, remap = false },
+    { "<leader>d", group = "Debugging", nowait = false, remap = false },
+    { "<leader>dB", "<cmd>lua require'dap'.clear_breakpoints()<CR>", desc = "Remove All Breakpoints", nowait = false, remap = false },
+    { "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", desc = "Breakpoint Toggle", nowait = false, remap = false },
+    { "<leader>dc", "<cmd>lua require'dap'.continue()<CR>", desc = "Continue", nowait = false, remap = false },
+    { "<leader>dh", ":lua require'dapui'.eval()<CR>:lua require'dapui'.eval()<CR>", desc = "Hover Info", nowait = false, remap = false },
+    { "<leader>di", "<cmd>lua require'dap'.step_into()<CR>", desc = "Step Into", nowait = false, remap = false },
+    { "<leader>do", "<cmd>lua require'dap'.step_out()<CR>", desc = "Step Out", nowait = false, remap = false },
+    { "<leader>dq", "<cmd>lua require'dapui'.close()<CR>", desc = "Quit UI", nowait = false, remap = false },
+    { "<leader>ds", "<cmd>lua require'dap'.step_over()<CR>", desc = "Step Over", nowait = false, remap = false },
+    { "<leader>dt", "<cmd>lua require'dap'.terminate()<CR>", desc = "Terminate", nowait = false, remap = false },
+    { "<leader>e", group = "Explorer", nowait = false, remap = false },
+    { "<leader>ef", "<cmd>lua require'oil'.open(require'oil'.get_current_dir())<CR>", desc = "Find", nowait = false, remap = false },
+    { "<leader>f", desc = "Find Text", nowait = false, remap = false },
+    { "<leader>g", group = "Git", nowait = false, remap = false },
+    { "<leader>gb", ":GitBlameToggle<CR>", desc = "Git Blame", nowait = false, remap = false },
+    { "<leader>gl", ":LazyGit<CR>", desc = "Lazy Git", nowait = false, remap = false },
+    { "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git Status", nowait = false, remap = false },
+    { "<leader>h", group = "Harpoon", nowait = false, remap = false },
+    { "<leader>h1", "<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", desc = "File 1", nowait = false, remap = false },
+    { "<leader>h2", "<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", desc = "File 2", nowait = false, remap = false },
+    { "<leader>h3", "<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", desc = "File 3", nowait = false, remap = false },
+    { "<leader>h4", "<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", desc = "File 4", nowait = false, remap = false },
+    { "<leader>h5", "<cmd>lua require'harpoon.ui'.nav_file(5)<CR>", desc = "File 5", nowait = false, remap = false },
+    { "<leader>h6", "<cmd>lua require'harpoon.ui'.nav_file(6)<CR>", desc = "File 6", nowait = false, remap = false },
+    { "<leader>h7", "<cmd>lua require'harpoon.ui'.nav_file(7)<CR>", desc = "File 7", nowait = false, remap = false },
+    { "<leader>h8", "<cmd>lua require'harpoon.ui'.nav_file(8)<CR>", desc = "File 8", nowait = false, remap = false },
+    { "<leader>h9", "<cmd>lua require'harpoon.ui'.nav_file(9)<CR>", desc = "File 9", nowait = false, remap = false },
+    { "<leader>ha", "<cmd>lua require'harpoon.mark'.add_file()<CR>", desc = "Add File", nowait = false, remap = false },
+    { "<leader>hv", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", desc = "View Quick Menu", nowait = false, remap = false },
+    { "<leader>i", desc = "Cheat Sheet", nowait = false, remap = false },
+    { "<leader>l", group = "LSP", nowait = false, remap = false },
+    { "<leader>l.", "<cmd>Lspsaga code_action<CR>", desc = "Code Action", nowait = false, remap = false },
+    { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Definition", nowait = false, remap = false },
+    { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format", nowait = false, remap = false },
+    { "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover", nowait = false, remap = false },
+    { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Implementations", nowait = false, remap = false },
+    { "<leader>lr", "<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", desc = "Find Git Files", nowait = false, remap = false },
+    { "<leader>ls", ":IncRename ", desc = "Rename Symbol", nowait = false, remap = false },
+    { "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "Type Definition", nowait = false, remap = false },
+    { "<leader>m", group = "Misc", nowait = false, remap = false },
+    { "<leader>mb", "<cmd>lua require'commands.toggle_background'()<CR>", desc = "Toggle Background", nowait = false, remap = false },
+    { "<leader>mc", ":CommentToggle<CR>", desc = "Comment", nowait = false, remap = false },
+    { "<leader>md", "<cmd>lua require'commands.misc_commands'.toggle_diagnostics()<CR>", desc = "Diagnostics", nowait = false, remap = false },
+    { "<leader>mh", ":noh<CR>", desc = "Hide Search", nowait = false, remap = false },
+    { "<leader>mr", ":%s/\\<<C-r><C-w>\\>/", desc = "Replace", nowait = false, remap = false },
+    { "<leader>mv", "<cmd>lua require'commands.get_verse'()<CR>", desc = "Get Scripture Verse", nowait = false, remap = false },
+    { "<leader>p", desc = "Find File Fuzzy", nowait = false, remap = false },
+    { "<leader>r", desc = "Repositories", nowait = false, remap = false },
+    { "<leader>s", desc = "Tmux Session", nowait = false, remap = false },
+    { "<leader>t", group = "Telescope", nowait = false, remap = false },
+    { "<leader>ta", '<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', desc = "All files", nowait = false, remap = false },
+    { "<leader>tb", "<cmd>lua require'telescope.builtin'.git_branches()<CR>", desc = "Git Branches", nowait = false, remap = false },
+    { "<leader>tc", "<cmd>Telescope command_history<cr>", desc = "List Commands That Were Executed", nowait = false, remap = false },
+    { "<leader>tf", '<cmd>lua require("commands.specific_telescope").grep_files_within_directories()<CR>', desc = "Grep Files in Directories", nowait = false, remap = false },
+    { "<leader>tg", "<cmd>lua require'telescope.builtin'.git_files{}<CR>", desc = "Find Git Files", nowait = false, remap = false },
+    { "<leader>th", "<cmd>Telescope help_tags<cr>", desc = "Find Help Tags", nowait = false, remap = false },
+    { "<leader>tl", group = "Lsp", nowait = false, remap = false },
+    { "<leader>tlc", "<cmd>Telescope lsp_code_actions<cr>", desc = "Code Actions for word under cursor", nowait = false, remap = false },
+    { "<leader>tld", "<cmd>Telescope lsp_definitions<cr>", desc = "GoTo Definition", nowait = false, remap = false },
+    { "<leader>tli", "<cmd>Telescope lsp_implementations<cr>", desc = "GoTo Implementation", nowait = false, remap = false },
+    { "<leader>tlr", "<cmd>Telescope lsp_references<cr>", desc = "References for word under cursor", nowait = false, remap = false },
+    { "<leader>tn", '<cmd>lua require("telescope").extensions.notify.notify()<CR>', desc = "Notifications", nowait = false, remap = false },
+    { "<leader>tp", '<cmd>lua require("commands.specific_telescope").find_files_within_directories()<CR>', desc = "Find Files In Directories", nowait = false, remap = false },
+    { "<leader>tq", "<cmd>Telescope quickfix<cr>", desc = "List Items In The Quickfix List", nowait = false, remap = false },
+    { "<leader>tr", "<cmd>Telescope resume<cr>", desc = "Resume", nowait = false, remap = false },
+    { "<leader>u", group = "Utility", nowait = false, remap = false },
+    { "<leader>us", use_styles_snippet, desc = "Use Styles Snippet", nowait = false, remap = false },
+    { "<leader>ut", "<cmd>lua require'commands.jest_coverage'()<CR>", desc = "Test Coverage", nowait = false, remap = false },
+    { "<leader>uu", "<cmd>UndotreeToggle<CR>", desc = "Undo Tree", nowait = false, remap = false },
+    { "<leader>v", group = "Diff View", nowait = false, remap = false },
+    { "<leader>vc", "<cmd>DiffviewClose<CR>", desc = "Close DiffView", nowait = false, remap = false },
+    { "<leader>vf", "<cmd>DiffviewFileHistory %<CR>", desc = "File History", nowait = false, remap = false },
+    { "<leader>vm", "<cmd>DiffviewOpen origin/master...HEAD<CR>", desc = "Master DiffView", nowait = false, remap = false },
+    { "<leader>vo", "<cmd>DiffviewOpen<CR>", desc = "Open DiffView", nowait = false, remap = false },
+    { "<leader>w", group = "Windows", nowait = false, remap = false },
+    { "<leader>w+", '<cmd>exe "resize " . (winheight(0) * 5/4)<CR>', desc = "Increase height", nowait = false, remap = false },
+    { "<leader>w-", '<cmd>exe "resize " . (winheight(0) * 4/5)<CR>', desc = "Decrease height", nowait = false, remap = false },
+    { "<leader>w<", '<cmd>exe "vertical resize " . (winwidth(0) * 4/5)<CR>', desc = "Increase width", nowait = false, remap = false },
+    { "<leader>w=", "<C-w>=", desc = "Equalize windows", nowait = false, remap = false },
+    { "<leader>w>", '<cmd>exe "vertical resize " . (winwidth(0) * 5/4)<CR>', desc = "Increase width", nowait = false, remap = false },
+    { "<leader>wS", "<C-w>t<C-w>K", desc = "Vertical Split to Horizontal", nowait = false, remap = false },
+    { "<leader>wV", "<C-w>t<C-w>H", desc = "Horizontal Split to Vertical", nowait = false, remap = false },
+    { "<leader>w_", '<cmd>exe "resize " . (winheight(0) * 4/5)<CR>', desc = "Decrease height", nowait = false, remap = false },
+    { "<leader>wc", "<C-w><C-c>", desc = "Close Current Window", nowait = false, remap = false },
+    { "<leader>wh", "<C-w><C-h>", desc = "Left Window", nowait = false, remap = false },
+    { "<leader>wj", "<C-w><C-j>", desc = "Bottom Window", nowait = false, remap = false },
+    { "<leader>wk", "<C-w><C-k>", desc = "Top Window", nowait = false, remap = false },
+    { "<leader>wl", "<C-w><C-l>", desc = "Right Window", nowait = false, remap = false },
+    { "<leader>wo", "<C-w><C-o>", desc = "Close All Windows Except Current", nowait = false, remap = false },
+    { "<leader>wq", "<C-w><C-c>", desc = "Close Current Window", nowait = false, remap = false },
+    { "<leader>ws", "<C-w><C-s>", desc = "Horizontal Split", nowait = false, remap = false },
+    { "<leader>wv", "<C-w><C-v>", desc = "Vertical Split", nowait = false, remap = false },
+    { "<leader>x", desc = "Trouble Diagnostics", nowait = false, remap = false },
+    { "<leader>y", desc = "Yank to Clipboard", nowait = false, remap = false },
+    { "<leader>z", desc = "Zen Mode", nowait = false, remap = false },
+  }
+})
 
-vim.g.mapleader = ' '
+which_key.add({
+  {
+    mode = { "v" },
+    { "<leader>m", group = "Manipulate", nowait = true, remap = false },
+    { "<leader>mc", ":CommentToggle<CR>", desc = "Comment", nowait = true, remap = false },
+    { "<leader>mk", ":s/\\(\\w.*\\)/", desc = "Fighting One Eyed Kirby", nowait = true, remap = false },
+    { "<leader>ms", ":CodeSnap<CR>", desc = "Snapshot to Clipboard", nowait = true, remap = false },
+  },
+})
 
 vim.api.nvim_set_keymap('n', 'H', '^', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'L', '$', {noremap = true, silent = true})
@@ -63,18 +165,17 @@ vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true}
 vim.api.nvim_set_keymap("n", "<Leader><Enter>", "<C-^>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>p', '<cmd>lua require("config.telescope").project_files()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope live_grep<CR>', {noremap = true, silent = false})
-vim.api.nvim_set_keymap('n', '<Leader>z', ':ZenMode<CR>', {noremap = true, silent = false})
-vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble document_diagnostics<CR>", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<Leader>x", ":Trouble diagnostics toggle focus=true filter.buf=0<CR>", {noremap=true, silent=false})
+vim.api.nvim_set_keymap("n", "<Leader>X", ":Trouble diagnostics toggle focus=true<CR>", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("n", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filename").copy_file_path()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>silent !tmux neww tmux_sessionizer<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Leader>i', "<cmd>silent !tmux neww cheat<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>S', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require'commands.edit_repo'()<CR>", {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
+vim.api.nvim_set_keymap('t', '<C-Space>', "<cmd>lua require'cmp'.mapping.complete()<CR>", {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("v", "<Leader>y", "\"+y", {noremap=true, silent=false})
 vim.api.nvim_set_keymap("v", "<Leader>v", ":DiffviewFileHistory<CR>", {noremap=true, silent=false})
@@ -93,171 +194,3 @@ vim.keymap.set({"n", "i", "s"}, "<c-b>", function()
   end
 end, { silent = true, expr = true })
 
-local use_styles_snippet = require("commands.make_styles_snippet")
-
-local normal_mappings = {
-  ["p"] = "Find File Fuzzy",
-  ["f"] = "Find Text",
-  ["z"] = "Zen Mode",
-  ["x"] = "Trouble Diagnostics",
-  ["y"] = "Yank to Clipboard",
-  ["%"] = "Get Filename to Clipboard",
-  ["s"] = "Tmux Session",
-  ["i"] = "Cheat Sheet",
-  ["S"] = "Snippets",
-  ["<Enter>"] = "Alternate File",
-  ["Y"] = "Yarn Command",
-  ["r"] = "Repositories",
-
-  u = {
-    name = "Utility",
-    t = {"<cmd>lua require'commands.jest_coverage'()<CR>", "Test Coverage"},
-    u = {"<cmd>UndotreeToggle<CR>", "Undo Tree"},
-    s = {use_styles_snippet, "Use Styles Snippet"},
-  },
-
-  e = {
-    name = "Explorer",
-    f = {"<cmd>lua require'oil'.open(require'oil'.get_current_dir())<CR>", "Find"},
-    -- f = {":NvimTreeFindFile<CR>", "Find"},
-    -- c = {":NvimTreeClose<CR>", "Close"},
-    -- e = {":NvimTreeFocus<CR>", "Focus"},
-  },
-
-  l = {
-    name = "LSP",
-    d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Definition"},
-    t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition"},
-    h = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Hover"},
-    r = {"<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", "Find Git Files"},
-    s = {":IncRename ", "Rename Symbol"},
-    ["."] = {"<cmd>Lspsaga code_action<CR>", "Code Action"},
-    i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementations"},
-    f = {"<cmd>TypescriptRenameFile<CR>", "Typescript Rename File"},
-  },
-
-  g = {
-    name = "Git",
-    b = {":GitBlameToggle<CR>", "Git Blame"},
-    s = {"<cmd>Telescope git_status<cr>", "Git Status"},
-    l = {":LazyGit<CR>", "Lazy Git"},
-  },
-
-  t = {
-    name = "Telescope",
-    p = {'<cmd>lua require("commands.specific_telescope").find_files_within_directories()<CR>', "Find Files In Directories"},
-    f = {'<cmd>lua require("commands.specific_telescope").grep_files_within_directories()<CR>', "Grep Files in Directories"},
-    r = {"<cmd>Telescope resume<cr>", "Resume"},
-    g = {"<cmd>lua require'telescope.builtin'.git_files{}<CR>", "Find Git Files"},
-    b = {"<cmd>lua require'telescope.builtin'.git_branches()<CR>", "Git Branches"},
-    h = {"<cmd>Telescope help_tags<cr>", "Find Help Tags"},
-    c = {"<cmd>Telescope command_history<cr>", "List Commands That Were Executed"},
-    q = {"<cmd>Telescope quickfix<cr>", "List Items In The Quickfix List"},
-    a = {'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>', "All files"},
-    n = {'<cmd>lua require("telescope").extensions.notify.notify()<CR>', "Notifications"},
-    l = {
-        name = "Lsp",
-        r = {"<cmd>Telescope lsp_references<cr>", "References for word under cursor"},
-        c = {"<cmd>Telescope lsp_code_actions<cr>", "Code Actions for word under cursor"},
-        i = {"<cmd>Telescope lsp_implementations<cr>", "GoTo Implementation"},
-        d = {"<cmd>Telescope lsp_definitions<cr>", "GoTo Definition"},
-    },
-  },
-
-  w = {
-    name = "Windows",
-    h = {"<C-w><C-h>", "Left Window"},
-    l = {"<C-w><C-l>", "Right Window"},
-    j = {"<C-w><C-j>", "Bottom Window"},
-    k = {"<C-w><C-k>", "Top Window"},
-    v = {"<C-w><C-v>", "Vertical Split"},
-    s = {"<C-w><C-s>", "Horizontal Split"},
-    o = {"<C-w><C-o>", "Close All Windows Except Current"},
-    c = {"<C-w><C-c>", "Close Current Window"},
-    q = {"<C-w><C-c>", "Close Current Window"},
-    V = {"<C-w>t<C-w>H", "Horizontal Split to Vertical"},
-    S = {"<C-w>t<C-w>K", "Vertical Split to Horizontal"},
-    ["="] = {"<C-w>=", "Equalize windows"},
-    ["+"] = {'<cmd>exe "resize " . (winheight(0) * 5/4)<CR>', "Increase height"},
-    ["-"] = {'<cmd>exe "resize " . (winheight(0) * 4/5)<CR>', "Decrease height"},
-    ["_"] = {'<cmd>exe "resize " . (winheight(0) * 4/5)<CR>', "Decrease height"},
-    [">"] = {'<cmd>exe "vertical resize " . (winwidth(0) * 5/4)<CR>', "Increase width"},
-    ["<"] = {'<cmd>exe "vertical resize " . (winwidth(0) * 4/5)<CR>', "Increase width"},
-  },
-
-  m = {
-    name = "Misc",
-    c = {":CommentToggle<CR>", "Comment"},
-    r = {":%s/\\<<C-r><C-w>\\>/", "Replace"},
-    h = {":noh<CR>", "Hide Search"},
-    d = {"<cmd>lua require'commands.misc_commands'.toggle_diagnostics()<CR>", "Diagnostics"},
-    v = {"<cmd>lua require'commands.get_verse'()<CR>", "Get Scripture Verse"},
-    b = {"<cmd>lua require'commands.toggle_background'()<CR>", "Toggle Background"}
-  },
-
-  h = {
-    name = "Harpoon",
-    a = {"<cmd>lua require'harpoon.mark'.add_file()<CR>", "Add File"},
-    v = {"<cmd>lua require'harpoon.ui'.toggle_quick_menu()<CR>", "View Quick Menu"},
-    ["1"] = {"<cmd>lua require'harpoon.ui'.nav_file(1)<CR>", "File 1"},
-    ["2"] = {"<cmd>lua require'harpoon.ui'.nav_file(2)<CR>", "File 2"},
-    ["3"] = {"<cmd>lua require'harpoon.ui'.nav_file(3)<CR>", "File 3"},
-    ["4"] = {"<cmd>lua require'harpoon.ui'.nav_file(4)<CR>", "File 4"},
-    ["5"] = {"<cmd>lua require'harpoon.ui'.nav_file(5)<CR>", "File 5"},
-    ["6"] = {"<cmd>lua require'harpoon.ui'.nav_file(6)<CR>", "File 6"},
-    ["7"] = {"<cmd>lua require'harpoon.ui'.nav_file(7)<CR>", "File 7"},
-    ["8"] = {"<cmd>lua require'harpoon.ui'.nav_file(8)<CR>", "File 8"},
-    ["9"] = {"<cmd>lua require'harpoon.ui'.nav_file(9)<CR>", "File 9"},
-  },
-
-  d = {
-    name = "Debugging",
-    b = {"<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Breakpoint Toggle"},
-    B = {"<cmd>lua require'dap'.clear_breakpoints()<CR>", "Remove All Breakpoints"},
-    c = {"<cmd>lua require'dap'.continue()<CR>", "Continue"},
-    t = {"<cmd>lua require'dap'.terminate()<CR>", "Terminate"},
-    s = {"<cmd>lua require'dap'.step_over()<CR>", "Step Over"},
-    o = {"<cmd>lua require'dap'.step_out()<CR>", "Step Out"},
-    i = {"<cmd>lua require'dap'.step_into()<CR>", "Step Into"},
-
-    h = {":lua require'dapui'.eval()<CR>:lua require'dapui'.eval()<CR>", "Hover Info"},
-    q = {"<cmd>lua require'dapui'.close()<CR>", "Quit UI"},
-  },
-
-  v = {
-    name = "Diff View",
-    o = {"<cmd>DiffviewOpen<CR>", "Open DiffView"},
-    m = {"<cmd>DiffviewOpen origin/master...HEAD<CR>", "Master DiffView"},
-    c = {"<cmd>DiffviewClose<CR>", "Close DiffView"},
-    f = {"<cmd>DiffviewFileHistory %<CR>", "File History"},
-  },
-
-  c = {
-    name = "Quick Fix",
-    o = {"<cmd>copen<CR>", "Open Quickfix"},
-    c = {"<cmd>cclose<CR>", "Close Quickfix"},
-    n = {"<cmd>cnext<CR>", "Next Item"},
-    p = {"<cmd>cprev<CR>", "Previous Item"},
-    x = {"<cmd>call setqflist([])<CR>", "Clear List"},
-    d = {":cdo ", "Do"},
-    r = {":cdo s/", "Replace"},
-  },
-
-  b = {
-    name = "Buffers",
-    x = {"<cmd>%bd|e#|bd#<CR>", "Close all other buffers"},
-    l = {"<cmd>ls<CR>", "List buffers"}
-  }
-}
-
-local visual_mappings = {
-  m = {
-    name = "Manipulate",
-    c = {":CommentToggle<CR>", "Comment"},
-    k = {":s/\\(\\w.*\\)/", "Fighting One Eyed Kirby"},
-    s = {":CodeSnap<CR>", "Snapshot to Clipboard"}
-  },
-}
-
-which_key.register(normal_mappings, normal_options)
-which_key.register(visual_mappings, visual_options)
