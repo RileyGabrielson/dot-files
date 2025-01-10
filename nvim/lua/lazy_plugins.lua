@@ -13,7 +13,7 @@ local plugins = {
   'hrsh7th/cmp-path', -- auto complete system paths
   'hrsh7th/cmp-buffer',
   'hrsh7th/nvim-cmp',
-  'jose-elias-alvarez/typescript.nvim',
+  -- 'jose-elias-alvarez/typescript.nvim',
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
@@ -22,9 +22,17 @@ local plugins = {
 
   "ellisonleao/gruvbox.nvim",
 
+  { 'echasnovski/mini.icons', version = false },
   {
     "folke/which-key.nvim",
     config = function() require("config.which-key") end,
+  },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
   },
 
   {
@@ -46,7 +54,8 @@ local plugins = {
   {
     'folke/trouble.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons'},
-    config = function() require('config.trouble') end,
+    cmd = "Trouble",
+    opts = {}
   },
 
   {
@@ -113,10 +122,10 @@ local plugins = {
     config = function() require("recorder").setup({}) end,
   },
 
-  {
-    "rcarriga/nvim-notify",
-    config = function() require("config.notify") end,
-  },
+  -- {
+  --   "rcarriga/nvim-notify",
+  --   config = function() require("config.notify") end,
+  -- },
 
   {
     'folke/noice.nvim',

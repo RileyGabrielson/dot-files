@@ -65,3 +65,10 @@ bindkey '^X^R' fzf-history-widget-accept
 
 alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
 . "/Users/riley.gabrielson/.deno/env"
+
+# bun completions
+[ -s "/Users/riley.gabrielson/.bun/_bun" ] && source "/Users/riley.gabrielson/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
