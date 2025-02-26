@@ -20,7 +20,7 @@ if not vim.g.started_by_firenvim then
       globalstatus = true,
       refresh = {
         statusline = 1000,
-        tabline = 1000,
+        tabline = 50,
         winbar = 1000,
       }
     },

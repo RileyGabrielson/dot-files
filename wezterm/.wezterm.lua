@@ -28,5 +28,6 @@ config.background = {
   }
 }
 config.font = wezterm.font 'JetBrains Mono'
+config.check_for_updates = true
 
 return config

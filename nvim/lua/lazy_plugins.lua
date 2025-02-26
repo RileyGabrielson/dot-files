@@ -8,31 +8,29 @@ local plugins = {
   'nvim-treesitter/playground',
   'mbbill/undotree',
   'unblevable/quick-scope', -- highlighting f and t jumping
-  'hrsh7th/cmp-nvim-lsp', -- auto complete lsp
-  'hrsh7th/cmp-nvim-lua', -- auto complete lua
-  'hrsh7th/cmp-path', -- auto complete system paths
-  'hrsh7th/cmp-buffer',
-  'hrsh7th/nvim-cmp',
-  -- 'jose-elias-alvarez/typescript.nvim',
   "neovim/nvim-lspconfig",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   'JoosepAlviste/nvim-ts-context-commentstring',
   'habamax/vim-godot',
-
   "ellisonleao/gruvbox.nvim",
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-nvim-lua',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-buffer',
+  {
+    'hrsh7th/nvim-cmp', -- auto complete
+    config = function() require('config.cmp') end,
+  },
+
 
   { 'echasnovski/mini.icons', version = false },
+
   {
     "folke/which-key.nvim",
     config = function() require("config.which-key") end,
-  },
-
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
   },
 
   {
@@ -46,12 +44,6 @@ local plugins = {
   },
 
   {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function() require('config.lualine') end,
-  },
-
-  {
     'folke/trouble.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons'},
     cmd = "Trouble",
@@ -61,11 +53,6 @@ local plugins = {
   {
     "stevearc/dressing.nvim",
     opts = {},
-  },
-
-  {
-    'hrsh7th/nvim-cmp', -- auto complete
-    config = function() require('config.cmp') end,
   },
 
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -122,11 +109,6 @@ local plugins = {
     config = function() require("recorder").setup({}) end,
   },
 
-  -- {
-  --   "rcarriga/nvim-notify",
-  --   config = function() require("config.notify") end,
-  -- },
-
   {
     'folke/noice.nvim',
     config = function() require("config.noice") end,
@@ -160,7 +142,12 @@ local plugins = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons'
     }
-  }
+  },
+
+  {
+    'nvim-lualine/lualine.nvim',
+    config = function() require('config.lualine') end,
+  },
 }
 
 return plugins
