@@ -21,7 +21,7 @@ local function define_augroups(definitions) -- {{{1
 end
 
 local show_yanks = {'TextYankPost', '*', 'lua require(\'vim.highlight\').on_yank({higroup = \'Search\', timeout = 200})'}
-local formatPrettier = {'BufWritePre', '*.js,*.jsx,*.ts,*.tsx', 'silent! PrettierAsync'}
+local formatPrettier = {'BufWritePre', '*.js,*.jsx,*.ts,*.tsx', 'silent! Prettier'}
 -- local closeNvimTree = {'BufLeave', '*NvimTree*', "NvimTreeClose"}
 
 define_augroups({

@@ -8,7 +8,7 @@ zstyle ':omz:update' mode reminder
 plugins=(git vi-mode yarn)
 source $ZSH/oh-my-zsh.sh
 
-cleanmerged() {
+clean-merged() {
     git branch --merged | egrep -v "(^\*|master|release)" | xargs git branch -D
 }
 

@@ -148,6 +148,13 @@ local plugins = {
     'nvim-lualine/lualine.nvim',
     config = function() require('config.lualine') end,
   },
+
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
+  },
 }
 
 return plugins
