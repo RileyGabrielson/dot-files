@@ -6,6 +6,8 @@ an increasingly more complex dev configuration
 
 ## Dependencies
 
+- [tmux](https://github.com/tmux/tmux/wiki)
+
 ### Custom Dependencies
 - [jq](https://stedolan.github.io/jq/)
 - [fzf](https://github.com/junegunn/fzf)

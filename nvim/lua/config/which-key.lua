@@ -88,6 +88,7 @@ which_key.add({
     { "<leader>lr", "<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", desc = "Find Git Files", nowait = false, remap = false },
     { "<leader>ls", ":IncRename ", desc = "Rename Symbol", nowait = false, remap = false },
     { "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", desc = "Type Definition", nowait = false, remap = false },
+    { "<leader>lc", "<cmd>checkhealth vim.lsp<CR>", desc = "Check Health", nowait = false, remap = false },
     { "<leader>m", group = "Misc", nowait = false, remap = false },
     { "<leader>mb", "<cmd>lua require'commands.toggle_background'()<CR>", desc = "Toggle Background", nowait = false, remap = false },
     { "<leader>mc", ":CommentToggle<CR>", desc = "Comment", nowait = false, remap = false },
@@ -174,7 +175,6 @@ vim.api.nvim_set_keymap('n', '<Leader>%', '<cmd>lua require("commands.get_filena
 vim.api.nvim_set_keymap('n', '<Leader>S', "<cmd>lua require'commands.templates'()<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>T', "<cmd>TSC<CR>", {noremap = true, silent = false})
 vim.api.nvim_set_keymap('n', '<Leader>Y', "<cmd>lua require'commands.execute_yarn_script'()<CR>", {noremap = true, silent = false})
-vim.api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require'commands.edit_repo'()<CR>", {noremap = true, silent = false})
 
 vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], {noremap=true, silent=false})
 vim.api.nvim_set_keymap('t', '<C-Space>', "<cmd>lua require'cmp'.mapping.complete()<CR>", {noremap = true, silent = false})

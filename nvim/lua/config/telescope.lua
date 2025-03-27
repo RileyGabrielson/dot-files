@@ -2,7 +2,7 @@ local telescope = require("telescope")
 
 telescope.setup{
   defaults = {
-    entry_prefix = " ",
+    entry_prefix = "・",
     wrap_results = true,
     mappings = {
       i = {

@@ -13,23 +13,6 @@ local function get_component_name(suffix)
   return domain_name;
 end
 
-local function get_test_import_path()
-	local file_path = vim.fn.expand("%:.")
-	if file_path == "" then
-		return nil;
-	end
-
-  local without_test_folder = file_path:gsub("__tests__/", "")
-
-	if string.find(without_test_folder, "commons/ui") then
-    return without_test_folder:gsub("^(commons/)ui/shared/(.*).test.ts$", "@neo/%1%2");
-	elseif string.find(without_test_folder, "ui/operator/src") then
-		return without_test_folder:gsub("^ui(.*).test.ts$", "@neo%1")
-	else
-    return without_test_folder;
-	end
-end
-
 local function add_react_template()
   local component_name = get_component_name(".tsx");
   vim.api.nvim_buf_set_lines(0, 0, -1, false, {

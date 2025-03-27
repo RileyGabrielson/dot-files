@@ -22,7 +22,6 @@ local plugins = {
     config = function() require('config.cmp') end,
   },
 
-
   { 'echasnovski/mini.icons', version = false },
 
   {
@@ -47,12 +46,8 @@ local plugins = {
     opts = {}
   },
 
-  {
-    "stevearc/dressing.nvim",
-    opts = {},
-  },
-
   {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+
   {
       'nvim-telescope/telescope.nvim',
       dependencies = {
@@ -118,14 +113,6 @@ local plugins = {
   },
 
   {
-    "rust-lang/rust.vim",
-    ft = "rust",
-    init = function()
-      vim.g.rustfmt_autosave = 1
-    end
-  },
-
-  {
     'nvimdev/lspsaga.nvim',
     config = function()
       require('lspsaga').setup({
@@ -154,11 +141,6 @@ local plugins = {
     dependencies = "nvzone/volt",
     opts = {},
     cmd = { "Typr", "TyprStats" },
-  },
-
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
   },
 
   {
