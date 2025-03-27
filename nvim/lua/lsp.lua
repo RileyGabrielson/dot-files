@@ -63,7 +63,6 @@ vim.lsp.config.cpat = {
   cmd = { "bun", "run", "/Users/riley.gabrielson/r/cpat-extension/src/server/server.ts", "--stdio" },
   root_markers = { 'package.json' },
   filetypes = { 'cpat' },
-  capabilities = capabilities
 }
 
 vim.lsp.enable({ 'eslint', 'gopls', 'ts_ls', 'lua_ls', 'gdscript', 'cpat' })

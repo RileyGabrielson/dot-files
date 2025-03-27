@@ -1,22 +1,18 @@
 local telescope = require("telescope")
-local actions = require("telescope.actions")
 
 telescope.setup{
   defaults = {
-    entry_prefix = "・",
+    entry_prefix = " ",
     wrap_results = true,
     mappings = {
       i = {
         ["<C-h>"] = "which_key",
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
       },
       n = {
       }
     },
     layout_strategy = 'vertical',
     layout_config = {
-      -- horizontal = { width = .9, preview_width = .2 },
       height = 0.95,
       width = 0.95
     }

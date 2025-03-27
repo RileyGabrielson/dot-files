@@ -1,3 +1,5 @@
+require "options"
+
 local try_load_lazy = function()
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not vim.loop.fs_stat(lazypath) then
@@ -12,10 +14,6 @@ local try_load_lazy = function()
   end
   vim.opt.rtp:prepend(lazypath)
 end
-
-
-require "options"
-
 try_load_lazy()
 local plugins = require "lazy_plugins"
 require('lazy').setup(plugins, {})
@@ -24,4 +22,3 @@ require "colorscheme"
 require "autocmd"
 require "lsp"
 require "status_column"
-require "gui"
