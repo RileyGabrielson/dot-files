@@ -3,7 +3,6 @@ local plugins = {
 	"f-person/git-blame.nvim",
 	"svermeulen/vimpeccable", -- mapping keybinds to lua functions
 	"prettier/vim-prettier",
-	"folke/lua-dev.nvim",
 	"nvim-lua/plenary.nvim", -- lua function helpers, required for telescope
 	"nvim-treesitter/playground",
 	"mbbill/undotree",
@@ -197,6 +196,16 @@ local plugins = {
 		config = function()
 			require("config.conform")
 		end,
+	},
+
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
 	},
 }
 
