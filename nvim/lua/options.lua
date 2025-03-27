@@ -23,7 +23,7 @@ vim.opt.conceallevel = 0
 vim.opt.laststatus = 0
 vim.opt.ch = 1
 vim.opt.title = true
-vim.diagnostic.config({ virtual_lines = true })
+vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
 vim.opt.signcolumn = "no"
 
 vim.cmd "set nofoldenable"

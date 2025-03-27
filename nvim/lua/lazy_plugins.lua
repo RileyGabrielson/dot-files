@@ -8,9 +8,6 @@ local plugins = {
   'nvim-treesitter/playground',
   'mbbill/undotree',
   'unblevable/quick-scope', -- highlighting f and t jumping
-  "neovim/nvim-lspconfig",
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
   'JoosepAlviste/nvim-ts-context-commentstring',
   'habamax/vim-godot',
   "ellisonleao/gruvbox.nvim",
@@ -130,14 +127,17 @@ local plugins = {
 
   {
     'nvimdev/lspsaga.nvim',
-    config = function() require('lspsaga').setup({
-      symbol_in_winbar = {
-        enable = false
-      },
-      lightbulb = {
-        enable = false,
-      }
-    }) end,
+    config = function()
+      require('lspsaga').setup({
+        symbol_in_winbar = {
+          enable = false
+        },
+        lightbulb = {
+          enable = false,
+        }
+      })
+
+    end,
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons'
@@ -155,6 +155,26 @@ local plugins = {
     opts = {},
     cmd = { "Typr", "TyprStats" },
   },
+
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+  },
+
+  {
+    "Pocco81/HighStr.nvim",
+    config = function() require('high-str').setup({
+      highlight_colors = {
+        color_1 = {"#D79921", "smart"}
+      }
+    })
+    end,
+  },
+
+  {
+    "williamboman/mason.nvim",
+    config = function() require('config.mason') end,
+  }
 }
 
 return plugins

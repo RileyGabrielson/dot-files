@@ -83,7 +83,7 @@ which_key.add({
     { "<leader>l.", "<cmd>Lspsaga code_action<CR>", desc = "Code Action", nowait = false, remap = false },
     { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Definition", nowait = false, remap = false },
     { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format", nowait = false, remap = false },
-    { "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover", nowait = false, remap = false },
+    { "<leader>lh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover", nowait = false, remap = false },
     { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "Implementations", nowait = false, remap = false },
     { "<leader>lr", "<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>", desc = "Find Git Files", nowait = false, remap = false },
     { "<leader>ls", ":IncRename ", desc = "Rename Symbol", nowait = false, remap = false },
@@ -126,8 +126,8 @@ which_key.add({
     { "<leader>w", group = "Windows", nowait = false, remap = false },
     { "<leader>w+", '<cmd>exe "resize " . (winheight(0) * 5/4)<CR>', desc = "Increase height", nowait = false, remap = false },
     { "<leader>w-", '<cmd>exe "resize " . (winheight(0) * 4/5)<CR>', desc = "Decrease height", nowait = false, remap = false },
-    { "<leader>w<", '<cmd>exe "vertical resize " . (winwidth(0) * 4/5)<CR>', desc = "Increase width", nowait = false, remap = false },
-    { "<leader>w=", "<C-w>=", desc = "Equalize windows", nowait = false, remap = false },
+    { "<leader>w<", '<cmd>exe "vertical resize " . (winwidth(0) * 4/5)<cr>', desc = "increase width", nowait = false, remap = false },
+    { "<leader>w=", "<c-w>=", desc = "equalize windows", nowait = false, remap = false },
     { "<leader>w>", '<cmd>exe "vertical resize " . (winwidth(0) * 5/4)<CR>', desc = "Increase width", nowait = false, remap = false },
     { "<leader>wS", "<C-w>t<C-w>K", desc = "Vertical Split to Horizontal", nowait = false, remap = false },
     { "<leader>wV", "<C-w>t<C-w>H", desc = "Horizontal Split to Vertical", nowait = false, remap = false },
@@ -154,6 +154,8 @@ which_key.add({
     { "<leader>mc", ":CommentToggle<CR>", desc = "Comment", nowait = true, remap = false },
     { "<leader>mk", ":s/\\(\\w.*\\)/", desc = "Fighting One Eyed Kirby", nowait = true, remap = false },
     { "<leader>ms", ":CodeSnap<CR>", desc = "Snapshot to Clipboard", nowait = true, remap = false },
+    { "<leader>h", "<ESC>:HSHighlight<CR>", desc = "Highlight", nowait = true, remap = false },
+    { "<leader>r", "<ESC>:HSRmHighlight<CR>", desc = "Remove Highlight", nowait = true, remap = false },
   },
 })
 
