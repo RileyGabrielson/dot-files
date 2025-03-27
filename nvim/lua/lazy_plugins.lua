@@ -2,7 +2,6 @@ local plugins = {
 	"RRethy/vim-illuminate",
 	"f-person/git-blame.nvim",
 	"svermeulen/vimpeccable", -- mapping keybinds to lua functions
-	"prettier/vim-prettier",
 	"nvim-lua/plenary.nvim", -- lua function helpers, required for telescope
 	"nvim-treesitter/playground",
 	"mbbill/undotree",
@@ -124,7 +123,7 @@ local plugins = {
 	{
 		"smjonas/inc-rename.nvim",
 		config = function()
-			require("inc_rename").setup()
+			require("inc_rename").setup({})
 		end,
 	},
 
