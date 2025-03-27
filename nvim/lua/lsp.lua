@@ -65,4 +65,12 @@ vim.lsp.config.cpat = {
   filetypes = { 'cpat' },
 }
 
-vim.lsp.enable({ 'eslint', 'gopls', 'ts_ls', 'lua_ls', 'gdscript', 'cpat' })
+-- RUST
+vim.lsp.config.rust_analyzer = {
+  cmd = { stdpath .. '/mason/bin/rust-analyzer' },
+  root_markers = { '.git' },
+  filetypes = { 'rust' },
+  single_file_support = true,
+}
+
+vim.lsp.enable({ 'eslint', 'gopls', 'ts_ls', 'lua_ls', 'gdscript', 'cpat', 'rust_analyzer' })
