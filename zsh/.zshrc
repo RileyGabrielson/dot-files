@@ -39,6 +39,12 @@ alias nvimg="nvim --listen ./godot.pipe"
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 
+nvim() {                                                 
+ tmux set -g status off && /usr/local/bin/nvim $1                                                                █
+ tmux set -g status on
+}
+                                                          
+
 # NVM initialisation
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
