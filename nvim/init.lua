@@ -19,7 +19,7 @@ try_load_lazy()
 local plugins = require("lazy_plugins")
 require("lazy").setup(plugins, {})
 
-require("colorscheme")
 require("autocmd")
 require("lsp")
 require("status_column")
+require("colorscheme")

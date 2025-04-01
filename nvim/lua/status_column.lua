@@ -1,7 +1,7 @@
 _G.StatusColumn = {
 	sections = {
-		sign_column = {
-			[[ %s ]],
+		initial_padding = {
+			[[ ]],
 		},
 		line_number = {
 			[[%=%{v:relnum?v:relnum:v:lnum}]],
@@ -13,7 +13,7 @@ _G.StatusColumn = {
 			[[%#StatusColumnBorder#]], -- Highlight Group
 			[[▐]],
 		},
-		padding = {
+		end_padding = {
 			[[%#WinSeparator#]], -- Highlight Group
 			[[ ]],
 		},
@@ -35,9 +35,9 @@ _G.StatusColumn = {
 }
 
 vim.opt.statuscolumn = StatusColumn.build({
-	StatusColumn.sections.sign_column,
+	StatusColumn.sections.initial_padding,
 	StatusColumn.sections.line_number,
 	StatusColumn.sections.spacing,
 	StatusColumn.sections.border,
-	StatusColumn.sections.padding,
+	StatusColumn.sections.end_padding,
 })

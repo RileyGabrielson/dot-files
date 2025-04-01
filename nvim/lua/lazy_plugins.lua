@@ -9,6 +9,7 @@ local plugins = {
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	"habamax/vim-godot",
 	"ellisonleao/gruvbox.nvim",
+	"kyazdani42/nvim-web-devicons",
 
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
@@ -203,6 +204,34 @@ local plugins = {
 		opts = {
 			library = {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+
+	{
+		"RileyGabrielson/inspire.nvim",
+		config = function()
+			require("inspire").setup({})
+		end,
+	},
+
+	{
+		"christopher-francisco/tmux-status.nvim",
+		lazy = true,
+		opts = {
+			manage_tmux_status = false,
+			window = {
+				text = "name",
+				separator = "  ",
+			},
+			session = {
+				icon = "",
+			},
+			colors = {
+				session = "grey",
+				window_active = "#D79921",
+				window_inactive = "grey",
+				window_inactive_recent = "grey",
 			},
 		},
 	},
