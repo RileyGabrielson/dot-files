@@ -170,10 +170,10 @@ which_key.add({
 		},
 		{ "<leader>i", desc = "Cheat Sheet", nowait = false, remap = false },
 		{ "<leader>l", group = "LSP", nowait = false, remap = false },
-		{ "<leader>l.", "<cmd>Lspsaga code_action<CR>", desc = "Code Action", nowait = false, remap = false },
+		{ "<leader>l.", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action", nowait = false, remap = false },
 		{ "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Definition", nowait = false, remap = false },
 		{ "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format", nowait = false, remap = false },
-		{ "<leader>lh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover", nowait = false, remap = false },
+		{ "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover", nowait = false, remap = false },
 		{
 			"<leader>li",
 			"<cmd>lua vim.lsp.buf.implementation()<CR>",

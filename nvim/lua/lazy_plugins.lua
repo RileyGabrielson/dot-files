@@ -11,8 +11,6 @@ local plugins = {
 	"ellisonleao/gruvbox.nvim",
 	"kyazdani42/nvim-web-devicons",
 
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-
 	{ "echasnovski/mini.icons", version = false },
 
 	{
@@ -129,24 +127,6 @@ local plugins = {
 	},
 
 	{
-		"nvimdev/lspsaga.nvim",
-		config = function()
-			require("lspsaga").setup({
-				symbol_in_winbar = {
-					enable = false,
-				},
-				lightbulb = {
-					enable = false,
-				},
-			})
-		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
-
-	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			require("config.lualine")
@@ -158,17 +138,6 @@ local plugins = {
 		dependencies = "nvzone/volt",
 		opts = {},
 		cmd = { "Typr", "TyprStats" },
-	},
-
-	{
-		"Pocco81/HighStr.nvim",
-		config = function()
-			require("high-str").setup({
-				highlight_colors = {
-					color_1 = { "#D79921", "smart" },
-				},
-			})
-		end,
 	},
 
 	{
