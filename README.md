@@ -7,6 +7,7 @@ an increasingly more complex dev configuration
 ## Dependencies
 
 - [tmux](https://github.com/tmux/tmux/wiki)
+- [lazygit](https://github.com/jesseduffield/lazygit)
 
 ### Custom Dependencies
 - [jq](https://stedolan.github.io/jq/)
