@@ -1,8 +1,8 @@
-local stdpath = vim.fn.stdpath("data")
+local stdpath = vim.fn.stdpath("data") .. "/mason/bin/"
 
 -- ESLINT
 vim.lsp.config.eslint = {
-	cmd = { stdpath .. "/mason/bin/vscode-eslint-language-server", "--stdio" },
+	cmd = { stdpath .. "vscode-eslint-language-server", "--stdio" },
 	root_markers = { "package.json" },
 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
 	settings = {
@@ -15,21 +15,21 @@ vim.lsp.config.eslint = {
 
 -- GO
 vim.lsp.config.gopls = {
-	cmd = { stdpath .. "/mason/bin/gopls" },
+	cmd = { stdpath .. "gopls" },
 	root_markers = { ".git" },
 	filetypes = { "go" },
 }
 
 -- TYPESCRIPT
 vim.lsp.config.ts_ls = {
-	cmd = { stdpath .. "/mason/bin/typescript-language-server", "--stdio" },
+	cmd = { stdpath .. "typescript-language-server", "--stdio" },
 	root_markers = { "package.json" },
 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
 }
 
 -- LUA
 vim.lsp.config.lua_ls = {
-	cmd = { stdpath .. "/mason/bin/lua-language-server" },
+	cmd = { stdpath .. "lua-language-server" },
 	root_markers = { ".git" },
 	filetypes = { "lua" },
 	settings = {
@@ -65,10 +65,16 @@ vim.lsp.config.cpat = {
 
 -- RUST
 vim.lsp.config.rust_analyzer = {
-	cmd = { stdpath .. "/mason/bin/rust-analyzer" },
+	cmd = { stdpath .. "rust-analyzer" },
 	root_markers = { ".git" },
 	filetypes = { "rust" },
 	single_file_support = true,
 }
 
-vim.lsp.enable({ "eslint", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer" })
+-- BASH
+vim.lsp.config.bash = {
+  cmd = { stdpath .. "bash-language-server", "start" },
+  filetypes = { "sh", "bash", "zsh" },
+}
+
+vim.lsp.enable({ "eslint", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash" })

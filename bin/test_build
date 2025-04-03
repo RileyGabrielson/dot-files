@@ -8,11 +8,11 @@ fi
 
 current_folder=$(basename "$PWD")
 
-rm -rf $selected/node_modules/@m/$current_folder/dist
-cp -r ./dist $selected/node_modules/@m/$current_folder
+rm -rf "$selected"/node_modules/@m/"$current_folder"/dist
+cp -r ./dist "$selected"/node_modules/@m/"$current_folder"
 
-rm -rf $selected/node_modules/@m/$current_folder/src
-cp -r ./src $selected/node_modules/@m/$current_folder
+rm -rf "$selected"/node_modules/@m/"$current_folder"/src
+cp -r ./src "$selected"/node_modules/@m/"$current_folder"
 
-rm $selected/node_modules/@m/$current_folder/package.json
-cp ./package.json $selected/node_modules/@m/$current_folder
+rm "$selected"/node_modules/@m/"$current_folder"/package.json
+cp ./package.json "$selected"/node_modules/@m/"$current_folder"
