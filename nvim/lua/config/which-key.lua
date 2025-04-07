@@ -23,7 +23,7 @@ which_key.setup({
 		align = "left", -- align columns left, center or right
 	},
 
-	show_help = true, -- show help message on the command line when the popup is visible
+	show_help = true,
 })
 
 -- Set leader
@@ -34,10 +34,15 @@ local use_styles_snippet = require("commands.make_styles_snippet")
 which_key.add({
 	{
 		mode = { "n" },
-		{ "<leader>%", desc = "Get Filename to Clipboard", nowait = false, remap = false },
-		{ "<leader><Enter>", desc = "Alternate File", nowait = false, remap = false },
-		{ "<leader>S", desc = "Snippets", nowait = false, remap = false },
-		{ "<leader>Y", desc = "Yarn Command", nowait = false, remap = false },
+		{
+			"<leader>%",
+			'<cmd>lua require("commands.get_filename").copy_file_path()<CR>',
+			desc = "Get Filename to Clipboard",
+			nowait = false,
+			remap = false,
+		},
+		{ "<leader><Enter>", "<C-^>", desc = "Alternate File", nowait = false, remap = false },
+		{ "<leader>S", "<cmd>lua require'commands.templates'()<CR>", desc = "Snippets", nowait = false, remap = false },
 		{ "<leader>b", group = "Buffers", nowait = false, remap = false },
 		{ "<leader>bl", "<cmd>ls<CR>", desc = "List buffers", nowait = false, remap = false },
 		{ "<leader>bx", "<cmd>%bd|e#|bd#<CR>", desc = "Close all other buffers", nowait = false, remap = false },
@@ -85,11 +90,10 @@ which_key.add({
 			nowait = false,
 			remap = false,
 		},
-		{ "<leader>f", desc = "Find Text", nowait = false, remap = false },
+		{ "<leader>f", "<cmd>lua require'fzf-lua'.live_grep()<CR>", desc = "Find Text", nowait = false, remap = false },
 		{ "<leader>g", group = "Git", nowait = false, remap = false },
 		{ "<leader>gb", ":GitBlameToggle<CR>", desc = "Git Blame", nowait = false, remap = false },
 		{ "<leader>gl", ":LazyGit<CR>", desc = "Lazy Git", nowait = false, remap = false },
-		{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git Status", nowait = false, remap = false },
 		{ "<leader>h", group = "Harpoon", nowait = false, remap = false },
 		{
 			"<leader>h1",
@@ -183,7 +187,7 @@ which_key.add({
 		},
 		{
 			"<leader>lr",
-			"<cmd>lua require'telescope.builtin'.lsp_references{ show_line=false }<CR>",
+			"<cmd>lua require'fzf-lua'.lsp_references()<CR>",
 			desc = "Find Git Files",
 			nowait = false,
 			remap = false,
@@ -222,97 +226,38 @@ which_key.add({
 			nowait = false,
 			remap = false,
 		},
-		{ "<leader>p", desc = "Find File Fuzzy", nowait = false, remap = false },
+		{
+			"<leader>p",
+			desc = "Find File Fuzzy",
+			"<cmd>lua require('fzf-lua').files()<CR>",
+			nowait = false,
+			remap = false,
+		},
 		{ "<leader>r", desc = "Repositories", nowait = false, remap = false },
 		{ "<leader>s", desc = "Tmux Session", nowait = false, remap = false },
-		{ "<leader>t", group = "Telescope", nowait = false, remap = false },
-		{
-			"<leader>ta",
-			'<cmd>lua require("telescope.builtin").find_files({ fuzzy = true })<CR>',
-			desc = "All files",
-			nowait = false,
-			remap = false,
-		},
-		{
-			"<leader>tb",
-			"<cmd>lua require'telescope.builtin'.git_branches()<CR>",
-			desc = "Git Branches",
-			nowait = false,
-			remap = false,
-		},
+		{ "<leader>t", group = "Fzf Lua", nowait = false, remap = false },
 		{
 			"<leader>tc",
-			"<cmd>Telescope command_history<cr>",
+			"<cmd>lua require('fzf-lua').command_history()<cr>",
 			desc = "List Commands That Were Executed",
 			nowait = false,
 			remap = false,
 		},
 		{
-			"<leader>tf",
-			'<cmd>lua require("commands.specific_telescope").grep_files_within_directories()<CR>',
-			desc = "Grep Files in Directories",
-			nowait = false,
-			remap = false,
-		},
-		{
 			"<leader>tg",
-			"<cmd>lua require'telescope.builtin'.git_files{}<CR>",
+			"<cmd>lua require'fzf-lua'.git_files()<CR>",
 			desc = "Find Git Files",
 			nowait = false,
 			remap = false,
 		},
-		{ "<leader>th", "<cmd>Telescope help_tags<cr>", desc = "Find Help Tags", nowait = false, remap = false },
-		{ "<leader>tl", group = "Lsp", nowait = false, remap = false },
 		{
-			"<leader>tlc",
-			"<cmd>Telescope lsp_code_actions<cr>",
-			desc = "Code Actions for word under cursor",
+			"<leader>th",
+			"<cmd>lua require'fzf-lua'.helptags()<cr>",
+			desc = "Find Help Tags",
 			nowait = false,
 			remap = false,
 		},
-		{
-			"<leader>tld",
-			"<cmd>Telescope lsp_definitions<cr>",
-			desc = "GoTo Definition",
-			nowait = false,
-			remap = false,
-		},
-		{
-			"<leader>tli",
-			"<cmd>Telescope lsp_implementations<cr>",
-			desc = "GoTo Implementation",
-			nowait = false,
-			remap = false,
-		},
-		{
-			"<leader>tlr",
-			"<cmd>Telescope lsp_references<cr>",
-			desc = "References for word under cursor",
-			nowait = false,
-			remap = false,
-		},
-		{
-			"<leader>tn",
-			'<cmd>lua require("telescope").extensions.notify.notify()<CR>',
-			desc = "Notifications",
-			nowait = false,
-			remap = false,
-		},
-		{
-			"<leader>tp",
-			'<cmd>lua require("commands.specific_telescope").find_files_within_directories()<CR>',
-			desc = "Find Files In Directories",
-			nowait = false,
-			remap = false,
-		},
-		{
-			"<leader>tq",
-			"<cmd>Telescope quickfix<cr>",
-			desc = "List Items In The Quickfix List",
-			nowait = false,
-			remap = false,
-		},
-		{ "<leader>tr", "<cmd>Telescope resume<cr>", desc = "Resume", nowait = false, remap = false },
+		{ "<leader>tr", "<cmd>lua require'fzf-lua'.resume()<cr>", desc = "Resume", nowait = false, remap = false },
 		{ "<leader>u", group = "Utility", nowait = false, remap = false },
 		{ "<leader>us", use_styles_snippet, desc = "Use Styles Snippet", nowait = false, remap = false },
 		{
@@ -382,91 +327,30 @@ which_key.add({
 		{ "<leader>wq", "<C-w><C-c>", desc = "Close Current Window", nowait = false, remap = false },
 		{ "<leader>ws", "<C-w><C-s>", desc = "Horizontal Split", nowait = false, remap = false },
 		{ "<leader>wv", "<C-w><C-v>", desc = "Vertical Split", nowait = false, remap = false },
-		{ "<leader>x", desc = "Trouble Diagnostics", nowait = false, remap = false },
-		{ "<leader>y", desc = "Yank to Clipboard", nowait = false, remap = false },
+		{
+			"<leader>x",
+			":Trouble diagnostics toggle focus=true filter.buf=0<CR>",
+			desc = "Trouble Diagnostics",
+			nowait = false,
+			remap = false,
+		},
+		{ "<leader>y", '"+y', desc = "Yank to Clipboard", nowait = false, remap = false },
 		{ "<leader>z", desc = "Zen Mode", nowait = false, remap = false },
+
+		{ "H", "^", desc = "Beginning of line", { noremap = true, silent = true } },
+		{ "L", "$", desc = "End of line", { noremap = true, silent = true } },
+		{ "<C-u>", "<C-u>zz", desc = "Center on up", { noremap = true, silent = true } },
+		{ "<C-d>", "<C-d>zz", desc = "Center on down", { noremap = true, silent = true } },
 	},
 })
 
 which_key.add({
 	{
 		mode = { "v" },
+		{ "<", "<gv", { noremap = true, silent = true } },
+		{ ">", ">gv", { noremap = true, silent = true } },
 		{ "<leader>m", group = "Manipulate", nowait = true, remap = false },
 		{ "<leader>mc", ":CommentToggle<CR>", desc = "Comment", nowait = true, remap = false },
-		{ "<leader>mk", ":s/\\(\\w.*\\)/", desc = "Fighting One Eyed Kirby", nowait = true, remap = false },
-		{ "<leader>ms", ":CodeSnap<CR>", desc = "Snapshot to Clipboard", nowait = true, remap = false },
-		{ "<leader>h", "<ESC>:HSHighlight<CR>", desc = "Highlight", nowait = true, remap = false },
-		{ "<leader>r", "<ESC>:HSRmHighlight<CR>", desc = "Remove Highlight", nowait = true, remap = false },
+		{ "<leader>y", '"+y', desc = "Yank to Clipboard", nowait = false, remap = false },
 	},
 })
-
-vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader><Enter>", "<C-^>", { noremap = true, silent = false })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>p",
-	'<cmd>lua require("config.telescope").project_files()<CR>',
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap("n", "<Leader>f", ":Telescope live_grep<CR>", { noremap = true, silent = false })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>x",
-	":Trouble diagnostics toggle focus=true filter.buf=0<CR>",
-	{ noremap = true, silent = false }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>X",
-	":Trouble diagnostics toggle focus=true<CR>",
-	{ noremap = true, silent = false }
-)
-vim.api.nvim_set_keymap("n", "<Leader>y", '"+y', { noremap = true, silent = false })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>%",
-	'<cmd>lua require("commands.get_filename").copy_file_path()<CR>',
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>S",
-	"<cmd>lua require'commands.templates'()<CR>",
-	{ noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap("n", "<Leader>T", "<cmd>TSC<CR>", { noremap = true, silent = false })
-vim.api.nvim_set_keymap(
-	"n",
-	"<Leader>Y",
-	"<cmd>lua require'commands.execute_yarn_script'()<CR>",
-	{ noremap = true, silent = false }
-)
-
-vim.api.nvim_set_keymap("t", "<S-Esc>", [[<C-\><C-n>]], { noremap = true, silent = false })
-vim.api.nvim_set_keymap(
-	"t",
-	"<C-Space>",
-	"<cmd>lua require'cmp'.mapping.complete()<CR>",
-	{ noremap = true, silent = false }
-)
-
-vim.api.nvim_set_keymap("v", "<Leader>y", '"+y', { noremap = true, silent = false })
-vim.api.nvim_set_keymap("v", "<Leader>v", ":DiffviewFileHistory<CR>", { noremap = true, silent = false })
-vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true, silent = true })
-
-vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
-	if not require("noice.lsp").scroll(4) then
-		return "<c-f>"
-	end
-end, { silent = true, expr = true })
-
-vim.keymap.set({ "n", "i", "s" }, "<c-b>", function()
-	if not require("noice.lsp").scroll(-4) then
-		return "<c-b>"
-	end
-end, { silent = true, expr = true })
