@@ -1,6 +1,7 @@
-local actions = require("fzf-lua").actions
+local fzf = require("fzf-lua")
+local actions = fzf.actions
 
-require("fzf-lua").setup({
+fzf.setup({
 	"hide",
 	fzf_opts = { ["--cycle"] = true },
 	winopts = {
@@ -25,3 +26,5 @@ require("fzf-lua").setup({
 		},
 	},
 })
+
+fzf.register_ui_select()
