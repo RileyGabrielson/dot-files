@@ -34,8 +34,6 @@ fzf-history-widget-accept() {
 
 alias k='kubectl'
 alias home='cd ~'
-alias all='git add -A'
-alias com='git commit -m'
 alias status='git status'
 alias branch='git branch'
 alias push='git push'
@@ -46,10 +44,8 @@ alias lg='lazygit'
 alias gl='lazygit'
 alias verse='~/verse'
 alias s='tmux_sessionizer'
-alias nvid='neovide --multigrid'
 alias a='tmux -2 attach'
 alias n='nvim'
-alias issue="~/dot-files/bin/glab_issue"
 alias nvimg="nvim --listen ./godot.pipe"
 alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
 
