@@ -41,19 +41,6 @@ local plugins = {
 		opts = {},
 	},
 
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim" },
-		},
-		config = function()
-			require("config.telescope")
-		end,
-	},
-
 	{
 		"stevearc/oil.nvim",
 		opts = {},
@@ -128,6 +115,7 @@ local plugins = {
 
 	{
 		"nvim-lualine/lualine.nvim",
+		dependencies = { "RileyGabrielson/tmux-status.nvim" },
 		config = function()
 			require("config.lualine")
 		end,
@@ -204,6 +192,14 @@ local plugins = {
 				window_inactive_recent = "grey",
 			},
 		},
+	},
+
+	{
+		"ibhagwan/fzf-lua",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("config.fzf")
+		end,
 	},
 }
 
