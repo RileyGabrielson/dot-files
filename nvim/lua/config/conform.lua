@@ -1,5 +1,5 @@
 local stdpath = vim.fn.stdpath("data")
-local typescript_format = { "prettier", stop_after_first = true }
+local typescript_format = { "biome", stop_after_first = true }
 
 require("conform").setup({
 	formatters_by_ft = {

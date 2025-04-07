@@ -185,12 +185,13 @@ local plugins = {
 	},
 
 	{
-		"christopher-francisco/tmux-status.nvim",
+		"RileyGabrielson/tmux-status.nvim",
+		branch = "custom-list-window-format",
 		lazy = true,
 		opts = {
 			manage_tmux_status = false,
 			window = {
-				text = "name",
+				text = "index_and_name",
 				separator = "  ",
 			},
 			session = {

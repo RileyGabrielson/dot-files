@@ -22,7 +22,7 @@ require("lualine").setup({
 		always_divide_middle = true,
 		globalstatus = true,
 		refresh = {
-			statusline = 200,
+			statusline = 75,
 		},
 	},
 	sections = {
@@ -35,14 +35,13 @@ require("lualine").setup({
 		lualine_c = {
 			"diagnostics",
 		},
-		lualine_x = {},
-		lualine_y = {
+		lualine_x = {
 			{
 				"filename",
 				path = 1,
-				color = { fg = "#C6C6C6", bg = "4E4E4E" },
 			},
 		},
+		lualine_y = {},
 		lualine_z = {},
 	},
 	inactive_sections = {},
