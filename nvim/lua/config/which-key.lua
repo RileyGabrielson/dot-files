@@ -217,6 +217,13 @@ which_key.add({
 			nowait = false,
 			remap = false,
 		},
+		{
+			"<leader>mf",
+			"<cmd>lua require'config.conform'.toggle_auto_formatting()<CR>",
+			desc = "Toggle Auto Formatting",
+			nowait = false,
+			remap = false,
+		},
 		{ "<leader>mh", ":noh<CR>", desc = "Hide Search", nowait = false, remap = false },
 		{ "<leader>mr", ":%s/\\<<C-r><C-w>\\>/", desc = "Replace", nowait = false, remap = false },
 		{
