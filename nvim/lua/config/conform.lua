@@ -1,4 +1,4 @@
-local stdpath = vim.fn.stdpath("data")
+local stdpath = vim.fn.stdpath("data") .. "/mason/bin/"
 local typescript_format = { "biome", stop_after_first = true }
 
 local M = {
@@ -7,7 +7,6 @@ local M = {
 
 function M.toggle_auto_formatting()
 	M.auto_formatting = not M.auto_formatting
-	print(M.auto_formatting)
 end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -31,16 +30,16 @@ require("conform").setup({
 	},
 	formatters = {
 		prettier = {
-			command = stdpath .. "/mason/bin/prettier",
+			command = stdpath .. "prettier",
 		},
 		stylua = {
-			command = stdpath .. "/mason/bin/stylua",
+			command = stdpath .. "stylua",
 		},
 		biome = {
-			command = stdpath .. "/mason/bin/biome",
+			command = stdpath .. "biome",
 		},
 		gofumpt = {
-			command = stdpath .. "/mason/bin/gofumpt",
+			command = stdpath .. "gofumpt",
 		},
 	},
 })
