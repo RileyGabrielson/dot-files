@@ -7,7 +7,8 @@ local function get_test_details()
 	local coverage_path = trimmed_path:gsub("/__tests__", "")
 	coverage_path = coverage_path:gsub(".test", "")
 
-	local test_details = file_path .. " --coverage --collectCoverageFrom='" .. coverage_path .. "'" .. "\n"
+	-- local test_details = file_path .. " --coverage --collectCoverageFrom='" .. coverage_path .. "'" .. "\n"
+	local test_details = file_path .. " --coverage --coverage.include=" .. coverage_path .. "\n"
 	return test_details
 end
 

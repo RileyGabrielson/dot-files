@@ -1,17 +1,25 @@
 local stdpath = vim.fn.stdpath("data") .. "/mason/bin/"
 
--- ESLINT
-vim.lsp.config.eslint = {
-	cmd = { stdpath .. "vscode-eslint-language-server", "--stdio" },
-	root_markers = { "package.json" },
+-- BIOME
+vim.lsp.config.biome = {
+	cmd = { stdpath .. "biome", "lsp-proxy" },
+	root_markers = { "biome.json" },
 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
-	settings = {
-		nodePath = "",
-		experimental = {
-			useFlatConfig = false,
-		},
-	},
+	single_file_support = false,
 }
+
+-- ESLINT
+-- vim.lsp.config.eslint = {
+-- 	cmd = { stdpath .. "vscode-eslint-language-server", "--stdio" },
+-- 	root_markers = { "package.json" },
+-- 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+-- 	settings = {
+-- 		nodePath = "",
+-- 		experimental = {
+-- 			useFlatConfig = false,
+-- 		},
+-- 	},
+-- }
 
 -- GO
 vim.lsp.config.gopls = {
@@ -58,7 +66,7 @@ vim.filetype.add({
 	},
 })
 vim.lsp.config.cpat = {
-	cmd = { "bun", "run", "/Users/riley.gabrielson/r/cpat-extension/src/server/server.ts", "--stdio" },
+	cmd = { "bun", "run", "/Users/riley.gabrielson/r/work-other/cpat-extension/src/server/server.ts", "--stdio" },
 	root_markers = { "package.json" },
 	filetypes = { "cpat" },
 }
@@ -73,8 +81,8 @@ vim.lsp.config.rust_analyzer = {
 
 -- BASH
 vim.lsp.config.bash = {
-  cmd = { stdpath .. "bash-language-server", "start" },
-  filetypes = { "sh", "bash", "zsh" },
+	cmd = { stdpath .. "bash-language-server", "start" },
+	filetypes = { "sh", "bash", "zsh" },
 }
 
-vim.lsp.enable({ "eslint", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash" })
+vim.lsp.enable({ "biome", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash" })

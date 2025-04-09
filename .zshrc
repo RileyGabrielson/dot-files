@@ -23,7 +23,8 @@ pf() {
 }
 
 nvim() {
- tmux set -g status off && /usr/local/bin/nvim "$1"
+ # tmux set -g status off && /usr/local/bin/nvim "$1"
+ tmux set -g status off && /usr/local/bin/nvim
  tmux set -g status on
 }
 

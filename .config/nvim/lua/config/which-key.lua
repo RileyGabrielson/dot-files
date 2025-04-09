@@ -269,7 +269,7 @@ which_key.add({
 		{ "<leader>us", use_styles_snippet, desc = "Use Styles Snippet", nowait = false, remap = false },
 		{
 			"<leader>ut",
-			"<cmd>lua require'commands.jest_coverage'()<CR>",
+			"<cmd>lua require'commands.test_coverage'()<CR>",
 			desc = "Test Coverage",
 			nowait = false,
 			remap = false,

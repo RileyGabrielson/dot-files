@@ -122,13 +122,6 @@ local plugins = {
 	},
 
 	{
-		"nvzone/typr",
-		dependencies = "nvzone/volt",
-		opts = {},
-		cmd = { "Typr", "TyprStats" },
-	},
-
-	{
 		"williamboman/mason.nvim",
 		config = function()
 			require("config.mason")
@@ -143,6 +136,16 @@ local plugins = {
 			keymap = {
 				preset = "default",
 				["<C-space>"] = { "select_and_accept" },
+			},
+			completion = {
+				menu = {
+					draw = {
+						columns = {
+							{ "label", "label_description", gap = 1 },
+							{ "kind_icon", "kind", gap = 1 },
+						},
+					},
+				},
 			},
 		},
 	},
@@ -199,6 +202,14 @@ local plugins = {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("config.fzf")
+		end,
+	},
+
+	{
+		"goolord/alpha-nvim",
+		dependencies = { "echasnovski/mini.icons", "RileyGabrielson/inspire.nvim" },
+		config = function()
+			require("config.alpha")
 		end,
 	},
 }

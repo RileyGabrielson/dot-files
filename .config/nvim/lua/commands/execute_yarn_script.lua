@@ -1,5 +1,5 @@
 local harpoon_tmux = require("harpoon.tmux")
-local jest_coverage = require("commands.jest_coverage")
+local jest_coverage = require("commands.test_coverage")
 
 local execute_yarn_script = function()
 	local package_json_path = vim.fn.getcwd() .. "/package.json"
