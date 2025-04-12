@@ -8,19 +8,6 @@ vim.lsp.config.biome = {
 	single_file_support = false,
 }
 
--- ESLINT
--- vim.lsp.config.eslint = {
--- 	cmd = { stdpath .. "vscode-eslint-language-server", "--stdio" },
--- 	root_markers = { "package.json" },
--- 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
--- 	settings = {
--- 		nodePath = "",
--- 		experimental = {
--- 			useFlatConfig = false,
--- 		},
--- 	},
--- }
-
 -- GO
 vim.lsp.config.gopls = {
 	cmd = { stdpath .. "gopls" },
@@ -31,8 +18,16 @@ vim.lsp.config.gopls = {
 -- TYPESCRIPT
 vim.lsp.config.ts_ls = {
 	cmd = { stdpath .. "typescript-language-server", "--stdio" },
-	root_markers = { "package.json" },
+	root_markers = { "tsconfig.json" },
 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+	init_options = {
+		hostInfo = "neovim",
+		preferences = {
+			includeCompletionsForModuleExports = true,
+			includeCompletionsForImportStatements = true,
+			importModuleSpecifierPreference = "non-relative",
+		},
+	},
 }
 
 -- LUA
@@ -84,5 +79,18 @@ vim.lsp.config.bash = {
 	cmd = { stdpath .. "bash-language-server", "start" },
 	filetypes = { "sh", "bash", "zsh" },
 }
+
+-- ESLINT
+-- vim.lsp.config.eslint = {
+-- 	cmd = { stdpath .. "vscode-eslint-language-server", "--stdio" },
+-- 	root_markers = { ".eslintignore" },
+-- 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+-- 	settings = {
+-- 		nodePath = "",
+-- 		experimental = {
+-- 			useFlatConfig = false,
+-- 		},
+-- 	},
+-- }
 
 vim.lsp.enable({ "biome", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash" })
