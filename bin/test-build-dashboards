@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+selected=$({ find ~/r -maxdepth 1 -type d; } | fzf)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+rm -rf "$selected"/node_modules/@tcn-internal/bi-dashboards/dist
+cp -r ./dist "$selected"/node_modules/@tcn-internal/bi-dashboards
+
+rm -rf "$selected"/node_modules/@tcn-internal/bi-dashboards/src
+cp -r ./src "$selected"/node_modules/@tcn-internal/bi-dashboards
+
+rm "$selected"/node_modules/@tcn-internal/bi-dashboards/package.json
+cp ./package.json "$selected"/node_modules/@tcn-internal/bi-dashboards

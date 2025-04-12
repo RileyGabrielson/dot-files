@@ -142,7 +142,20 @@ local plugins = {
 					draw = {
 						columns = {
 							{ "label", "label_description", gap = 1 },
-							{ "kind_icon", "kind", gap = 1 },
+							{ "kind_icon", "kind", "source_name", gap = 1 },
+						},
+						components = {
+							label_description = {
+								width = { max = 60 },
+								text = function(ctx)
+									if ctx.item.detail then
+										return ctx.item.detail
+									end
+
+									return ""
+								end,
+								highlight = "BlinkCmpLabelDescription",
+							},
 						},
 					},
 				},
