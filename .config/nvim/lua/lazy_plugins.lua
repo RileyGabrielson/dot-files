@@ -33,6 +33,16 @@ local plugins = {
 			require("config.comment")
 		end,
 	},
+	{
+		"nvim-lua/plenary.nvim", -- lua function helpers, required for telescope
+	},
+	{
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("config.harpoon")
+		end,
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 
 	{
 		"RRethy/vim-illuminate",
@@ -40,10 +50,6 @@ local plugins = {
 	},
 	{
 		"f-person/git-blame.nvim",
-		cond = not vim.g.vscode,
-	},
-	{
-		"nvim-lua/plenary.nvim", -- lua function helpers, required for telescope
 		cond = not vim.g.vscode,
 	},
 	{
@@ -125,7 +131,6 @@ local plugins = {
 		config = function()
 			require("config.harpoon")
 		end,
-		cond = not vim.g.vscode,
 	},
 
 	{
