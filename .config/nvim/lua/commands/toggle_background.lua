@@ -1,4 +1,4 @@
-local background_is_visible = true
+local background_is_visible = false
 
 local function toggle_background()
 	if background_is_visible then

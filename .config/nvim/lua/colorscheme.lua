@@ -16,7 +16,7 @@ vim.cmd("hi NoiceCmdlinePopupBorder guifg=#7c6f64")
 vim.cmd("hi NoiceCmdlineIconCmdline guifg=#b8bb26")
 vim.cmd("hi NoiceCmdlineIcon guifg=#b8bb26")
 vim.cmd("hi NoiceCmdlinePrompt guifg=#b8bb26")
-vim.cmd("hi Normal ctermbg=NONE guibg=NONE")
+-- vim.cmd("hi Normal ctermbg=NONE guibg=NONE")
 
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"

@@ -41,7 +41,7 @@ which_key.add({
 			nowait = false,
 			remap = false,
 		},
-		{ "<leader><Enter>", "<C-^>", desc = "Alternate File", nowait = false, remap = false },
+		{ "<leader><Enter>", "<C-6>", desc = "Alternate File", nowait = false, remap = false },
 		{ "<leader>S", "<cmd>lua require'commands.templates'()<CR>", desc = "Snippets", nowait = false, remap = false },
 		{ "<leader>b", group = "Buffers", nowait = false, remap = false },
 		{ "<leader>bl", "<cmd>ls<CR>", desc = "List buffers", nowait = false, remap = false },
@@ -240,7 +240,6 @@ which_key.add({
 			nowait = false,
 			remap = false,
 		},
-		{ "<leader>r", desc = "Repositories", nowait = false, remap = false },
 		{ "<leader>s", desc = "Tmux Session", nowait = false, remap = false },
 		{ "<leader>t", group = "Fzf Lua", nowait = false, remap = false },
 		{
@@ -346,8 +345,8 @@ which_key.add({
 
 		{ "H", "^", desc = "Beginning of line", { noremap = true, silent = true } },
 		{ "L", "$", desc = "End of line", { noremap = true, silent = true } },
-		{ "<C-u>", "<C-u>zz", desc = "Center on up", { noremap = true, silent = true } },
-		{ "<C-d>", "<C-d>zz", desc = "Center on down", { noremap = true, silent = true } },
+		{ "<C-u>", "<C-u>zz", desc = "Center on up", { silent = true } },
+		{ "<C-d>", "<C-d>zz", desc = "Center on down", { silent = true } },
 	},
 })
 
