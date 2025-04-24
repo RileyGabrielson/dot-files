@@ -240,8 +240,7 @@ local plugins = {
 	},
 
 	{
-		"RileyGabrielson/tmux-status.nvim",
-		branch = "custom-list-window-format",
+		"christopher-francisco/tmux-status.nvim",
 		lazy = true,
 		opts = {
 			manage_tmux_status = false,
@@ -276,23 +275,6 @@ local plugins = {
 		dependencies = { "echasnovski/mini.icons", "RileyGabrielson/inspire.nvim" },
 		config = function()
 			require("config.alpha")
-		end,
-		cond = not vim.g.vscode,
-	},
-
-	{
-		"mfussenegger/nvim-dap",
-		config = function()
-			require("config.dap-js")
-		end,
-		cond = not vim.g.vscode,
-	},
-
-	{
-		"rcarriga/nvim-dap-ui",
-		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-		config = function()
-			require("dapui").setup()
 		end,
 		cond = not vim.g.vscode,
 	},

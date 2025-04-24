@@ -9,6 +9,7 @@ zstyle ':omz:update' mode reminder
 
 source "$ZSH"/oh-my-zsh.sh
 source "$HOME/.tcnrc"
+source "$HOME/.apikeys"
 
 clean-merged() {
   git branch --merged | grep -E -v "(^\*|master|release)" | xargs git branch -D
@@ -49,6 +50,8 @@ alias a='tmux -2 attach'
 alias n='nvim'
 alias nvimg="nvim --listen ./godot.pipe"
 alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias merges-since-tag='git log $(git describe --tags --abbrev=0)..HEAD --oneline'
+alias ad='aider --model gemini --api-key gemini=$(echo $GEMINI_API_KEY) --no-auto-commits --vim'
 
 # NVM initialisation
 export NVM_DIR="$HOME/.nvm"
@@ -77,3 +80,6 @@ export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.4.1
