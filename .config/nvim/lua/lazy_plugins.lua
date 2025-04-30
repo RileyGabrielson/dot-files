@@ -108,12 +108,7 @@ local plugins = {
 		opts = {},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("oil").setup({
-				view_options = {
-					show_hidden = true,
-					skip_confirm_for_simple_edits = true,
-				},
-			})
+			require("config.oil")
 		end,
 		cond = not vim.g.vscode,
 	},
@@ -241,7 +236,7 @@ local plugins = {
 
 	{
 		"christopher-francisco/tmux-status.nvim",
-		lazy = true,
+		lazy = false,
 		opts = {
 			manage_tmux_status = false,
 			window = {
@@ -249,7 +244,7 @@ local plugins = {
 				separator = "  ",
 			},
 			session = {
-				icon = "",
+				icon = " ",
 			},
 			colors = {
 				session = "grey",
