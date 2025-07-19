@@ -9,7 +9,6 @@ zstyle ':omz:update' mode reminder
 
 source "$ZSH"/oh-my-zsh.sh
 source "$HOME/.tcnrc"
-source "$HOME/.apikeys"
 
 clean-merged() {
   git branch --merged | grep -E -v "(^\*|master|release)" | xargs git branch -D
@@ -25,7 +24,7 @@ pf() {
 
 nvim() {
  # tmux set -g status off && /usr/local/bin/nvim "$1"
- tmux set -g status off && /usr/local/bin/nvim
+ tmux set -g status off && /opt/homebrew/bin/nvim
  tmux set -g status on
 }
 
@@ -60,26 +59,27 @@ export NVM_DIR="$HOME/.nvm"
 export DISABLE_UNTRACKED_FILES_DIRTY="true"
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc'; fi
-
 zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
 [ -f ~/.fzf.zsh ] && source "$HOME/.fzf.zsh"
 
-. "/Users/riley.gabrielson/.deno/env"
+export FZF_DEFAULT_OPTS="--bind ctrl-n:down,ctrl-p:up"
 
 # bun
 [ -s "/Users/riley.gabrielson/.bun/_bun" ] && source "/Users/riley.gabrielson/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.4.1
+export PATH="$HOME/go/bin:$PATH"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc'; fi
