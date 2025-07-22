@@ -10,13 +10,17 @@ if vim.g.vscode then
       mode = { "n" },
       { "<C-s>", "<cmd>lua require('commands.vscode_repositories')()<CR>" },
       { "<leader>s", "<cmd>lua require('commands.repositories')()<CR>" },
+
       { "<leader>l.", "<cmd>lua require('vscode').call('editor.action.codeAction')<CR>" },
       { "<leader>lh", "<cmd>lua require('vscode').call('editor.action.showHover')<CR>" },
       { "<leader>ls", "<cmd>lua require('vscode').call('editor.action.rename')<CR>" },
       { "<leader>ld", "<cmd>lua require('vscode').call('editor.action.revealDefinition')<CR>" },
-      { "<leader>lr", "<cmd>lua require('vscode').call('editor.action.goToReferences')<CR>" },
+      -- { "<leader>lr", "<cmd>lua require('vscode').call('editor.action.goToReferences')<CR>" },
+      -- Requires Custom Install: https://github.com/RileyGabrielson/vscode-finditfaster
+      { "<leader>lr", "<cmd>lua require('vscode').call('find-it-faster.findLspReferences')<CR>" },
       { "<leader>lt", "<cmd>lua require('vscode').call('editor.action.goToTypeDefinition')<CR>" },
       { "<leader>li", "<cmd>lua require('vscode').call('editor.action.goToImplementation')<CR>" },
+
       { "<leader>f", "<cmd>lua require('vscode').call('find-it-faster.findWithinFiles')<CR>" },
       { "<leader>p", "<cmd>lua require('vscode').call('find-it-faster.findFiles')<CR>" },
       { "<leader>i", "<cmd>lua require('vscode').call('composer.startComposerPrompt')<CR>" },

@@ -36,9 +36,9 @@
 
   "find-it-faster.advanced.disableStartupChecks": false,
   "find-it-faster.advanced.useEditorSelectionAsQuery": false,
-  "find-it-faster.findFiles.previewWindowConfig": "top,50%",
   "find-it-faster.general.batTheme": "gruvbox-dark",
   "find-it-faster.general.showMaximizedTerminal": true,
+  "find-it-faster.findFiles.previewWindowConfig": "top,50%",
 
   "git.terminalGitEditor": true,
   "gitlens.codeLens.enabled": false,
@@ -79,9 +79,11 @@
 
   "window.title": "${activeEditorShort}",
   "window.titleSeparator": " .. ",
+  "window.newWindowProfile": "Default",
 
   "workbench.activityBar.orientation": "vertical",
   "workbench.colorCustomizations": {},
+  "workbench.colorTheme": "One Dark Pro Night Flat",
   "workbench.editor.autoLockGroups": { "terminalEditor": false },
   "workbench.editor.editorActionsLocation": "hidden",
   "workbench.editor.enablePreview": false,
