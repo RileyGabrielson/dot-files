@@ -1,0 +1,21 @@
+#!/bin/bash
+
+pkglist=(
+biomejs.biome
+kaiwood.center-editor-window
+streetsidesoftware.code-spell-checker
+RileyGabrielson.cursor-alternate-file
+TomRijndorp.find-it-faster
+eamodio.gitlens
+golang.go
+geequlim.godot-tools
+shd101wyy.markdown-preview-enhanced
+ryuta46.multi-command
+zhuangtongfa.material-theme
+asvetliakov.vscode-neovim
+zxh404.vscode-proto3
+)
+
+for i in ${pkglist[@]}; do
+  cursor --install-extension $i
+done

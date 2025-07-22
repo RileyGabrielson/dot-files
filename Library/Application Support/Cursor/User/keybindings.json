@@ -1,0 +1,89 @@
+[
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },
+    {
+        "key": "cmd+p",
+        "command": "find-it-faster.findFiles"
+    },
+    {
+        "key": "ctrl+space",
+        "command": "acceptSelectedSuggestion"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "runCommands",
+        "when": "editorTextFocus && neovim.mode != insert",
+        "args": {
+            "commands": [
+                {
+                   "command": "cursorMove",
+                    "args": {
+                        "to": "down",
+                        "by": "line",
+                        "value": 22
+                    }, 
+                },
+                {"command": "center-editor-window.center"},
+            ]
+        }
+    },
+    {
+        "key": "ctrl+u",
+        "command": "runCommands",
+        "when": "editorTextFocus && neovim.mode != insert",
+        "args": {
+            "commands": [
+                {
+                   "command": "cursorMove",
+                    "args": {
+                        "to": "up",
+                        "by": "line",
+                        "value": 22
+                    }, 
+                },
+                {"command": "center-editor-window.center"},
+            ]
+        }
+    },
+    {
+        "key": "enter",
+        "command": "runCommands",
+        "when": "listFocus && !inputFocus && !notebookCellListFocused && !explorerResourceIsFolder",
+        "args": {
+            "commands": [
+                { "command": "list.select" },
+                { "command": "workbench.action.closeSidebar" },
+            ]
+        }
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+s",
+        "args": "<C-S>",
+    },
+    {
+        "command": "vscode-neovim.send",
+        "key": "ctrl+6",
+        "args": "<C-6>",
+    },
+    {
+        "command": "workbench.action.tasks.runTask",
+        "key": "ctrl+g",
+        "args": "LazyGit",
+    },
+    {
+        "command": "workbench.action.focusActiveEditorGroup",
+        "key": "ctrl+enter",
+    },
+    {
+        "command": "workbench.action.focusActiveEditorGroup",
+        "key": "cmd+enter",
+    },
+    {
+        "key": "ctrl+6",
+        "command": "-workbench.action.openEditorAtIndex6"
+    }
+]
+

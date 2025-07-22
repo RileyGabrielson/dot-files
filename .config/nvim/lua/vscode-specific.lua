@@ -21,7 +21,7 @@ if vim.g.vscode then
       { "<leader>p", "<cmd>lua require('vscode').call('find-it-faster.findFiles')<CR>" },
       { "<leader>i", "<cmd>lua require('vscode').call('composer.startComposerPrompt')<CR>" },
       { "<leader>tr", "<cmd>lua require('vscode').call('find-it-faster.resumeSearch')<CR>" },
-      { "<leader><Enter>", "", desc = "Alternate File Does Not Work", nowait = false, remap = false },
+      { "<leader><Enter>", "<cmd>lua require('vscode').call('cursor-alternate-file.switchToAlternate')<CR>" },
       { "<leader>gb", "<cmd>lua require('vscode').call('gitlens.toggleLineBlame')<CR>" },
       {
         "<leader>wo",

@@ -341,7 +341,6 @@ which_key.add({
 			remap = false,
 		},
 		{ "<leader>y", '"+y', desc = "Yank to Clipboard", nowait = false, remap = false },
-		{ "<leader>z", desc = "Zen Mode", nowait = false, remap = false },
 
 		{ "H", "^", desc = "Beginning of line", { noremap = true, silent = true } },
 		{ "L", "$", desc = "End of line", { noremap = true, silent = true } },
