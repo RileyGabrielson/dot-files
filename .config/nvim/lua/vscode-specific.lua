@@ -35,7 +35,9 @@ if vim.g.vscode then
       { "<leader>x", "<cmd>lua require('vscode').call('workbench.panel.markers.view.focus')<CR>" },
       { "<leader>ut", "<cmd>lua require('vscode').call('workbench.action.tasks.runTask', { args = { 'Yarn Test' }})<CR>" },
       { "<leader>ud", "<cmd>lua require('vscode').call('testing.debugAtCursor')<CR>" },
-      { "<leader>vo", "<cmd>lua require('vscode').call('workbench.view.scm')<CR>" },
+
+      -- Requires Custom Install: https://github.com/RileyGabrielson/vscode-finditfaster
+      { "<leader>vo", "<cmd>lua require('vscode').call('find-it-faster.findChangedFiles')<CR>" },
       { "<leader>vm", "<cmd>lua require('vscode').call('gitlens.compareHeadWith')<CR>" },
       { "<leader>wh", "<cmd>lua require('vscode').call('workbench.action.navigateLeft')<CR>" },
       { "<leader>wl", "<cmd>lua require('vscode').call('workbench.action.navigateRight')<CR>" },

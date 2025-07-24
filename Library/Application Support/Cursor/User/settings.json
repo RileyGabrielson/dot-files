@@ -18,6 +18,7 @@
   "cursor.cpp.enablePartialAccepts": true,
 
   "editor.codeActionsOnSave": { "source.organizeImports.biome": "explicit" },
+  "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 5,
   "editor.fontSize": 13,
   "editor.formatOnSave": true,
@@ -25,6 +26,7 @@
   "editor.lineNumbers": "relative",
   "editor.overviewRulerBorder": false,
   "editor.peekWidgetDefaultFocus": "tree",
+  "editor.renderLineHighlight": "gutter",
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
   "editor.stickyScroll.enabled": false,
@@ -36,7 +38,7 @@
 
   "find-it-faster.advanced.disableStartupChecks": false,
   "find-it-faster.advanced.useEditorSelectionAsQuery": false,
-  "find-it-faster.general.batTheme": "gruvbox-dark",
+  "find-it-faster.general.batTheme": "TwoDark",
   "find-it-faster.general.showMaximizedTerminal": true,
   "find-it-faster.findFiles.previewWindowConfig": "top,50%",
 
@@ -61,8 +63,8 @@
 
   "javascript.preferences.importModuleSpecifier": "non-relative",
 
-  "oneDarkPro.bold": false,
-  "oneDarkPro.vivid": false,
+  "oneDarkPro.bold": true,
+  "oneDarkPro.vivid": true,
 
   "terminal.explorerKind": "integrated",
   "terminal.integrated.confirmOnKill": "never",
@@ -76,13 +78,18 @@
   "terminal.integrated.tabs.hideCondition": "singleTerminal",
   "terminal.integrated.tabs.showActions": "never",
   "terminal.integrated.tabs.showActiveTerminal": "never",
+  "terminal.integrated.defaultProfile.osx": "zsh",
 
-  "window.title": "${activeEditorShort}",
+  "window.title": "${activeEditorMedium}",
   "window.titleSeparator": " .. ",
   "window.newWindowProfile": "Default",
 
   "workbench.activityBar.orientation": "vertical",
-  "workbench.colorCustomizations": {},
+  "workbench.colorCustomizations": {
+    "editor.lineHighlightBackground": "#FFFFFF10",
+    "editor.lineHighlightBorder": "#00000000",
+    "editorCursor.foreground": "#FFFFFF90"
+  },
   "workbench.colorTheme": "One Dark Pro Night Flat",
   "workbench.editor.autoLockGroups": { "terminalEditor": false },
   "workbench.editor.editorActionsLocation": "hidden",
@@ -97,11 +104,18 @@
   "workbench.panel.showLabels": false,
   "workbench.startupEditor": "terminal",
   "workbench.tree.enableStickyScroll": false,
-
+  
   "zenMode.centerLayout": false,
   "zenMode.fullScreen": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.restore": false,
   "zenMode.showTabs": "none",
   "zenMode.silentNotifications": false,
+  "zenMode.hideStatusBar": true,
+  "animations.CursorAnimation": true,
+  "apc.imports": [
+    "file:///Users/riley.gabrielson/.cursor/extensions/brandonkirbyson.vscode-animations-2.0.1-universal/dist/updateHandler.js"
+  ],
+  "find-it-faster.findChangedFiles.previewWindowConfig": "top,50%",
+  "find-it-faster.findChangedFiles.previewCommand": "git diff --color=always {} | delta --syntax-theme gruvbox-dark",
 }

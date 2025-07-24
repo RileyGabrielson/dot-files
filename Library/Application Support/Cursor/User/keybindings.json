@@ -84,6 +84,10 @@
     {
         "key": "ctrl+6",
         "command": "-workbench.action.openEditorAtIndex6"
+    },
+    {
+        "key": "cmd+e",
+        "command": "composerMode.background"
     }
 ]
 

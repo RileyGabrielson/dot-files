@@ -63,7 +63,7 @@ zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
 [ -f ~/.fzf.zsh ] && source "$HOME/.fzf.zsh"
 
-export FZF_DEFAULT_OPTS="--bind ctrl-n:down,ctrl-p:up"
+export FZF_DEFAULT_OPTS="--bind ctrl-n:down,ctrl-p:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up"
 
 # bun
 [ -s "/Users/riley.gabrielson/.bun/_bun" ] && source "/Users/riley.gabrielson/.bun/_bun"
