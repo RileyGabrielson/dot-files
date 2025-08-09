@@ -9,6 +9,7 @@ zstyle ':omz:update' mode reminder
 
 source "$ZSH"/oh-my-zsh.sh
 source "$HOME/.tcnrc"
+source "$HOME/.api.zsh"
 
 clean-merged() {
   git branch --merged | grep -E -v "(^\*|master|release)" | xargs git branch -D
@@ -83,3 +84,4 @@ if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="$HOME/.local/bin:$PATH"

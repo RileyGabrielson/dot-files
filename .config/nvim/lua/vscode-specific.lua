@@ -9,7 +9,7 @@ if vim.g.vscode then
     {
       mode = { "n" },
       { "<C-s>", "<cmd>lua require('commands.vscode_repositories')()<CR>" },
-      { "<leader>s", "<cmd>lua require('commands.repositories')()<CR>" },
+      { "<leader>s", "<cmd>lua require('commands.vscode_repositories')()<CR>" },
 
       { "<leader>l.", "<cmd>lua require('vscode').call('editor.action.codeAction')<CR>" },
       { "<leader>lh", "<cmd>lua require('vscode').call('editor.action.showHover')<CR>" },
@@ -32,7 +32,8 @@ if vim.g.vscode then
         "<cmd>lua require('vscode').call('workbench.action.closePanel'); require('vscode').call('workbench.action.closeSidebar'); require('vscode').call('composer.closeComposerTab');<CR>",
       },
       { "<leader>ef", "<cmd>lua require('vscode').call('workbench.files.action.showActiveFileInExplorer')<CR>" },
-      { "<leader>x", "<cmd>lua require('vscode').call('workbench.panel.markers.view.focus')<CR>" },
+      { "<leader>x", "<cmd>lua require('vscode').call('editor.action.marker.next')<CR>" },
+      { "<leader>X", "<cmd>lua require('vscode').call('editor.action.marker.prev')<CR>" },
       { "<leader>ut", "<cmd>lua require('vscode').call('workbench.action.tasks.runTask', { args = { 'Yarn Test' }})<CR>" },
       { "<leader>ud", "<cmd>lua require('vscode').call('testing.debugAtCursor')<CR>" },
 
