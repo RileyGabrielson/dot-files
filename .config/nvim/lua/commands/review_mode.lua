@@ -1,15 +1,18 @@
 local M = {}
 
+-- ISSUES
+--   delete something with spaces, algorithm gets confused on where those should be
+
 local state = {
 	active = false,
-	baseline_content = {}, -- Store original file content when review mode starts
+	baseline_content = {},
 	virtual_text_ns = vim.api.nvim_create_namespace("review_mode"),
 	file_states = {},
 }
 
 local function split(value, delimiter)
-	local result = {}
 	local from = 1
+	local result = {}
 	local delim_from, delim_to = string.find(value, delimiter, from)
 	while delim_from do
 		table.insert(result, string.sub(value, from, delim_from - 1))
@@ -31,15 +34,8 @@ local function capture_initial_baseline_content()
 	end
 
 	for _, file_name in ipairs(changed_files) do
-		local lines = {}
 		local content = vim.fn.system("cat " .. file_name)
-
-		-- for line in content:gmatch("[^\r\n]+") do
-		-- 	table.insert(lines, line)
-		-- end
-		for line in content:gmatch("[^\r\n]+") do
-			table.insert(lines, line)
-		end
+		local lines = split(content, "\n")
 
 		baseline[file_name] = lines
 	end
@@ -165,22 +161,26 @@ local function display_virtual_text_for_buffer(bufnr)
 	end
 
 	for _, hunk in ipairs(hunks) do
-		-- Display old lines (removed) as virtual text with DiffDelete styling
-
 		local old_virt_lines = {}
 
 		for _, old_line in ipairs(hunk.old_lines) do
-			table.insert(old_virt_lines, { { old_line.content, "DiffDelete" } })
+			if old_line.content == "" then
+				table.insert(old_virt_lines, { { "-", "DiffDelete" } })
+			else
+				table.insert(old_virt_lines, { { old_line.content, "DiffDelete" } })
+			end
 		end
 
-		vim.api.nvim_buf_set_extmark(bufnr, state.virtual_text_ns, hunk.new_start, 0, {
-			virt_lines = old_virt_lines,
-			virt_lines_above = true,
-		})
+		if hunk.new_start < #current_lines then
+			vim.api.nvim_buf_set_extmark(bufnr, state.virtual_text_ns, hunk.new_start - 1, 0, {
+				virt_lines = old_virt_lines,
+				virt_lines_above = true,
+			})
+		end
 
 		-- Highlight new lines (added) in the buffer with DiffAdd background
-		for new_idx, new_line in ipairs(hunk.new_lines) do
-			local target_line = hunk.new_start + new_idx - 1
+		for new_idx, _ in ipairs(hunk.new_lines) do
+			local target_line = hunk.new_start + new_idx - 2
 			if target_line >= 0 and target_line < vim.api.nvim_buf_line_count(bufnr) then
 				vim.api.nvim_buf_set_extmark(bufnr, state.virtual_text_ns, target_line, 0, {
 					end_row = target_line + 1,
@@ -201,9 +201,12 @@ end
 
 local function accept_changes()
 	local bufnr = vim.api.nvim_get_current_buf()
+	local filepath = vim.api.nvim_buf_get_name(bufnr)
+	local relative_path = vim.fn.fnamemodify(filepath, ":.")
 	if state.file_states[bufnr] then
 		vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_ns, 0, -1)
 		state.file_states[bufnr] = nil
+		state.baseline_content[relative_path] = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 	else
 		return
 	end
@@ -234,23 +237,20 @@ function M.start_review_mode()
 	vim.api.nvim_create_autocmd({ "BufEnter", "BufRead", "TextChanged", "TextChangedI" }, {
 		callback = function(args)
 			if state.active then
-				-- If this is a new buffer, capture its baseline
 				local filepath = vim.api.nvim_buf_get_name(args.buf)
 				local relative_path = vim.fn.fnamemodify(filepath, ":.")
+				local is_git_file = vim.fn.system("git ls-files " .. vim.fn.shellescape(relative_path)):gsub("%s+", "")
+					~= ""
 
-				if not state.baseline_content[relative_path] and filepath ~= "" then
-					if vim.fn.system("git ls-files " .. vim.fn.shellescape(relative_path)):gsub("%s+", "") ~= "" then
-						local raw_content = vim.fn.system("git show HEAD:" .. relative_path .. " | cat")
-						local raw_content_lines = {}
-						for line in raw_content:gmatch("[^\r\n]+") do
-							table.insert(raw_content_lines, line)
-						end
-
-						state.baseline_content[relative_path] = raw_content_lines
-					end
+				if not state.baseline_content[relative_path] and filepath ~= "" and is_git_file then
+					local raw_content = vim.fn.system("git show HEAD:" .. relative_path .. " | cat")
+					local raw_content_lines = split(raw_content, "\n")
+					state.baseline_content[relative_path] = raw_content_lines
 				end
 
-				display_virtual_text_for_buffer(args.buf)
+				if is_git_file then
+					display_virtual_text_for_buffer(args.buf)
+				end
 			end
 		end,
 		group = vim.api.nvim_create_augroup("ReviewMode", { clear = true }),
