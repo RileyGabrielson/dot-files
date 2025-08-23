@@ -80,6 +80,12 @@ vim.lsp.config.bash = {
 	filetypes = { "sh", "bash", "zsh" },
 }
 
+-- TYPST
+vim.lsp.config.typst = {
+	cmd = { stdpath .. "tinymist" },
+	filetypes = { "typst" },
+}
+
 -- ESLINT
 -- vim.lsp.config.eslint = {
 -- 	cmd = { stdpath .. "vscode-eslint-language-server", "--stdio" },
@@ -93,4 +99,4 @@ vim.lsp.config.bash = {
 -- 	},
 -- }
 
-vim.lsp.enable({ "biome", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash" })
+vim.lsp.enable({ "biome", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash", "typst" })

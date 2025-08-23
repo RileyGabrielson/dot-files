@@ -45,7 +45,7 @@ which_key.add({
 		{ "<leader>S", "<cmd>lua require'commands.templates'()<CR>", desc = "Snippets", nowait = false, remap = false },
 		{ "<leader>b", group = "Buffers", nowait = false, remap = false },
 		{ "<leader>bl", "<cmd>ls<CR>", desc = "List buffers", nowait = false, remap = false },
-		{ "<leader>bx", "<cmd>%bd|e#|bd#<CR>", desc = "Close all other buffers", nowait = false, remap = false },
+		{ "<leader>bx", "<cmd>%bd|e!#|bd#<CR>", desc = "Close all other buffers", nowait = false, remap = false },
 		{ "<leader>c", group = "Quick Fix", nowait = false, remap = false },
 		{ "<leader>cc", "<cmd>cclose<CR>", desc = "Close Quickfix", nowait = false, remap = false },
 		{ "<leader>cd", ":cdo ", desc = "Do", nowait = false, remap = false },
@@ -246,7 +246,28 @@ which_key.add({
 			nowait = false,
 			remap = false,
 		},
-		{ "<leader>s", desc = "Tmux Session", nowait = false, remap = false },
+		{ "<leader>s", desc = "Typst", nowait = false, remap = false },
+		{
+			"<leader>sc",
+			"<cmd>TypstPreviewStop<cr>",
+			desc = "Stop Typst Preview",
+			nowait = false,
+			remap = false,
+		},
+		{
+			"<leader>ss",
+			"<cmd>TypstPreview<cr>",
+			desc = "Start Typst Preview",
+			nowait = false,
+			remap = false,
+		},
+		{
+			"<leader>sp",
+			"<cmd>lua require('commands.typst_slides')()<CR>",
+			desc = "Present Slides",
+			nowait = false,
+			remap = false,
+		},
 		{ "<leader>t", group = "Fzf Lua", nowait = false, remap = false },
 		{
 			"<leader>tc",
@@ -354,6 +375,30 @@ which_key.add({
 		{ "<C-d>", "<C-d>zz", desc = "Center on down", { silent = true } },
 	},
 })
+
+-- local preview = require("typst-preview")
+
+-- -- Setup
+-- preview.setup(opts)
+
+-- -- Start/stop preview
+-- preview.start()
+-- preview.stop()
+
+-- -- Page navigation
+-- preview.goto_page(5) -- go to page 5
+
+-- preview.next_page()
+-- preview.next_page(5) -- go 5 pages forward
+
+-- preview.prev_page()
+-- preview.prev_page(5) -- go 5 pages backward
+
+-- preview.first_page()
+-- preview.last_page()
+
+-- -- Refresh preview
+-- preview.refresh() -- in case the image shifts or the page number is wrong
 
 which_key.add({
 	{

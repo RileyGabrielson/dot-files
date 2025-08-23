@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 local plugins = {
 	{
 		"ellisonleao/gruvbox.nvim",
@@ -192,21 +193,21 @@ local plugins = {
 				menu = {
 					draw = {
 						columns = {
-							{ "label", "label_description", gap = 1 },
+							{ "label", gap = 1 },
 							{ "kind_icon", "kind", "source_name", gap = 1 },
 						},
 						components = {
-							label_description = {
-								width = { max = 60 },
-								text = function(ctx)
-									if ctx.item.detail then
-										return ctx.item.detail
-									end
+							-- label_description = {
+							-- 	width = { max = 60 },
+							-- 	text = function(ctx)
+							-- 		if ctx.item.detail then
+							-- 			return ctx.item.detail
+							-- 		end
 
-									return ""
-								end,
-								highlight = "BlinkCmpLabelDescription",
-							},
+							-- 		return ""
+							-- 	end,
+							-- 	highlight = "BlinkCmpLabelDescription",
+							-- },
 						},
 					},
 				},
@@ -272,6 +273,41 @@ local plugins = {
 			require("config.alpha")
 		end,
 		cond = not vim.g.vscode,
+	},
+
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {},
+	},
+
+	{
+		"chomosuke/typst-preview.nvim",
+		lazy = false,
+		opts = {
+			invert_colors = "true",
+			dependencies_bin = {
+				["tinymist"] = "tinymist",
+			},
+		},
+	},
+
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && yarn install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	},
+
+	{
+		"andrewferrier/wrapping.nvim",
+		config = function()
+			require("wrapping").setup({
+				softener = { markdown = true, typst = true },
+			})
+		end,
 	},
 
 	-- {

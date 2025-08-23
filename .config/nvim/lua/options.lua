@@ -33,3 +33,7 @@ vim.g.gitblame_date_format = "%r"
 vim.g.gitblame_enabled = 0
 vim.g.dap_virtual_text = true
 vim.g.godot_executable = "~/Desktop/Godot.app/Contents/MacOS/Godot"
+
+vim.g.mkdp_auto_close = 0
+vim.g.mkdp_auto_start = 0
+vim.g.mkdp_combine_preview = 1

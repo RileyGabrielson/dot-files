@@ -27,6 +27,7 @@ require("conform").setup({
 		typescript = typescript_format,
 		typescriptreact = typescript_format,
 		go = { "gofumpt" },
+		typst = { "prettypst" },
 	},
 	formatters = {
 		prettier = {
@@ -40,6 +41,10 @@ require("conform").setup({
 		},
 		gofumpt = {
 			command = stdpath .. "gofumpt",
+		},
+		prettypst = {
+			command = stdpath .. "prettypst",
+			args = { "--use-std-in", "--use-std-out" },
 		},
 	},
 })
