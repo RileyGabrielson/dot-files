@@ -20,3 +20,10 @@ vim.cmd("hi Normal ctermbg=NONE guibg=NONE")
 
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
+
+vim.cmd("hi RenderMarkdownH1Bg guifg=#D79921 guibg=#2E2E2E")
+vim.cmd("hi RenderMarkdownH2Bg guifg=#D79921 guibg=#2E2E2E")
+vim.cmd("hi RenderMarkdownH3Bg guifg=#D79921 guibg=#2E2E2E")
+vim.cmd("hi RenderMarkdownH4Bg guifg=#D79921 guibg=#2E2E2E")
+vim.cmd("hi RenderMarkdownH5Bg guifg=#D79921 guibg=#2E2E2E")
+vim.cmd("hi RenderMarkdownH6Bg guifg=#D79921 guibg=#2E2E2E")

@@ -231,7 +231,21 @@ which_key.add({
 			remap = false,
 		},
 		{ "<leader>mh", ":noh<CR>", desc = "Hide Search", nowait = false, remap = false },
+		{
+			"<leader>ml",
+			"<cmd>lua require'commands.yank_link'.yank_link()<CR>",
+			desc = "Yank Link",
+			nowait = false,
+			remap = false,
+		},
 		{ "<leader>mr", ":%s/\\<<C-r><C-w>\\>/", desc = "Replace", nowait = false, remap = false },
+		{
+			"<leader>mt",
+			"<cmd>lua require'commands.daily_note'()<CR>",
+			desc = "Daily Note",
+			nowait = false,
+			remap = false,
+		},
 		{
 			"<leader>mv",
 			"<cmd>lua require'commands.get_verse'()<CR>",
@@ -373,40 +387,31 @@ which_key.add({
 		{ "L", "$", desc = "End of line", { noremap = true, silent = true } },
 		{ "<C-u>", "<C-u>zz", desc = "Center on up", { silent = true } },
 		{ "<C-d>", "<C-d>zz", desc = "Center on down", { silent = true } },
+		{ "<C-t>", "<cmd>lua require'commands.todo'()<CR>", desc = "Center on down", { silent = true } },
 	},
 })
-
--- local preview = require("typst-preview")
-
--- -- Setup
--- preview.setup(opts)
-
--- -- Start/stop preview
--- preview.start()
--- preview.stop()
-
--- -- Page navigation
--- preview.goto_page(5) -- go to page 5
-
--- preview.next_page()
--- preview.next_page(5) -- go 5 pages forward
-
--- preview.prev_page()
--- preview.prev_page(5) -- go 5 pages backward
-
--- preview.first_page()
--- preview.last_page()
-
--- -- Refresh preview
--- preview.refresh() -- in case the image shifts or the page number is wrong
 
 which_key.add({
 	{
 		mode = { "v" },
 		{ "<", "<gv", { noremap = true, silent = true } },
 		{ ">", ">gv", { noremap = true, silent = true } },
-		{ "<leader>m", group = "Manipulate", nowait = true, remap = false },
+		{ "<leader>m", group = "Misc", nowait = true, remap = false },
 		{ "<leader>mc", ":CommentToggle<CR>", desc = "Comment", nowait = true, remap = false },
+		{
+			"<leader>ml",
+			"<cmd>lua require'commands.yank_link'.yank_link()<CR>",
+			desc = "Yank Link",
+			nowait = true,
+			remap = false,
+		},
 		{ "<leader>y", '"+y', desc = "Yank to Clipboard", nowait = false, remap = false },
+	},
+})
+
+which_key.add({
+	{
+		mode = { "i" },
+		{ "<C-t>", "<cmd>lua require'commands.todo'()<CR>" },
 	},
 })

@@ -36,12 +36,11 @@ require("lualine").setup({
 			"diagnostics",
 		},
 		lualine_x = {
-			{
-				"filename",
-				path = 1,
-			},
+			{ "location" },
 		},
-		lualine_y = {},
+		lualine_y = {
+			{ "filename", path = 1 },
+		},
 		lualine_z = {},
 	},
 	inactive_sections = {},

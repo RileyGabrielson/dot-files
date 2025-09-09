@@ -2,11 +2,13 @@ local M = {}
 
 -- ISSUES
 --   delete something with spaces, algorithm gets confused on where those should be
+--   list of files that have changed
+--   accept by block
 
 local state = {
 	active = false,
 	baseline_content = {},
-	virtual_text_ns = vim.api.nvim_create_namespace("review_mode"),
+	virtual_text_namespace = vim.api.nvim_create_namespace("review_mode"),
 	file_states = {},
 }
 
@@ -43,50 +45,50 @@ local function capture_initial_baseline_content()
 	return baseline
 end
 
+local function myers_diff_algorithm(a, b)
+	local m, n = #a, #b
+	local dp = {}
+
+	for i = 0, m do
+		dp[i] = {}
+		for j = 0, n do
+			if i == 0 or j == 0 then
+				dp[i][j] = 0
+			elseif a[i] == b[j] then
+				dp[i][j] = dp[i - 1][j - 1] + 1
+			else
+				dp[i][j] = math.max(dp[i - 1][j], dp[i][j - 1])
+			end
+		end
+	end
+
+	return dp
+end
+
+local function get_diff_operations(baseline, current)
+	local dp = myers_diff_algorithm(baseline, current)
+	local operations = {}
+	local i, j = #baseline, #current
+
+	while i > 0 or j > 0 do
+		if i > 0 and j > 0 and baseline[i] == current[j] then
+			i = i - 1
+			j = j - 1
+		elseif j > 0 and (i == 0 or dp[i][j - 1] >= dp[i - 1][j]) then
+			table.insert(operations, 1, { type = "add", line = current[j], pos = j })
+			j = j - 1
+		elseif i > 0 then
+			table.insert(operations, 1, { type = "remove", line = baseline[i], pos = i })
+			i = i - 1
+		end
+	end
+
+	return operations
+end
+
 local function get_file_diff(baseline_lines, current_lines)
 	if not baseline_lines then
 		return nil
-	end
-
-	local function myers_diff_algorithm(a, b)
-		local m, n = #a, #b
-		local dp = {}
-
-		for i = 0, m do
-			dp[i] = {}
-			for j = 0, n do
-				if i == 0 or j == 0 then
-					dp[i][j] = 0
-				elseif a[i] == b[j] then
-					dp[i][j] = dp[i - 1][j - 1] + 1
-				else
-					dp[i][j] = math.max(dp[i - 1][j], dp[i][j - 1])
-				end
-			end
-		end
-
-		return dp
-	end
-
-	local function get_diff_operations(baseline, current)
-		local dp = myers_diff_algorithm(baseline, current)
-		local operations = {}
-		local i, j = #baseline, #current
-
-		while i > 0 or j > 0 do
-			if i > 0 and j > 0 and baseline[i] == current[j] then
-				i = i - 1
-				j = j - 1
-			elseif j > 0 and (i == 0 or dp[i][j - 1] >= dp[i - 1][j]) then
-				table.insert(operations, 1, { type = "add", line = current[j], pos = j })
-				j = j - 1
-			elseif i > 0 then
-				table.insert(operations, 1, { type = "remove", line = baseline[i], pos = i })
-				i = i - 1
-			end
-		end
-
-		return operations
 	end
 
 	local operations = get_diff_operations(baseline_lines, current_lines)
@@ -150,7 +152,7 @@ local function display_virtual_text_for_buffer(bufnr)
 		return
 	end
 
-	vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_ns, 0, -1)
+	vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_namespace, 0, -1)
 
 	-- Get current buffer content and compare with baseline
 	local current_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
@@ -172,7 +174,7 @@ local function display_virtual_text_for_buffer(bufnr)
 		end
 
 		if hunk.new_start < #current_lines then
-			vim.api.nvim_buf_set_extmark(bufnr, state.virtual_text_ns, hunk.new_start - 1, 0, {
+			vim.api.nvim_buf_set_extmark(bufnr, state.virtual_text_namespace, hunk.new_start - 1, 0, {
 				virt_lines = old_virt_lines,
 				virt_lines_above = true,
 			})
@@ -182,7 +184,7 @@ local function display_virtual_text_for_buffer(bufnr)
 		for new_idx, _ in ipairs(hunk.new_lines) do
 			local target_line = hunk.new_start + new_idx - 2
 			if target_line >= 0 and target_line < vim.api.nvim_buf_line_count(bufnr) then
-				vim.api.nvim_buf_set_extmark(bufnr, state.virtual_text_ns, target_line, 0, {
+				vim.api.nvim_buf_set_extmark(bufnr, state.virtual_text_namespace, target_line, 0, {
 					end_row = target_line + 1,
 					hl_group = "DiffAdd",
 					hl_eol = true,
@@ -204,7 +206,7 @@ local function accept_changes()
 	local filepath = vim.api.nvim_buf_get_name(bufnr)
 	local relative_path = vim.fn.fnamemodify(filepath, ":.")
 	if state.file_states[bufnr] then
-		vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_ns, 0, -1)
+		vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_namespace, 0, -1)
 		state.file_states[bufnr] = nil
 		state.baseline_content[relative_path] = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 	else
@@ -219,7 +221,7 @@ local function cancel_changes()
 
 	if state.baseline_content[relative_path] then
 		vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, state.baseline_content[relative_path])
-		vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_ns, 0, -1)
+		vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_namespace, 0, -1)
 		state.file_states[bufnr] = nil
 	else
 		return
@@ -273,7 +275,7 @@ function M.stop_review_mode()
 	state.file_states = {}
 
 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-		vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_ns, 0, -1)
+		vim.api.nvim_buf_clear_namespace(bufnr, state.virtual_text_namespace, 0, -1)
 	end
 
 	vim.api.nvim_del_augroup_by_name("ReviewMode")
