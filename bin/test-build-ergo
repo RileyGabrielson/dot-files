@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+selected=$({ find ~/r -maxdepth 1 -type d; } | fzf)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+rm -rf "$selected"/node_modules/@tcn-internal/ergo/dist
+cp -r ./dist "$selected"/node_modules/@tcn-internal/ergo
+
+rm -rf "$selected"/node_modules/@tcn-internal/ergo/src
+cp -r ./src "$selected"/node_modules/@tcn-internal/ergo
+
+rm "$selected"/node_modules/@tcn-internal/ergo/package.json
+cp ./package.json "$selected"/node_modules/@tcn-internal/ergo

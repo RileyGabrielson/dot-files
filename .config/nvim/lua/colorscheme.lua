@@ -27,3 +27,6 @@ vim.cmd("hi RenderMarkdownH3Bg guifg=#D79921 guibg=#2E2E2E")
 vim.cmd("hi RenderMarkdownH4Bg guifg=#D79921 guibg=#2E2E2E")
 vim.cmd("hi RenderMarkdownH5Bg guifg=#D79921 guibg=#2E2E2E")
 vim.cmd("hi RenderMarkdownH6Bg guifg=#D79921 guibg=#2E2E2E")
+
+vim.cmd("hi Search guifg=#D79921 guibg=#2E2E2E")
+vim.cmd("hi CurSearch guifg=#D79921 guibg=#2E2E2E")
