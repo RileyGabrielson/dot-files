@@ -4,9 +4,6 @@ local plugins = {
 		"ellisonleao/gruvbox.nvim",
 	},
 	{
-		"svermeulen/vimpeccable", -- mapping keybinds to lua functions
-	},
-	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	{
@@ -310,9 +307,17 @@ local plugins = {
 		end,
 	},
 	{
-		"ggandor/leap.nvim",
+		"harrisoncramer/gitlab.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+		},
+		build = function()
+			require("gitlab.server").build(true)
+		end, -- Builds the Go binary
 		config = function()
-			require("config.leap")
+			require("gitlab").setup()
 		end,
 	},
 }
