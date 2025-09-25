@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Script to select a milestone from project and list its issues
+# Requires: fzf, glab (GitLab CLI), jq
+
+set -e
+
+# Check if glab is installed
+if ! command -v glab &> /dev/null; then
+    echo "Error: glab (GitLab CLI) is not installed"
+    echo "Install it with: brew install glab"
+    exit 1
+fi
+
+# Check if fzf is installed
+if ! command -v fzf &> /dev/null; then
+    echo "Error: fzf is not installed"
+    echo "Install it with: brew install fzf"
+    exit 1
+fi
+
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+    echo "Error: jq is not installed"
+    echo "Install it with: brew install jq"
+    exit 1
+fi
+
+# Check glab authentication
+if ! glab auth status --hostname "git.tcncloud.net" &> /dev/null; then
+    echo "Error: Not authenticated with glab"
+    echo "Please run: glab auth login --hostname git.tcncloud.net"
+    exit 1
+fi
+echo "✓ Authenticated with glab"
+
+# URL encode the project path for API calls
+PROJECT_PATH_ENCODED=$(echo "$PROJECT_PATH" | sed 's|/|%2F|g')
+
+# Get open milestones and format them for fzf selection
+# Format: "milestone_title | milestone_id | milestone_state"
+milestones_json=$(glab api "projects/$PROJECT_PATH_ENCODED/milestones?state=active" --hostname "git.tcncloud.net")
+
+# Check if we got any milestones
+if [ "$milestones_json" = "[]" ] || [ -z "$milestones_json" ]; then
+    echo "No open milestones found in the $PROJECT_PATH project."
+    exit 0
+fi
+
+# Format milestones for fzf selection (title | iid | state)
+milestones_formatted=$(echo "$milestones_json" | jq -r '.[] | "\(.title)"')
+
+# Use fzf to select a milestone
+echo "Select a milestone:"
+selected_milestone=$(echo "$milestones_formatted" | fzf --prompt="Milestone: " --height=10)
+
+# Check if user cancelled selection
+if [ -z "$selected_milestone" ]; then
+    echo "No milestone selected. Exiting."
+    exit 0
+fi
+
+# Extract milestone iid from selection
+milestone_iid=$(echo "$selected_milestone" | cut -d'|' -f2 | sed 's/^ *//; s/ *$//')
+milestone_title=$(echo "$selected_milestone" | cut -d'|' -f1 | sed 's/^ *//; s/ *$//')
+
+# URL encode the milestone title for the API call
+milestone_title_encoded=$(echo "$milestone_title" | sed 's/ /%20/g; s/:/%3A/g')
+echo ""
+
+# Fetch and display issues for the selected milestone
+glab api "projects/$PROJECT_PATH_ENCODED/issues?milestone=$milestone_title_encoded&state=all" --hostname "git.tcncloud.net" | jq -r '.[] | "- [ ] \(.title)"'
+echo ""
