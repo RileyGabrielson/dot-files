@@ -4,6 +4,15 @@ local plugins = {
 		"ellisonleao/gruvbox.nvim",
 	},
 	{
+		"folke/tokyonight.nvim",
+	},
+	{
+		"rebelot/kanagawa.nvim",
+		config = function()
+			require("kanagawa").setup({})
+		end,
+	},
+	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	{
@@ -32,9 +41,6 @@ local plugins = {
 		end,
 	},
 	{
-		"nvim-lua/plenary.nvim", -- lua function helpers, required for telescope
-	},
-	{
 		"ThePrimeagen/harpoon",
 		config = function()
 			require("config.harpoon")
@@ -59,21 +65,11 @@ local plugins = {
 		cond = not vim.g.vscode,
 	},
 	{
-		"unblevable/quick-scope", -- highlighting f and t jumping
-		cond = not vim.g.vscode,
-	},
-	{
 		"habamax/vim-godot",
 		cond = not vim.g.vscode,
 	},
 	{
 		"kyazdani42/nvim-web-devicons",
-		cond = not vim.g.vscode,
-	},
-
-	{
-		"echasnovski/mini.icons",
-		version = false,
 		cond = not vim.g.vscode,
 	},
 
@@ -117,13 +113,6 @@ local plugins = {
 			require("colorizer").setup()
 		end,
 		cond = not vim.g.vscode,
-	},
-
-	{
-		"ThePrimeagen/harpoon",
-		config = function()
-			require("config.harpoon")
-		end,
 	},
 
 	{
@@ -193,19 +182,7 @@ local plugins = {
 							{ "label", gap = 1 },
 							{ "kind_icon", "kind", "source_name", gap = 1 },
 						},
-						components = {
-							-- label_description = {
-							-- 	width = { max = 60 },
-							-- 	text = function(ctx)
-							-- 		if ctx.item.detail then
-							-- 			return ctx.item.detail
-							-- 		end
-
-							-- 		return ""
-							-- 	end,
-							-- 	highlight = "BlinkCmpLabelDescription",
-							-- },
-						},
+						components = {},
 					},
 				},
 			},
@@ -273,11 +250,6 @@ local plugins = {
 	},
 
 	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		opts = {},
-	},
-
-	{
 		"chomosuke/typst-preview.nvim",
 		lazy = false,
 		opts = {
@@ -286,16 +258,7 @@ local plugins = {
 				["tinymist"] = "tinymist",
 			},
 		},
-	},
-
-	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		build = "cd app && yarn install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		ft = { "markdown" },
+		cond = not vim.g.vscode,
 	},
 
 	{
@@ -305,7 +268,9 @@ local plugins = {
 				softener = { markdown = true, typst = true },
 			})
 		end,
+		cond = not vim.g.vscode,
 	},
+
 	{
 		"harrisoncramer/gitlab.nvim",
 		dependencies = {
