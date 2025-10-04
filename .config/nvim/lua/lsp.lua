@@ -86,17 +86,4 @@ vim.lsp.config.typst = {
 	filetypes = { "typst" },
 }
 
--- ESLINT
--- vim.lsp.config.eslint = {
--- 	cmd = { stdpath .. "vscode-eslint-language-server", "--stdio" },
--- 	root_markers = { ".eslintignore" },
--- 	filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
--- 	settings = {
--- 		nodePath = "",
--- 		experimental = {
--- 			useFlatConfig = false,
--- 		},
--- 	},
--- }
-
 vim.lsp.enable({ "biome", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash", "typst" })

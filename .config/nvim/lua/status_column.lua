@@ -1,43 +1,61 @@
-_G.StatusColumn = {
-	sections = {
-		initial_padding = {
-			[[ ]],
-		},
-		line_number = {
-			[[%=%{v:relnum?v:relnum:v:lnum}]],
-		},
-		spacing = {
-			[[ ]],
-		},
-		border = {
-			[[%#StatusColumnBorder#]], -- Highlight Group
+local status_column = {}
+
+status_column.initial_padding = function()
+	return " "
+end
+
+status_column.line_number = function()
+	local total_lines = vim.api.nvim_buf_line_count(0)
+	local padding_width = string.len(tostring(total_lines))
+
+	if vim.v.relnum == 0 then
+		return table.concat({
+			[[%#CursorLineNumber#]],
+			string.format("%" .. padding_width .. "d", vim.v.lnum),
+		})
+	end
+
+	return table.concat({
+		[[%#DefaultLineNumber#]],
+		string.format("%" .. padding_width .. "d", vim.v.relnum),
+	})
+end
+
+status_column.spacing = function()
+	return " "
+end
+
+status_column.border = function()
+	if vim.v.relnum == 0 then
+		return table.concat({
+			[[%#CursorLineNumber#]],
 			[[▐]],
-		},
-		end_padding = {
-			[[%#WinSeparator#]], -- Highlight Group
-			[[ ]],
-		},
-	},
+		})
+	end
 
-	build = function(tbl)
-		local statuscolumn = {}
+	return table.concat({
+		[[%#StatusColumnBorder#]],
+		[[▐]],
+	})
+end
 
-		for _, value in ipairs(tbl) do
-			if type(value) == "string" then
-				table.insert(statuscolumn, value)
-			elseif type(value) == "table" then
-				table.insert(statuscolumn, StatusColumn.build(value))
-			end
-		end
+status_column.end_padding = function()
+	return " "
+end
 
-		return table.concat(statuscolumn)
-	end,
-}
+status_column.myStatuscolumn = function()
+	local text = ""
+	text = table.concat({
+		status_column.initial_padding(),
+		status_column.line_number(),
+		status_column.spacing(),
+		status_column.border(),
+		status_column.end_padding(),
+	})
 
-vim.opt.statuscolumn = StatusColumn.build({
-	StatusColumn.sections.initial_padding,
-	StatusColumn.sections.line_number,
-	StatusColumn.sections.spacing,
-	StatusColumn.sections.border,
-	StatusColumn.sections.end_padding,
-})
+	return text
+end
+
+vim.o.statuscolumn = "%!v:lua.require('status_column').myStatuscolumn()"
+
+return status_column
