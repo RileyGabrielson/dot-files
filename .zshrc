@@ -30,7 +30,6 @@ pf() {
 }
 
 nvim() {
- # tmux set -g status off && /usr/local/bin/nvim "$1"
  tmux set -g status off && /opt/homebrew/bin/nvim
  tmux set -g status on
 }
@@ -38,6 +37,12 @@ nvim() {
 fzf-history-widget-accept() {
   fzf-history-widget
   zle accept-line
+}
+
+present() {
+  tmux set -g status off
+  presenterm /tmp/test_presenter.md
+  tmux set -g status on
 }
 
 export PATH="/opt/homebrew/opt/node@14/bin:$HOME/.please/:$PATH"
