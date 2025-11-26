@@ -1,0 +1,10 @@
+defaults:
+  # the theme to use by default in every presentation unless overridden.
+  theme: dark
+
+options:
+  # show all lists incrementally, by implicitly adding pauses in between elements.
+  incremental_lists: false
+
+  # whether to treat a thematic break as a slide end.
+  end_slide_shorthand: true

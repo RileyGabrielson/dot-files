@@ -282,6 +282,13 @@ which_key.add({
 			nowait = false,
 			remap = false,
 		},
+		{
+			"<leader>mp",
+			"<cmd>lua require'commands.presenterm'()<CR>",
+			desc = "Present",
+			nowait = false,
+			remap = false,
+		},
 		{ "<leader>mr", ":%s/\\<<C-r><C-w>\\>/", desc = "Replace", nowait = false, remap = false },
 		{ "<leader>ms", use_styles_snippet, desc = "Use Styles Snippet", nowait = false, remap = false },
 		{
@@ -300,9 +307,9 @@ which_key.add({
 			remap = false,
 		},
 		{
-			"<leader>mv",
-			"<cmd>lua require'commands.get_verse'()<CR>",
-			desc = "Get Scripture Verse",
+			"<leader>my",
+			"<cmd>lua require'commands.yarn_check_types'()<CR>",
+			desc = "Yarn Check Types",
 			nowait = false,
 			remap = false,
 		},

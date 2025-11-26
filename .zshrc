@@ -13,7 +13,7 @@ alias s='tmux_sessionizer'
 alias a='tmux -2 attach'
 alias n='nvim'
 alias nvimg="nvim --listen ./godot.pipe"
-alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --color=always --long"
 alias merges-since-tag='git log $(git describe --tags --abbrev=0)..HEAD --oneline'
 alias ad='aider --model gemini --api-key gemini=$(echo $GEMINI_API_KEY) --no-auto-commits --vim'
 
@@ -41,7 +41,7 @@ fzf-history-widget-accept() {
 
 present() {
   tmux set -g status off
-  presenterm /tmp/test_presenter.md
+  presenterm "$@"
   tmux set -g status on
 }
 

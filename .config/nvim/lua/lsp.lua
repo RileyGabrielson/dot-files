@@ -86,4 +86,27 @@ vim.lsp.config.typst = {
 	filetypes = { "typst" },
 }
 
-vim.lsp.enable({ "biome", "gopls", "ts_ls", "lua_ls", "gdscript", "cpat", "rust_analyzer", "bash", "typst" })
+-- GODOT
+
+local port = os.getenv("GDScript_Port") or "6008"
+local cmd = vim.lsp.rpc.connect("127.0.0.1", tonumber(port))
+
+vim.lsp.config.godot = {
+	cmd = cmd,
+	filetypes = { "gd", "gdscript", "gdscript3" },
+	root_markers = { "project.godot", ".git" },
+}
+
+vim.lsp.enable({
+	"gopls",
+	"ts_ls",
+	"biome",
+	"ts_ls",
+	"lua_ls",
+	"gdscript",
+	"cpat",
+	"rust_analyzer",
+	"bash",
+	"typst",
+	"godot",
+})

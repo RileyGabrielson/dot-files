@@ -39,7 +39,7 @@ require("lualine").setup({
 			{ "location" },
 		},
 		lualine_y = {
-			{ "filename", path = 4 },
+			{ "filename", path = 1 },
 		},
 		lualine_z = {},
 	},
