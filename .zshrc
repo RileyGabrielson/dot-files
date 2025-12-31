@@ -1,21 +1,15 @@
 alias k='kubectl'
-alias home='cd ~'
-alias status='git status'
-alias branch='git branch'
-alias push='git push'
 alias http='npx http-server --cors'
 alias vim='nvim'
 alias ':q'='exit'
 alias lg='lazygit'
 alias gl='lazygit'
-alias verse='~/verse'
 alias s='tmux_sessionizer'
 alias a='tmux -2 attach'
 alias n='nvim'
 alias nvimg="nvim --listen ./godot.pipe"
-alias ls="eza --color=always --long"
-alias merges-since-tag='git log $(git describe --tags --abbrev=0)..HEAD --oneline'
-alias ad='aider --model gemini --api-key gemini=$(echo $GEMINI_API_KEY) --no-auto-commits --vim'
+alias ls="eza --color=always"
+alias p='pnpm'
 
 clean-merged() {
   git branch --merged | grep -E -v "(^\*|master|release)" | xargs git branch -D
@@ -30,7 +24,14 @@ pf() {
 }
 
 nvim() {
- tmux set -g status off && /opt/homebrew/bin/nvim
+ local args=("$@")
+
+ # Remove '.' if it's the first argument
+ if [[ "${args[1]}" == "." ]]; then
+   args=("${args[@]:1}")
+ fi
+
+ tmux set -g status off && /opt/homebrew/bin/nvim "${args[@]}"
  tmux set -g status on
 }
 

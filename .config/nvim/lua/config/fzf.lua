@@ -25,6 +25,9 @@ fzf.setup({
 			["ctrl-z"] = actions.sym_lsym,
 		},
 	},
+	grep = {
+		hidden = true,
+	},
 })
 
 fzf.register_ui_select()

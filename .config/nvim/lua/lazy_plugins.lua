@@ -282,21 +282,6 @@ local plugins = {
 	},
 
 	{
-		"harrisoncramer/gitlab.nvim",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-		},
-		build = function()
-			require("gitlab.server").build(true)
-		end, -- Builds the Go binary
-		config = function()
-			require("gitlab").setup()
-		end,
-	},
-
-	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "VeryLazy",
 		priority = 1000,

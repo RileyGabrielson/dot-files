@@ -92,52 +92,7 @@ which_key.add({
 		},
 		{ "<leader>f", "<cmd>lua require'fzf-lua'.live_grep()<CR>", desc = "Find Text", nowait = false, remap = false },
 		{ "<leader>g", group = "Git", nowait = false, remap = false },
-		{
-			"<leader>ga",
-			"<cmd>lua require'gitlab'.approve()<CR>",
-			desc = "Gitlab Approve",
-		},
 		{ "<leader>gb", ":GitBlameToggle<CR>", desc = "Git Blame", nowait = false, remap = false },
-		{
-			"<leader>gc",
-			"<cmd>lua require'gitlab'.create_comment()<CR>",
-			desc = "Gitlab Create Comment",
-		},
-		{
-			"<leader>gg",
-			"<cmd>lua require'commands.gitlab_picker'.gitlab_picker()<CR>",
-			desc = "GitLab Commands Picker",
-		},
-		{
-			"<leader>gn",
-			"<cmd>lua require'gitlab'.create_note()<CR>",
-			desc = "GitLab Create Note",
-		},
-		{
-			"<leader>go",
-			"<cmd>lua require'gitlab'.open_in_browser()<CR>",
-			desc = "Gitlab Open In Browser",
-		},
-		{
-			"<leader>gp",
-			"<cmd>lua require'gitlab'.choose_merge_request()<CR>",
-			desc = "Gitlab Choose Merge Request",
-		},
-		{
-			"<leader>gr",
-			"<cmd>lua require'gitlab'.review()<CR>",
-			desc = "Gitlab Review",
-		},
-		{
-			"<leader>gs",
-			"<cmd>lua require'gitlab'.summary()<CR>",
-			desc = "Gitlab Summary",
-		},
-		{
-			"<leader>gx",
-			"<cmd>lua require'gitlab'.revoke()<CR>",
-			desc = "Gitlab Revoke Approval",
-		},
 		{ "<leader>h", group = "Harpoon", nowait = false, remap = false },
 		{
 			"<leader>h1",
@@ -225,7 +180,13 @@ which_key.add({
 		},
 		{ "<leader>l", group = "LSP", nowait = false, remap = false },
 		{ "<leader>l.", "<cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code Action", nowait = false, remap = false },
-		{ "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", desc = "Definition", nowait = false, remap = false },
+		{
+			"<leader>ld",
+			"<cmd>lua require'commands.definition'()<CR>",
+			desc = "Definition",
+			nowait = false,
+			remap = false,
+		},
 		{ "<leader>lf", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "Format", nowait = false, remap = false },
 		{ "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "Hover", nowait = false, remap = false },
 		{
@@ -251,6 +212,13 @@ which_key.add({
 			remap = false,
 		},
 		{ "<leader>lc", "<cmd>checkhealth vim.lsp<CR>", desc = "Check Health", nowait = false, remap = false },
+		{
+			"<leader>lR",
+			"<cmd>lua require'commands.restart_lsp'()<CR>",
+			desc = "Restart LSP",
+			nowait = false,
+			remap = false,
+		},
 		{ "<leader>m", group = "Misc", nowait = false, remap = false },
 		{
 			"<leader>mb",

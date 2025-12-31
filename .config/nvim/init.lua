@@ -25,5 +25,3 @@ require("lsp")
 require("status_column")
 require("colorscheme")
 require("vscode-specific")
-
-require("commands.review_mode")
