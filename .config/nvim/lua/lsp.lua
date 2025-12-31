@@ -73,7 +73,7 @@ vim.lsp.config.typescript = {
 					return
 				end
 				if not result or vim.tbl_isempty(result) then
-					vim.notify("No source definition found", vim.log.levels.INFO)
+					vim.lsp.buf.definition()
 					return
 				end
 				vim.lsp.util.show_document(result[1], client.offset_encoding, { focus = true })
