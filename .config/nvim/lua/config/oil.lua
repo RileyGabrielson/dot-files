@@ -55,6 +55,17 @@ require("oil").setup({
 			if is_hidden then
 				return "NoiceCmdlinePopupBorder"
 			end
+			-- Also highlight folders that are not tracked by git
+			if entry.type == "directory" then
+				local bufnr = vim.api.nvim_get_current_buf()
+				local dir = require("oil").get_current_dir(bufnr)
+				if dir then
+					local folder_name = entry.name
+					if not git_status[dir].tracked[folder_name] then
+						return "NoiceCmdlinePopupBorder"
+					end
+				end
+			end
 			return nil
 		end,
 		is_hidden_file = function(name, bufnr)
