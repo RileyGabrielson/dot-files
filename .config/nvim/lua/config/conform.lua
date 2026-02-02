@@ -28,8 +28,12 @@ require("conform").setup({
 		typescriptreact = typescript_format,
 		go = { "gofumpt" },
 		typst = { "prettypst" },
+		json = { "fixjson" },
 	},
 	formatters = {
+		fixjson = {
+			command = stdpath .. "fixjson",
+		},
 		prettier = {
 			command = stdpath .. "prettier",
 		},
