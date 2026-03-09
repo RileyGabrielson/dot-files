@@ -86,8 +86,9 @@
         "command": "-workbench.action.openEditorAtIndex6"
     },
     {
-        "key": "cmd+e",
-        "command": "composerMode.background"
+        "key": "alt+cmd+s",
+        "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+        "when": "cursor.agentIdeUnification.enabled == true && !isAuxiliaryWindowFocusedContext"
     }
 ]
 

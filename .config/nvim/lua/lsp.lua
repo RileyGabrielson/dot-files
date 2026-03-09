@@ -40,7 +40,7 @@ vim.lsp.config.typescript = {
 		preferences = {
 			includeCompletionsForModuleExports = true,
 			includeCompletionsForImportStatements = true,
-			importModuleSpecifierPreference = "non-relative",
+			-- importModuleSpecifierPreference = "non-relative",
 		},
 	},
 	on_attach = function(client, bufnr)

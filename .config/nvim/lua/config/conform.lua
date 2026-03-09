@@ -34,9 +34,6 @@ require("conform").setup({
 		fixjson = {
 			command = stdpath .. "fixjson",
 		},
-		prettier = {
-			command = stdpath .. "prettier",
-		},
 		stylua = {
 			command = stdpath .. "stylua",
 		},

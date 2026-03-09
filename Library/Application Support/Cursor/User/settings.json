@@ -117,4 +117,5 @@
   "zenMode.showTabs": "none",
   "zenMode.silentNotifications": false,
   "zenMode.hideStatusBar": true,
+  "workbench.statusBar.visible": false,
 }

@@ -61,7 +61,19 @@ require("oil").setup({
 				local dir = require("oil").get_current_dir(bufnr)
 				if dir then
 					local folder_name = entry.name
-					if not git_status[dir].tracked[folder_name] then
+					local tracked = git_status[dir].tracked
+					-- Check if directory itself is tracked (unlikely) or if any files within it are tracked
+					local has_tracked_files = tracked[folder_name]
+					if not has_tracked_files then
+						-- Check if any tracked file path starts with folder_name/
+						for tracked_path, _ in pairs(tracked) do
+							if vim.startswith(tracked_path, folder_name .. "/") then
+								has_tracked_files = true
+								break
+							end
+						end
+					end
+					if not has_tracked_files then
 						return "NoiceCmdlinePopupBorder"
 					end
 				end

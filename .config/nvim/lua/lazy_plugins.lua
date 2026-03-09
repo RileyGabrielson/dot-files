@@ -308,7 +308,22 @@ local plugins = {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you use the mini.nvim suite
-		opts = {},
+
+		config = function()
+			require("render-markdown").setup({
+				code = {
+					width = "block",
+					style = "normal",
+					border = "thick",
+					right_pad = 4,
+				},
+			})
+		end,
+	},
+
+	{
+		"nemanjamalesija/smart-paste.nvim",
+		config = true,
 	},
 }
 

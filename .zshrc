@@ -12,11 +12,11 @@ alias ls="eza --color=always"
 alias p='pnpm'
 
 clean-merged() {
-  git branch --merged | grep -E -v "(^\*|master|release)" | xargs git branch -D
+  git branch --merged | grep -E -v "(^\*|master)" | xargs git branch -D
 }
 
 clean-all-for-real() {
-  git branch | grep -E -v "(^\*|master|release)" | xargs git branch -D
+  git branch | grep -E -v "(^\*|master)" | xargs git branch -D
 }
 
 pf() {
