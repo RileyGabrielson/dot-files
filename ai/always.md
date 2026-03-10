@@ -22,3 +22,13 @@ Whenever possible, run the type checker after making a change to ensure that the
 - Use descriptive function and variable names that clearly express their purpose
 - Comments should only be used when you need to explain **why** you are doing something, not **what** you are doing
 - If code needs a comment to explain what it does, consider refactoring to make the code itself clearer
+
+### Nesting
+
+**Avoid excessive nesting and nested ternaries. Extract complex logic into well-named sub functions.**
+
+- Deeply nested code (3+ levels) should be refactored into separate functions
+- Nested ternary operators should be extracted into helper functions or if/else statements
+- Each function should have a single, clear responsibility
+- Prefer early returns and guard clauses to reduce nesting depth
+- Complex conditional logic should be broken down into smaller, testable functions
