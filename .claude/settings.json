@@ -1,0 +1,60 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:storage.googleapis.com)",
+      "Read",
+      "Glob",
+      "Grep",
+      "Search",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(sort:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(wc:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
+      "Bash(jq:*)",
+      "Bash(largest-files:*)",
+      "Bash(git remote get-url *)",
+      "Bash(git checkout *)",
+      "Bash(git commit *)",
+      "Bash(glab issue *)",
+      "Bash(create-issue *)",
+      "Bash(create-mr:*)",
+      "Bash(glab auth *)",
+      "Bash(glab api:*)",
+      "Bash(glab iteration *)",
+      "Bash(glab mr create *)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)"
+    ],
+    "deny": [
+      "Bash(git push * --force)",
+      "Bash(git push * main)",
+      "Bash(git push * master)",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/riley.gabrielson/.claude/hooks/rtk-rewrite.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": false,
+    "gitlab@claude-plugins-official": false
+  }
+}

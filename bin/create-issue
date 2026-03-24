@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Usage: create-issue <description-file> [milestone]
+#
+# Creates a GitLab issue from a description file.
+# The first line of the file is used as the issue title.
+# Remaining lines are used as the issue description body.
+#
+# Intended for use by AI agents: the agent writes the description to a temp
+# file and passes its path as the argument.
+#
+# Requires: glab
+
+set -e
+
+DESCRIPTION_FILE="${1:-}"
+MILESTONE="${2:-}"
+
+if [ -z "$DESCRIPTION_FILE" ]; then
+    echo "Usage: create-issue <description-file> [milestone]"
+    exit 1
+fi
+
+if [ ! -f "$DESCRIPTION_FILE" ]; then
+    echo "Error: file not found: $DESCRIPTION_FILE"
+    exit 1
+fi
+
+if ! command -v glab &> /dev/null; then
+    echo "Error: glab is not installed"
+    echo "Install it with: brew install glab"
+    exit 1
+fi
+
+if ! glab auth status --hostname "git.tcncloud.net" &> /dev/null; then
+    echo "Error: Not authenticated with glab"
+    echo "Please run: glab auth login --hostname git.tcncloud.net"
+    exit 1
+fi
+
+TITLE=$(head -n 1 "$DESCRIPTION_FILE")
+BODY=$(tail -n +2 "$DESCRIPTION_FILE" | sed '/./,$!d')  # strip leading blank lines
+echo "$BODY"
+
+if [ -z "$TITLE" ]; then
+    echo "Error: description file is empty or has no title on line 1"
+    exit 1
+fi
+
+CURRENT_USER=$(glab api user --hostname "git.tcncloud.net" | python3 -c "import sys,json; print(json.load(sys.stdin)['username'])")
+
+ARGS=(glab issue create --title "$TITLE" --description "$BODY" --assignee @me)
+if [ -n "$MILESTONE" ]; then
+    ARGS+=(--milestone "$MILESTONE")
+fi
+
+echo "Creating issue: $TITLE"
+
+"${ARGS[@]}"
+
+echo "Done."

@@ -10,7 +10,7 @@ alias n='nvim'
 alias nvimg="nvim --listen ./godot.pipe"
 alias ls="eza --color=always"
 alias p='pnpm'
-alias agent='cursor-agent "Read the intro file"'
+alias agent='claude'
 
 clean-merged() {
   git branch --merged | grep -E -v "(^\*|master)" | xargs git branch -D

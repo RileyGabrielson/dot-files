@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Usage: largest-files [dir] [n]
+# Lists .ts/.tsx files over 300 lines, sorted by size. Excludes __tests__ and bufgen.
+# Defaults to current directory and top 30.
+dir="${1:-.}"
+n="${2:-30}"
+find "$dir" -type f \( -name "*.ts" -o -name "*.tsx" \) ! -path "*/__tests__/*" ! -path "*/bufgen/*" -exec wc -l {} + | awk '$1 > 300' | sort -rn | head -"$n"
