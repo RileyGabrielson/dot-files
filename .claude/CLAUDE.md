@@ -8,7 +8,10 @@
 
 Use the `largest-files` alias instead of raw `wc -l` pipelines when finding the largest files in a project. Example: `largest-files` (run from the project root, or `cd` first).
 
-## Company Standards
+## Autonomous
 
-Immediately read ~/r/ai-instructions/ai/docs/index.md for company wide standards. Do nothing until you read this.
+@autonomous_command.md
 
+## Gitlab Operations
+
+@create_glab.md

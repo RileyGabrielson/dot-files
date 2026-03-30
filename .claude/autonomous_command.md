@@ -6,3 +6,4 @@ List issues by `glab issue list --assignee @me`.
 
 DO NOT use compound commands. Create a branch simply by `git checkout -b "123-branch-name"`
 
+DO NOT use cat to create files. ALWAYS use the standard write tool. Using CAT to create files prompts for approval.

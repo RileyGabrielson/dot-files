@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-# Usage: create-issue <description-file> [milestone]
+# Usage: create-issue <description-file> [milestone] [weight]
 #
 # Creates a GitLab issue from a description file.
 # The first line of the file is used as the issue title.
 # Remaining lines are used as the issue description body.
+# Automatically assigns to @me, sets weight (default: 1), and assigns
+# to the current active iteration.
 #
 # Intended for use by AI agents: the agent writes the description to a temp
 # file and passes its path as the argument.
@@ -15,9 +17,10 @@ set -e
 
 DESCRIPTION_FILE="${1:-}"
 MILESTONE="${2:-}"
+WEIGHT="${3:-1}"
 
 if [ -z "$DESCRIPTION_FILE" ]; then
-    echo "Usage: create-issue <description-file> [milestone]"
+    echo "Usage: create-issue <description-file> [milestone] [weight]"
     exit 1
 fi
 
@@ -40,14 +43,11 @@ fi
 
 TITLE=$(head -n 1 "$DESCRIPTION_FILE")
 BODY=$(tail -n +2 "$DESCRIPTION_FILE" | sed '/./,$!d')  # strip leading blank lines
-echo "$BODY"
 
 if [ -z "$TITLE" ]; then
     echo "Error: description file is empty or has no title on line 1"
     exit 1
 fi
-
-CURRENT_USER=$(glab api user --hostname "git.tcncloud.net" | python3 -c "import sys,json; print(json.load(sys.stdin)['username'])")
 
 ARGS=(glab issue create --title "$TITLE" --description "$BODY" --assignee @me)
 if [ -n "$MILESTONE" ]; then
@@ -56,6 +56,39 @@ fi
 
 echo "Creating issue: $TITLE"
 
-"${ARGS[@]}"
+ISSUE_OUTPUT=$("${ARGS[@]}")
+echo "$ISSUE_OUTPUT"
+
+ISSUE_IID=$(echo "$ISSUE_OUTPUT" | grep -o 'issues/[0-9]*' | grep -o '[0-9]*$')
+
+if [ -n "$ISSUE_IID" ]; then
+    # Set weight
+    glab api "projects/:id/issues/$ISSUE_IID" --method PUT --field "weight=$WEIGHT" > /dev/null
+
+    # Resolve top-level group from git remote for iteration lookup
+    TOP_GROUP=$(git remote get-url origin 2>/dev/null | python3 -c "
+import sys, re
+url = sys.stdin.read().strip()
+m = re.search(r'[:/]([^/:]+)/', url)
+print(m.group(1) if m else '')
+" 2>/dev/null || echo "")
+
+    ITER_ID=""
+    if [ -n "$TOP_GROUP" ]; then
+        ITER_ID=$(glab api "groups/$TOP_GROUP/iterations?state=current&per_page=1" 2>/dev/null | python3 -c "
+import sys, json
+items = json.load(sys.stdin)
+print(items[0]['id'] if items else '')
+" 2>/dev/null || echo "")
+    fi
+
+    if [ -n "$ITER_ID" ]; then
+        PROJECT_PATH=$(glab api projects/:id 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin)['path_with_namespace'])")
+        glab api graphql -f query="mutation { issueSetIteration(input: { projectPath: \"$PROJECT_PATH\", iid: \"$ISSUE_IID\", iterationId: \"gid://gitlab/Iteration/$ITER_ID\" }) { errors } }" > /dev/null 2>&1
+        echo "Weight: $WEIGHT  Iteration: $ITER_ID"
+    else
+        echo "Weight: $WEIGHT  (no active iteration found)"
+    fi
+fi
 
 echo "Done."

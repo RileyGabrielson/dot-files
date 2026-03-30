@@ -1,4 +1,11 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "WebFetch(domain:storage.googleapis.com)",
@@ -22,13 +29,15 @@
       "Bash(git remote get-url *)",
       "Bash(git checkout *)",
       "Bash(git commit *)",
+      "Bash(git check-ignore *)",
       "Bash(glab issue *)",
       "Bash(create-issue *)",
       "Bash(create-mr:*)",
       "Bash(glab auth *)",
       "Bash(glab api:*)",
       "Bash(glab iteration *)",
-      "Bash(glab mr create *)",
+      "Bash(glab mr:*)",
+      "Bash(glab milestone:*)",
       "Bash(yarn:*)",
       "Bash(pnpm:*)"
     ],
@@ -55,6 +64,15 @@
   },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": false,
-    "gitlab@claude-plugins-official": false
+    "gitlab@claude-plugins-official": false,
+    "tcn@tcn-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "tcn-marketplace": {
+      "source": {
+        "source": "git",
+        "url": "https://git.tcncloud.net/tcn-internal/ai-instructions.git"
+      }
+    }
   }
 }
