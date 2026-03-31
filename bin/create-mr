@@ -50,7 +50,7 @@ if [ -z "$TITLE" ]; then
     exit 1
 fi
 
-ARGS=(glab mr create --title "$TITLE" --description "$BODY" --source-branch "$SOURCE_BRANCH" --target-branch master --assignee @me)
+ARGS=(glab mr create --title "$TITLE" --description "$BODY" --source-branch "$SOURCE_BRANCH" --target-branch master --assignee @me --remove-source-branch --squash-before-merge)
 if [ -n "$MILESTONE" ]; then
     ARGS+=(--milestone "$MILESTONE")
 fi
