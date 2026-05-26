@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Usage: godot [args...]
+# Wraps the macOS Godot.app so `godot` works from the shell. Tries common
+# install locations and execs the first one that exists.
+for app in \
+	"$HOME/Desktop/Godot.app/Contents/MacOS/Godot" \
+	"/Applications/Godot.app/Contents/MacOS/Godot" \
+	"$HOME/Applications/Godot.app/Contents/MacOS/Godot"; do
+	if [ -x "$app" ]; then
+		exec "$app" "$@"
+	fi
+done
+echo "godot: Godot.app not found in Desktop, /Applications, or ~/Applications" >&2
+exit 1
