@@ -59,7 +59,7 @@ echo "Creating issue: $TITLE"
 ISSUE_OUTPUT=$("${ARGS[@]}")
 echo "$ISSUE_OUTPUT"
 
-ISSUE_IID=$(echo "$ISSUE_OUTPUT" | grep -o 'issues/[0-9]*' | grep -o '[0-9]*$')
+ISSUE_IID=$(echo "$ISSUE_OUTPUT" | grep -oE '/(issues|work_items)/[0-9]+' | grep -oE '[0-9]+$' | head -1 || true)
 
 if [ -n "$ISSUE_IID" ]; then
     # Set weight

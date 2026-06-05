@@ -29,6 +29,7 @@
       "Bash(git remote get-url *)",
       "Bash(git checkout *)",
       "Bash(git commit *)",
+      "Bash(git mv *)",
       "Bash(git check-ignore *)",
       "Bash(glab issue *)",
       "Bash(create-issue *)",
@@ -47,7 +48,8 @@
       "Bash(git push * master)",
       "Bash(rm -rf *)",
       "Bash(sudo *)"
-    ]
+    ],
+    "defaultMode": "acceptEdits"
   },
   "hooks": {
     "PreToolUse": [
@@ -62,17 +64,22 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": false,
-    "gitlab@claude-plugins-official": false,
-    "tcn@tcn-marketplace": true
+    "tcn@tcn-marketplace": true,
+    "tcn-frontend@tcn-marketplace": true
   },
   "extraKnownMarketplaces": {
     "tcn-marketplace": {
       "source": {
         "source": "git",
         "url": "https://git.tcncloud.net/tcn-internal/ai-instructions.git"
-      }
+      },
+      "autoUpdate": true
     }
   }
 }

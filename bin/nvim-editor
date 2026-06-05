@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Wrapper for $EDITOR that toggles tmux status bar like the nvim() shell function.
+# External programs (e.g. Claude Code) exec $EDITOR directly, bypassing shell functions.
+
+args=("$@")
+
+# Remove '.' if it's the first argument
+if [[ "${args[1]}" == "." ]]; then
+  args=("${args[@]:1}")
+fi
+
+prev_auto_rename=$(tmux show-window-option -v automatic-rename 2>/dev/null)
+prev_window_name=$(tmux display-message -p '#W')
+tmux rename-window nvim
+tmux set -g status off && /opt/homebrew/bin/nvim "${args[@]}"
+tmux set -g status on
+tmux rename-window "$prev_window_name"
+tmux set-window-option automatic-rename "${prev_auto_rename:-on}"

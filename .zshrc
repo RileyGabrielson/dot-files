@@ -1,15 +1,26 @@
 alias k='kubectl'
 alias http='npx http-server --cors'
-alias vim='nvim'
+alias vim='nvim-editor'
 alias ':q'='exit'
 alias lg='lazygit'
 alias gl='lazygit'
 alias s='tmux_sessionizer'
 alias a='tmux -2 attach'
-alias n='nvim'
+alias n='nvim-editor'
+alias nvim='nvim-editor'
 alias nvimg="nvim --listen ./godot.pipe"
 alias ls="eza --color=always"
 alias p='pnpm'
+claude() {
+  if [ -n "$TMUX" ]; then
+    tmux set-window-option automatic-rename off
+    tmux rename-window claude
+    command claude "$@"
+    tmux set-window-option automatic-rename on
+  else
+    command claude "$@"
+  fi
+}
 alias agent='claude'
 
 clean-merged() {
@@ -22,18 +33,6 @@ clean-all-for-real() {
 
 pf() {
   pod=$(kubectl get pods | grep "$1" | head -n 1 | cut -d " " -f 1) && kubectl port-forward "$pod" "$2"
-}
-
-nvim() {
- local args=("$@")
-
- # Remove '.' if it's the first argument
- if [[ "${args[1]}" == "." ]]; then
-   args=("${args[@]:1}")
- fi
-
- tmux set -g status off && /opt/homebrew/bin/nvim "${args[@]}"
- tmux set -g status on
 }
 
 fzf-history-widget-accept() {
@@ -54,6 +53,7 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+export EDITOR='nvim-editor'
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="eastwood"
 export HYPHEN_INSENSITIVE="true"
@@ -80,3 +80,6 @@ if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . 
 
 zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
