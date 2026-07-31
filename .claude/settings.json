@@ -81,5 +81,7 @@
       },
       "autoUpdate": true
     }
-  }
+  },
+  "agentPushNotifEnabled": true,
+  "skipWorkflowUsageWarning": true
 }
