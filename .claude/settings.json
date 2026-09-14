@@ -49,7 +49,7 @@
       "Bash(rm -rf *)",
       "Bash(sudo *)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
   "hooks": {
     "PreToolUse": [
@@ -82,6 +82,6 @@
       "autoUpdate": true
     }
   },
-  "agentPushNotifEnabled": true,
-  "skipWorkflowUsageWarning": true
+  "skipWorkflowUsageWarning": true,
+  "agentPushNotifEnabled": true
 }

@@ -11,6 +11,7 @@ alias nvim='nvim-editor'
 alias nvimg="nvim --listen ./godot.pipe"
 alias ls="eza --color=always"
 alias p='pnpm'
+
 claude() {
   if [ -n "$TMUX" ]; then
     tmux set-window-option automatic-rename off

@@ -325,6 +325,51 @@ local plugins = {
 		"nemanjamalesija/smart-paste.nvim",
 		config = true,
 	},
+
+	{
+		"glacambre/firenvim",
+		build = ":call firenvim#install(0)",
+		-- init, not config: g:firenvim_config must be set before the plugin reads it
+		init = function()
+			require("config.firenvim")
+		end,
+	},
+
+	{
+		"subnut/nvim-ghost.nvim",
+	},
+
+	{
+		"sotte/presenting.nvim",
+		opts = {
+			separator = {
+				markdown = "---",
+			},
+			keep_seperator = false,
+			keymaps = {
+				["n"] = function()
+					require("presenting").next()
+				end,
+				["p"] = function()
+					require("presenting").prev()
+				end,
+				["q"] = function()
+					require("presenting").quit()
+				end,
+				["f"] = function()
+					require("presenting").first()
+				end,
+				["l"] = nil,
+				["<CR>"] = function()
+					require("presenting").next()
+				end,
+				["<BS>"] = function()
+					require("presenting").prev()
+				end,
+			},
+		},
+		cmd = { "Presenting" },
+	},
 }
 
 return plugins
