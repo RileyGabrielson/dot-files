@@ -11,6 +11,7 @@ alias nvim='nvim-editor'
 alias nvimg="nvim --listen ./godot.pipe"
 alias ls="eza --color=always"
 alias p='pnpm'
+alias voice-agent='uv run --project "$HOME/r/ai-assistant" voice-agent'
 
 claude() {
   if [ -n "$TMUX" ]; then
