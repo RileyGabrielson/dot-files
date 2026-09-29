@@ -70,11 +70,11 @@ if [[ ":$FPATH:" != *":/Users/riley.gabrielson/.zsh/completions:"* ]]; then expo
 zstyle ':omz:update' mode reminder
 
 source "$ZSH"/oh-my-zsh.sh
-source "$HOME/.tcnrc"
-source "$HOME/.api.zsh"
+[ -f "$HOME/.tcnrc" ] && source "$HOME/.tcnrc"
+[ -f "$HOME/.api.zsh" ] && source "$HOME/.api.zsh"
 [ -f ~/.fzf.zsh ] && source "$HOME/.fzf.zsh"
 [ -s "/Users/riley.gabrielson/.bun/_bun" ] && source "/Users/riley.gabrielson/.bun/_bun"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc'; fi
@@ -84,4 +84,4 @@ zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
 
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[ -f "$HOME/.vite-plus/env" ] && . "$HOME/.vite-plus/env"

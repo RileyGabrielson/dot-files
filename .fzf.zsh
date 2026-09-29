@@ -8,6 +8,12 @@ fi
 # ---------------
 # [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
-source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
-source "/opt/homebrew/opt/fzf/shell/completion.zsh"
+for fzf_shell_dir in /opt/homebrew/opt/fzf/shell /usr/share/doc/fzf/examples; do
+  if [[ -d "$fzf_shell_dir" ]]; then
+    source "$fzf_shell_dir/key-bindings.zsh"
+    [[ -f "$fzf_shell_dir/completion.zsh" ]] && source "$fzf_shell_dir/completion.zsh"
+    break
+  fi
+done
+unset fzf_shell_dir
 
