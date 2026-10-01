@@ -12,6 +12,8 @@ alias nvimg="nvim --listen ./godot.pipe"
 alias ls="eza --color=always"
 alias p='pnpm'
 alias voice-agent='uv run --project "$HOME/r/ai-assistant" voice-agent'
+alias voice-desktop='uv run --project "$HOME/r/ai-assistant" voice-desktop'
+alias voice-server-lan='uv run --project "$HOME/r/ai-assistant" voice-server --lan'
 
 claude() {
   if [ -n "$TMUX" ]; then
@@ -40,6 +42,19 @@ pf() {
 fzf-history-widget-accept() {
   fzf-history-widget
   zle accept-line
+}
+
+generate-ai-cert() {
+  local iface ip dir="$HOME/.config/voice-agent"
+  iface=$(route -n get default | awk '/interface:/ {print $2}')
+  ip=$(ipconfig getifaddr "$iface")
+  if [ -z "$ip" ]; then
+    echo "No IPv4 address on $iface" >&2
+    return 1
+  fi
+  mkdir -p "$dir"
+  mkcert -cert-file "$dir/lan-cert.pem" -key-file "$dir/lan-key.pem" "$ip" "$(scutil --get LocalHostName).local" localhost &&
+    echo "Restart the server, then open https://$ip:7447"
 }
 
 present() {

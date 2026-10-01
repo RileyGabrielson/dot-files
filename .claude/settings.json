@@ -40,7 +40,10 @@
       "Bash(glab mr:*)",
       "Bash(glab milestone:*)",
       "Bash(yarn:*)",
-      "Bash(pnpm:*)"
+      "Bash(pnpm:*)",
+      "Bash(gh api:*)",
+      "Bash(icalBuddy:*)",
+      "Bash(date:*)"
     ],
     "deny": [
       "Bash(git push * --force)",
@@ -62,6 +65,26 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/riley.gabrielson/.claude/hooks/no-comments.py --record-baseline"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/riley.gabrielson/.claude/hooks/no-comments.py"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -71,7 +94,9 @@
   },
   "enabledPlugins": {
     "tcn@tcn-marketplace": true,
-    "tcn-frontend@tcn-marketplace": true
+    "tcn-frontend@tcn-marketplace": true,
+    "cloudflare@cloudflare": true,
+    "stripe@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "tcn-marketplace": {
@@ -80,8 +105,19 @@
         "url": "https://git.tcncloud.net/tcn-internal/ai-instructions.git"
       },
       "autoUpdate": true
+    },
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
     }
   },
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "skipWorkflowUsageWarning": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true
 }
