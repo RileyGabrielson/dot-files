@@ -20,7 +20,7 @@ When a step needs data, dispatch one agent for it and keep its result trimmed to
 - Notes repo: `~/r/notes`
 - Daily note: `~/r/notes/daily_notes/<today>.md`, where `<today>` is `date +%F`
 
-Never commit or push in the notes repo.
+Never commit or push in the notes repo. The notes repo is not a priority candidate either — the personal priority must never be to commit or push it.
 
 If the daily note does not exist when you first need to write to it, create it with the Write tool containing `# Daily Note - <today>`.
 
@@ -28,13 +28,13 @@ When writing or updating a section: if a section with that heading already exist
 
 ## Step 1 — Calendar
 
-Dispatch an agent to fetch today's events across work and personal calendars and return the compact schedule plus free 60+ minute blocks between 8:00 AM and 5:00 PM:
+Dispatch an agent to fetch today's events across work and personal calendars and return a compact schedule (time — title) with any overlaps flagged:
 
 ```
 icalBuddy -nc -npn -ec "Reminders,DEFAULT_CALENDAR_NAME,Birthdays" -iep "title,datetime" -b "- " eventsToday
 ```
 
-Present a compact schedule (time — title), flag overlaps, and list the free blocks of 60+ minutes between 8:00 AM and 5:00 PM. Keep the free blocks in mind for Step 3.
+Present a compact schedule (time — title) and flag overlaps. Do not compute or mention free or open time ranges.
 
 ## Step 2 — Food Plan
 
@@ -65,8 +65,8 @@ Goal: lock in **an hour of physical activity** for the day.
 
 1. Check the calendar from Step 1 for anything already scheduled that counts (workout class, sports, a long walk, etc.).
 2. If it's already scheduled, confirm it covers an hour and note it as the plan.
-3. If not, discuss with the user when and how they'll fit it in — one of the free blocks from Step 1 works well. Cover both structured activity (gym, run, class) and everyday movement (walk, bike commute) as options.
-4. Land on a specific plan: what activity, and when. Iterate until the user approves.
+3. If not, discuss with the user what they'll do. Cover both structured activity (gym, run, class) and everyday movement (walk, bike commute) as options.
+4. Land on an activity and a rough when (e.g. "after work") — no time-slot analysis. Iterate until the user approves.
 5. Once approved, write the `## Exercise Plan` section to the daily note:
 
 ```
@@ -97,9 +97,9 @@ Use `jq` to trim responses to title, web URL, labels, milestone, and updated dat
 
 The same agent also finds the on-disk clones of those repos (locate them, e.g. via `mdfind -onlyin ~ "kMDItemFSName == '<repo>'"`, rather than assuming a fixed path) and runs `git status --porcelain` in each. Mention any repo with uncommitted changes alongside its priorities.
 
-Propose priorities:
+Propose priorities as a conversation about what needs doing — not when to do it. Do not schedule priorities or fit them into time.
 
-- **Work:** 2–4 items from GitLab. MRs awaiting review come first. Size the list to the free blocks from Step 1.
+- **Work:** 2–4 items from GitLab. MRs awaiting review come first.
 - **Personal:** 1 item from the GitHub repo — the next logical step based on open issues and recent commits.
 
 Discuss and adjust until the user approves. Once approved, write the `## Today's Focus` section to the daily note:
