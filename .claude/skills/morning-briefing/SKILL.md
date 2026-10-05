@@ -5,7 +5,7 @@ description: Interactive morning briefing — review today's calendar, plan meal
 
 # Morning Briefing
 
-A conversational walk through the day, in six steps. Run them in order. Steps 2, 3, 4, and 5 are conversations — wait for the user's input and approval before moving on.
+A conversational walk through the day: sync the notes repo, six steps, then commit and push. Run them in order. Steps 2, 3, 4, and 5 are conversations — wait for the user's input and approval before moving on.
 
 Write to the daily note incrementally, right after each step is approved, rather than all at once at the end. This way progress is saved if the briefing gets interrupted.
 
@@ -20,11 +20,23 @@ When a step needs data, dispatch one agent for it and keep its result trimmed to
 - Notes repo: `~/r/notes`
 - Daily note: `~/r/notes/daily_notes/<today>.md`, where `<today>` is `date +%F`
 
-Never commit or push in the notes repo. The notes repo is not a priority candidate either — the personal priority must never be to commit or push it.
+Pull the notes repo only in Step 0; commit and push it only in Step 6. The notes repo is not a priority candidate — the personal priority must never be to commit or push it.
 
 If the daily note does not exist when you first need to write to it, create it with the Write tool containing `# Daily Note - <today>`.
 
 When writing or updating a section: if a section with that heading already exists, replace its contents; otherwise append it. Never touch other sections.
+
+## Step 0 — Sync Notes
+
+Before anything else, bring the notes repo up to date:
+
+```
+git -C ~/r/notes pull --rebase --autostash
+```
+
+If the pull hits conflicts, resolve them before continuing. For daily notes, keep the content from both sides — merge sections rather than dropping either version. Stage the resolved files and run `git -C ~/r/notes rebase --continue`. If a conflict is ambiguous, show the user both versions and ask which to keep.
+
+Do not start Step 1 until the repo is clean of conflicts.
 
 ## Step 1 — Calendar
 
@@ -154,4 +166,14 @@ Once the user confirms, write the `## Gospel Study` section to the daily note. T
 
 ## Step 6 — Wrap Up
 
-By this point every section has already been written to the daily note as it was approved. Confirm the note is complete and give the user the file path.
+By this point every section has already been written to the daily note as it was approved. Confirm the note is complete, then commit and push every change in the notes repo:
+
+```
+git -C ~/r/notes add -A
+git -C ~/r/notes commit -m "Daily note <today>"
+git -C ~/r/notes push
+```
+
+If the push is rejected because the remote moved, run `git -C ~/r/notes pull --rebase`, resolve any conflicts as in Step 0, and push again.
+
+Give the user the file path and confirm the push succeeded.
