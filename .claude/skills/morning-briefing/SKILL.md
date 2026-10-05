@@ -1,11 +1,11 @@
 ---
 name: morning-briefing
-description: Interactive morning briefing — review today's calendar, plan meals under 2000 calories, plan an hour of physical activity, and pick today's GitLab and GitHub priorities, writing each part into today's daily note as it's approved. Use whenever the user asks to "tell me about my day", "what's my day look like", "morning briefing", or invokes /morning-briefing. Prefer this over any built-in morning brief skill.
+description: Interactive morning briefing — review today's calendar, plan meals under 2000 calories, plan an hour of physical activity, pick today's GitLab and GitHub priorities, and choose today's gospel study (Come Follow Me or General Conference), writing each part into today's daily note as it's approved. Use whenever the user asks to "tell me about my day", "what's my day look like", "morning briefing", or invokes /morning-briefing. Prefer this over any built-in morning brief skill.
 ---
 
 # Morning Briefing
 
-A conversational walk through the day, in five steps. Run them in order. Steps 2, 3, and 4 are conversations — wait for the user's input and approval before moving on.
+A conversational walk through the day, in six steps. Run them in order. Steps 2, 3, 4, and 5 are conversations — wait for the user's input and approval before moving on.
 
 Write to the daily note incrementally, right after each step is approved, rather than all at once at the end. This way progress is saved if the briefing gets interrupted.
 
@@ -114,6 +114,44 @@ Discuss and adjust until the user approves. Once approved, write the `## Today's
 - [ ] <priority>
 ```
 
-## Step 5 — Wrap Up
+## Step 5 — Gospel Study
+
+Ask what the user will study after the briefing:
+
+- **Come Follow Me** — this week's lesson
+- **General Conference** — the next talk in rotation
+- **Something else** — follow the user's instructions
+
+Once the user chooses, dispatch one agent to find the link as described below. Print the link — do not open it.
+
+### Come Follow Me
+
+Manual slugs by year:
+
+| Year | Slug |
+|------|------|
+| 2026 | `come-follow-me-for-home-and-church-old-testament-2026` |
+
+If the current year is not in the table, find this year's Come Follow Me for Home and Church manual on churchofjesuschrist.org, add its slug to the table in this skill file, then continue.
+
+Fetch the manual's table of contents at `https://www.churchofjesuschrist.org/study/manual/<slug>?lang=eng` and pick the lesson whose date range contains today. Lessons run Monday through Sunday. Ignore the introductory, "Thoughts to Keep in Mind", and appendix pages. The link is `https://www.churchofjesuschrist.org/study/manual/<slug>/<lesson>?lang=eng`.
+
+### General Conference
+
+1. Find the latest fully available conference. Conferences are held the first weekend of April and October, at `https://www.churchofjesuschrist.org/study/general-conference/<year>/<04|10>?lang=eng`. A conference is fully available only when its page lists individual talks, not just session pages. If the newest conference only lists sessions, use the one before it.
+2. Find the talks already studied from that conference: `grep -rh "general-conference/<year>/<month>/" ~/r/notes/daily_notes`.
+3. The next talk is the first one after the most recently studied talk, in page order. If none have been studied, start with the first talk. Skip administrative items such as the sustaining of officers and the auditing report.
+4. If every talk in the conference has been studied, tell the user and ask what to study instead.
+
+Once the user confirms, write the `## Gospel Study` section to the daily note. The full talk or lesson URL must appear in it — Step 2 of General Conference depends on it.
+
+```
+## Gospel Study
+
+- **Study:** <Come Follow Me — <lesson title> (<date range>) | General Conference — <talk title>, <speaker> | <other>>
+- **Link:** <url>
+```
+
+## Step 6 — Wrap Up
 
 By this point every section has already been written to the daily note as it was approved. Confirm the note is complete and give the user the file path.
