@@ -55,23 +55,12 @@
     "defaultMode": "auto"
   },
   "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/riley.gabrielson/.claude/hooks/rtk-rewrite.sh"
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/riley.gabrielson/.claude/hooks/no-comments.py --record-baseline"
+            "command": "$HOME/.claude/hooks/no-comments.py --record-baseline"
           }
         ]
       }
@@ -81,7 +70,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/riley.gabrielson/.claude/hooks/no-comments.py"
+            "command": "$HOME/.claude/hooks/no-comments.py"
           }
         ]
       }

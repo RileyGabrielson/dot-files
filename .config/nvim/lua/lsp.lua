@@ -106,7 +106,7 @@ vim.filetype.add({
 	},
 })
 vim.lsp.config.cpat = {
-	cmd = { "bun", "run", "/Users/riley.gabrielson/r/work-other/cpat-extension/src/server/server.ts", "--stdio" },
+	cmd = { "bun", "run", vim.fn.expand("~/r/work-other/cpat-extension/src/server/server.ts"), "--stdio" },
 	root_markers = { "package.json" },
 	filetypes = { "cpat" },
 }

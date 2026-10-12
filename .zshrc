@@ -80,7 +80,7 @@ export DISABLE_UNTRACKED_FILES_DIRTY="true"
 export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 export FZF_DEFAULT_OPTS="--bind ctrl-n:down,ctrl-p:up,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up"
 export BUN_INSTALL="$HOME/.bun"
-if [[ ":$FPATH:" != *":/Users/riley.gabrielson/.zsh/completions:"* ]]; then export FPATH="/Users/riley.gabrielson/.zsh/completions:$FPATH"; fi
+if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 
 zstyle ':omz:update' mode reminder
 
@@ -88,12 +88,12 @@ source "$ZSH"/oh-my-zsh.sh
 [ -f "$HOME/.tcnrc" ] && source "$HOME/.tcnrc"
 [ -f "$HOME/.api.zsh" ] && source "$HOME/.api.zsh"
 [ -f ~/.fzf.zsh ] && source "$HOME/.fzf.zsh"
-[ -s "/Users/riley.gabrielson/.bun/_bun" ] && source "/Users/riley.gabrielson/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 [ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-if [ -f '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/riley.gabrielson/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 zle     -N     fzf-history-widget-accept
 bindkey '^X^R' fzf-history-widget-accept
