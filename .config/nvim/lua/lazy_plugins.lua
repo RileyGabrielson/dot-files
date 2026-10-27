@@ -67,10 +67,6 @@ local plugins = {
 		cond = not vim.g.vscode,
 	},
 	{
-		"nvim-treesitter/playground",
-		cond = not vim.g.vscode,
-	},
-	{
 		"mbbill/undotree",
 		cond = not vim.g.vscode,
 	},
@@ -85,6 +81,9 @@ local plugins = {
 
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
 		config = function()
 			require("config.treesitter")
 		end,
