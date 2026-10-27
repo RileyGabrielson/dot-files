@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: git-account                         show current repo's account"
+  echo "       git-account <personal|work>         configure current repo"
+  echo "       git-account <personal|work> <url> [dir]   clone with that account"
+  exit 1
+}
+
+case "${1:-}" in
+  personal)
+    name="Riley"
+    email="rileygabrielson@gmail.com"
+    key="$HOME/.ssh/id_ed25519"
+    ;;
+  work)
+    name="Riley"
+    email="rileyg@redmond.com"
+    key="$HOME/.ssh/id_ed25519_work"
+    ;;
+  "")
+    git config --local user.email || echo "no account configured"
+    exit 0
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+ssh_command="ssh -i $key -o IdentitiesOnly=yes"
+
+if [ -n "${2:-}" ]; then
+  url="$2"
+  dir="${3:-$(basename "$url" .git)}"
+  git -c core.sshCommand="$ssh_command" clone "$url" "$dir"
+  cd "$dir"
+fi
+
+git config --local user.name "$name"
+git config --local user.email "$email"
+git config --local core.sshCommand "$ssh_command"
+echo "$(basename "$(git rev-parse --show-toplevel)") -> $1 ($email)"

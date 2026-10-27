@@ -7,7 +7,7 @@ end
 config.font_size = 17.2
 config.audible_bell = "Disabled"
 config.enable_tab_bar = false
-config.window_decorations = "RESIZE | MACOS_FORCE_DISABLE_SHADOW"
+config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = 2,
 	right = 0,
