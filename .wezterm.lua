@@ -1,5 +1,7 @@
 local wezterm = require("wezterm")
 local config = {}
+local act = wezterm.action
+
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
@@ -14,6 +16,7 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+
 -- config.color_scheme = "GruvboxDarkHard"
 config.check_for_updates = true
 
@@ -36,6 +39,10 @@ config.colors = {
 	ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
 	brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
 	indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
+}
+
+config.keys = {
+  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
 }
 
 return config

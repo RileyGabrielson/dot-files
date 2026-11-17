@@ -1,10 +1,4 @@
 #!/usr/bin/env python3
-"""Blocks a turn that leaves newly added code comments in the working tree.
-
-Runs as a Stop hook. With --record-baseline it runs as a SessionStart hook and
-stores the starting commit, so comments in commits made during the session are
-still caught.
-"""
 import hashlib
 import json
 import os
@@ -169,34 +163,69 @@ def uses_triple_quotes(path, style):
     return style == HASH and path.rsplit(".", 1)[-1].lower() == "py"
 
 
-def diff_additions(cwd, baseline, since):
+UNCOMMITTED = "0" * 40
+
+
+def candidate_paths(cwd, since):
+    paths = set((git(cwd, "diff", "--name-only", "HEAD", "--", ".") or "").splitlines())
+    if since is not None:
+        committed = git(
+            cwd, "log", "--no-merges", f"--since=@{int(since)}",
+            "--format=", "--name-only", "HEAD", "--", ".",
+        )
+        paths.update((committed or "").splitlines())
+    return sorted(p for p in paths if p)
+
+
+def blamed_lines(cwd, path):
+    porcelain = git(cwd, "blame", "--porcelain", "--", path)
+    if porcelain is None:
+        return
+    commits = {}
+    sha = None
+    lineno = 0
+    for line in porcelain.splitlines():
+        if line.startswith("\t"):
+            yield lineno, line[1:], sha, commits[sha]
+            continue
+        parts = line.split(" ")
+        if len(parts[0]) == 40 and len(parts) >= 3 and parts[2].isdigit():
+            sha = parts[0]
+            lineno = int(parts[2])
+            commits.setdefault(sha, {})
+        elif sha and parts[0] in ("committer-time", "committer-mail"):
+            commits[sha][parts[0]] = " ".join(parts[1:]).strip("<>")
+
+
+def written_this_session(sha, info, since, user_email):
+    if sha == UNCOMMITTED:
+        return True
+    if since is None:
+        return False
+    try:
+        committed_at = int(info.get("committer-time", "0"))
+    except ValueError:
+        return False
+    return committed_at >= since and info.get("committer-mail", "").lower() == user_email
+
+
+def session_additions(cwd, since):
     found = []
-    diff = git(cwd, "diff", "-U0", "--no-color", "--no-ext-diff", baseline, "--", ".")
-    if diff:
-        path = None
-        style = None
-        lineno = 0
-        skip_lines = set()
-        for line in diff.splitlines():
-            if line.startswith("+++ "):
-                path = line[6:] if line.startswith("+++ b/") else None
-                style = style_for(path) if path else None
-                skip_lines = (
-                    triple_quoted_lines(cwd, path)
-                    if style and uses_triple_quotes(path, style)
-                    else set()
-                )
-            elif line.startswith("@@"):
-                m = re.match(r"@@ -\S+ \+(\d+)", line)
-                lineno = int(m.group(1)) if m else 0
-            elif line.startswith("+") and not line.startswith("+++"):
-                if (
-                    style
-                    and lineno not in skip_lines
-                    and find_comment(line[1:], style)
-                ):
-                    found.append((path, lineno, line[1:].strip()))
-                lineno += 1
+    user_email = (git(cwd, "config", "user.email") or "").strip().lower()
+    for path in candidate_paths(cwd, since):
+        style = style_for(path)
+        if not style or not os.path.isfile(os.path.join(cwd, path)):
+            continue
+        skip_lines = (
+            triple_quoted_lines(cwd, path) if uses_triple_quotes(path, style) else set()
+        )
+        for lineno, text, sha, info in blamed_lines(cwd, path):
+            if (
+                lineno not in skip_lines
+                and written_this_session(sha, info, since, user_email)
+                and find_comment(text, style)
+            ):
+                found.append((path, lineno, text.strip()))
 
     if since is None:
         return found
@@ -249,13 +278,9 @@ def main():
     if git(cwd, "rev-parse", "--is-inside-work-tree") is None:
         return 0
 
-    base_file = state_path(session_id, cwd, "base")
     since_file = state_path(session_id, cwd, "since")
 
     if "--record-baseline" in sys.argv:
-        head = git(cwd, "rev-parse", "HEAD")
-        if head:
-            write_state(base_file, head.strip())
         write_state(since_file, int(time.time()))
         return 0
 
@@ -264,13 +289,8 @@ def main():
     except ValueError:
         since = None
 
-    baseline = read_state(base_file) or "HEAD"
-    if git(cwd, "cat-file", "-e", baseline + "^{commit}") is None:
-        baseline = "HEAD"
-        if git(cwd, "rev-parse", "--verify", "HEAD") is None:
-            baseline = None
-
-    found = diff_additions(cwd, baseline, since) if baseline else []
+    has_head = git(cwd, "rev-parse", "--verify", "HEAD") is not None
+    found = session_additions(cwd, since) if has_head else []
 
     count_file = state_path(session_id, cwd, "count")
     if not found:

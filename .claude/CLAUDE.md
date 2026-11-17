@@ -16,9 +16,9 @@ Each test must be fully isolated — mocks must not persist longer than a single
 
 Never assert on `console.warn` or `console.error` calls. If a guard condition matters, test its observable effect instead (e.g. nothing added to a signal, no function called).
 
-## Gitlab Operations
+## Issues and PRs
 
-@create_glab.md
+@issues_and_prs.md
 
 ## Tone
 
@@ -34,6 +34,6 @@ Never assert on `console.warn` or `console.error` calls. If a guard condition ma
 
 - A `Stop` hook (`.claude/hooks/no-comments.py`) enforces this mechanically: it diffs the working tree against the commit the session started from and blocks the turn from ending while any newly added comment remains.
 
-- No `TODO:` comments. Future work goes to the user or to a GitLab issue, never into the source. If the user does approve a comment, it never references GitLab issue/MR/epic numbers — external IDs mean nothing in source and rot.
+- No `TODO:` comments. Future work goes to the user or to an issue, never into the source. If the user does approve a comment, it never references issue/PR/ticket numbers — external IDs mean nothing in source and rot.
 
 - No doc comments, on exported symbols or anything else. A name that needs a doc comment is the wrong name.

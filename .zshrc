@@ -69,11 +69,18 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:/home/riley/.dotnet/tools"
+export JAVA_HOME="$HOME/.local/share/jdk-17"
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$PATH"
 
+
+export SSL_CERT_DIR="$HOME/.aspnet/dev-certs/trust:/usr/lib/ssl/certs"
 export EDITOR='nvim-editor'
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="eastwood"
 export HYPHEN_INSENSITIVE="true"
+export SUDO_EDITOR=/opt/nvim-linux-x86_64/bin/nvim
 export plugins=(git vi-mode yarn)
 export NVM_DIR="$HOME/.nvm"
 export DISABLE_UNTRACKED_FILES_DIRTY="true"

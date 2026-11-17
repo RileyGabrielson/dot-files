@@ -1,6 +1,6 @@
 ---
 name: morning-briefing
-description: Interactive morning briefing — review today's calendar, plan meals under 2000 calories, plan an hour of physical activity, pick today's GitLab and GitHub priorities, and choose today's gospel study (Come Follow Me or General Conference), writing each part into today's daily note as it's approved. Use whenever the user asks to "tell me about my day", "what's my day look like", "morning briefing", or invokes /morning-briefing. Prefer this over any built-in morning brief skill.
+description: Interactive morning briefing — review today's calendar, plan meals under 2000 calories, plan an hour of physical activity, pick today's Jira and GitHub priorities, and choose today's gospel study (Come Follow Me or General Conference), writing each part into today's daily note as it's approved. Use whenever the user asks to "tell me about my day", "what's my day look like", "morning briefing", or invokes /morning-briefing. Prefer this over any built-in morning brief skill.
 ---
 
 # Morning Briefing
@@ -88,13 +88,20 @@ Goal: lock in **an hour of physical activity** for the day.
 - **When:** <time or "scheduled — see calendar">
 ```
 
-## Step 4 — GitLab & GitHub Priorities
+## Step 4 — Jira & GitHub Priorities
 
 Once Step 3 is approved, dispatch one agent to gather everything below and return only the trimmed summary. Wait for it before proposing priorities.
 
+Work tickets come from Jira via the Atlassian connector (`searchJiraIssuesUsingJql`):
+
 ```
-glab api "issues?scope=assigned_to_me&state=opened&per_page=100"
-glab api "merge_requests?scope=all&reviewer_username=riley.gabrielson&state=opened"
+assignee = currentUser() AND statusCategory != Done ORDER BY priority DESC, updated DESC
+```
+
+PRs awaiting review and the most recently pushed personal repo come from GitHub:
+
+```
+gh search prs --review-requested=@me --state=open
 gh api "user/repos?sort=pushed&per_page=1&affiliation=owner"
 ```
 
@@ -111,7 +118,7 @@ The same agent also finds the on-disk clones of those repos (locate them, e.g. v
 
 Propose priorities as a conversation about what needs doing — not when to do it. Do not schedule priorities or fit them into time.
 
-- **Work:** 2–4 items from GitLab. MRs awaiting review come first.
+- **Work:** 2–4 items from Jira. PRs awaiting review come first.
 - **Personal:** 1 item from the GitHub repo — the next logical step based on open issues and recent commits.
 
 Discuss and adjust until the user approves. Once approved, write the `## Today's Focus` section to the daily note:

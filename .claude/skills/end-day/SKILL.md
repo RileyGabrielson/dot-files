@@ -1,6 +1,6 @@
 ---
 name: end-day
-description: Use at the end of the workday to close out assigned GitLab issues and generate maintenance issues for the current repo.
+description: Use at the end of the workday to close out assigned GitHub issues and generate maintenance issues for the current repo.
 ---
 
 # End of Day Workflow
@@ -17,7 +17,7 @@ Two-part end-of-day routine: spec maintenance issues first, then execute — so 
 
 1. Check out master
 
-2. Fetch your open assigned issues in the current repo from gitlab
+2. Fetch your open assigned issues in the current repo from GitHub
 
 3. Pick 2 maintenance findings from the current repo (see Appendix).
 
@@ -29,7 +29,7 @@ Two-part end-of-day routine: spec maintenance issues first, then execute — so 
 
 **REQUIRED SUB-SKILL:** Use `execute-issue` for each issue.
 
-1. Fetch your open assigned issues in the current repo (this now includes any issues just created in Part 1) from gitlab
+1. Fetch your open assigned issues in the current repo (this now includes any issues just created in Part 1) from GitHub
 
 2. Pick 2 issues. Prefer issues that are:
    - Smallest estimated scope
@@ -38,7 +38,7 @@ Two-part end-of-day routine: spec maintenance issues first, then execute — so 
 
 3. For each of the 2 issues, invoke the `execute-issue` skill.
 
-4. After all 2 are done, verify MRs are created and reference their issues.
+4. After all 2 are done, verify PRs are created and reference their issues.
 
 ---
 
@@ -68,7 +68,7 @@ The current repo (`pwd`).
 2. Run `largest-files src` to surface bloated files (>300 lines) as candidates
 3. Use `Explore` subagent to scan for the patterns above
 3. Select 2 findings that are small enough for a single Agent Teams session (30–90 min)
-4. Create each issue in GitLab using the Implementation Issue Template
+4. Create each issue in GitHub using the Implementation Issue Template
 
 ### Implementation Issue Template
 
@@ -94,13 +94,13 @@ The current repo (`pwd`).
 - Blocks: #issue_number (if any)
 ```
 
-### Creating Issues/MRs
+### Creating Issues/PRs
 
-@~/.claude/create_glab.md
+@~/.claude/issues_and_prs.md
 
 ---
 
 ## Done Checklist
 
 - [ ] 2 maintenance issues filed for current repo (assigned to @me)
-- [ ] 2 assigned issues executed (MRs open, assigned to @me)
+- [ ] 2 assigned issues executed (PRs open, assigned to @me)

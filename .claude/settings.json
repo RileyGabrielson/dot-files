@@ -31,14 +31,6 @@
       "Bash(git commit *)",
       "Bash(git mv *)",
       "Bash(git check-ignore *)",
-      "Bash(glab issue *)",
-      "Bash(create-issue *)",
-      "Bash(create-mr:*)",
-      "Bash(glab auth *)",
-      "Bash(glab api:*)",
-      "Bash(glab iteration *)",
-      "Bash(glab mr:*)",
-      "Bash(glab milestone:*)",
       "Bash(yarn:*)",
       "Bash(pnpm:*)",
       "Bash(gh api:*)",
@@ -78,7 +70,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "npx -y ccstatusline@latest",
+    "command": "jq -r '[(.context_window.used_percentage // empty | \"\\u001b[1;97m\\(. | floor)%\\u001b[0m\"), (.rate_limits.five_hour.used_percentage // empty | \"\\u001b[1;96m5h:\\(. | floor)%\\u001b[0m\")] | join(\" \")'",
     "padding": 0
   },
   "enabledPlugins": {
@@ -102,6 +94,7 @@
       }
     }
   },
+  "tui": "default",
   "voice": {
     "enabled": true,
     "mode": "hold"
@@ -110,5 +103,5 @@
   "theme": "dark",
   "agentPushNotifEnabled": true,
   "voiceEnabled": true,
-  "tui": "default"
+  "switchModelsOnFlag": false
 }
