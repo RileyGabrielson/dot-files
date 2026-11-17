@@ -5,7 +5,7 @@ This repo is managed with [GNU Stow](https://www.gnu.org/software/stow/). Runnin
 ## How Stow Works Here
 
 - Files and directories at the top level of the repo map to `~/` via symlinks.
-- **Exception — `.claude/`:** Stow symlinks individual files inside `.claude/` rather than the directory itself (since `~/.claude/` already exists with other content). Add new Claude config files directly inside `.claude/` and re-run stow.
+- **`.claude/`:** `~/.claude` is a single symlink to `dot-files/.claude`, so everything Claude Code writes at runtime lands in the repo. `.gitignore` handles this with an allowlist: everything under `.claude/` is ignored except the entries explicitly un-ignored with `!`. New files in `.claude/` take effect immediately with no re-stow, but a new top-level entry must be added to the `.gitignore` allowlist to be tracked.
 - **`bin/`** maps to `~/bin/` — each script gets its own symlink.
 
 ## Making Changes
@@ -24,7 +24,7 @@ Just edit it in the repo. The symlink means the change is live immediately — n
 
 ### Add a new Claude skill
 1. Create `dot-files/.claude/skills/<skill-name>/SKILL.md`.
-2. No re-stow needed — the `skills/` directory itself is already symlinked.
+2. No re-stow or `.gitignore` change needed — `~/.claude` is symlinked and `skills/` is already allowlisted.
 
 ### Remove a file
 1. Delete it from the repo.
